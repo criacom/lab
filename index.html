@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CRIACOM-UEL · Criatividade, Inovação, Cognição e Comportamento</title>
+<meta name="description" content="Laboratório da Universidade Estadual de Londrina dedicado à análise do comportamento aplicada à criatividade, desinformação e game design." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#f3efe6;
+    --paper-2:#ebe5d6;
+    --ink:#141414;
+    --ink-soft:#2a2a2a;
+    --muted:#6b6657;
+    --accent:#ff5b2e;
+    --accent-2:#1d4ed8;
+    --accent-3:#c7b56a;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Fraunces',Georgia,serif;
+    font-variation-settings:"opsz" 14,"SOFT" 30,"WONK" 0;
+    background:var(--paper);
+    color:var(--ink);
+    font-size:17px;
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:
+      radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px),
+      radial-gradient(rgba(0,0,0,.025) 1px,transparent 1px);
+    background-size:3px 3px,7px 7px;
+    background-position:0 0,1px 1px;
+    pointer-events:none;
+    z-index:1;
+    opacity:.6;
+  }
+
+  .container{max-width:1180px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+
+  nav.topbar{
+    position:sticky;top:0;z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--ink);
+    backdrop-filter:blur(6px);
+  }
+  nav .row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 28px;
+    max-width:1180px;margin:0 auto;
+  }
+  nav .brand{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    display:flex;align-items:center;gap:10px;
+  }
+  nav .brand .dot{
+    width:10px;height:10px;background:var(--accent);border-radius:50%;
+    box-shadow:0 0 0 2px var(--paper),0 0 0 3px var(--ink);
+  }
+  nav ul{list-style:none;display:flex;gap:24px;align-items:center}
+  nav ul a{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;
+    padding:4px 0;border-bottom:1px solid transparent;
+    transition:border-color .2s;
+  }
+  nav ul a:hover{border-color:var(--ink)}
+  @media(max-width:820px){nav ul{display:none}}
+
+  .hero{
+    padding:80px 0 56px;
+    border-bottom:1px solid var(--ink);
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--muted);
+    display:flex;align-items:center;gap:14px;
+    margin-bottom:28px;
+  }
+  .eyebrow::before{content:"";width:40px;height:1px;background:var(--ink)}
+
+  h1.display{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+    font-weight:400;
+    font-size:clamp(52px,8.5vw,120px);
+    line-height:.92;
+    letter-spacing:-.035em;
+    margin-bottom:28px;
+    max-width:14ch;
+  }
+  h1.display .italic{
+    font-style:italic;
+    color:var(--accent);
+  }
+
+  .hero-lede{
+    font-family:'Instrument Serif',serif;
+    font-size:clamp(19px,1.8vw,23px);
+    line-height:1.45;
+    max-width:620px;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+
+  .stats-row{
+    display:flex;gap:48px;flex-wrap:wrap;
+    margin-top:48px;
+    padding-top:28px;
+    border-top:1px solid var(--ink);
+  }
+  .stat{display:flex;align-items:baseline;gap:12px}
+  .stat .num{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 144,"WONK" 1;
+    font-size:42px;
+    letter-spacing:-.03em;
+    line-height:1;
+  }
+  .stat .desc{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);
+    max-width:120px;
+    line-height:1.4;
+  }
+
+  section{padding:80px 0;border-bottom:1px solid var(--ink);position:relative}
+  section.no-border{border-bottom:none}
+
+  .section-head{
+    display:grid;grid-template-columns:180px 1fr;gap:32px;
+    margin-bottom:44px;
+    align-items:start;
+  }
+  @media(max-width:820px){.section-head{grid-template-columns:1fr;gap:10px}}
+
+  .section-head .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--muted);
+    padding-top:14px;
+  }
+  .section-head h2{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+    font-weight:400;
+    font-size:clamp(34px,4.5vw,58px);
+    line-height:1;
+    letter-spacing:-.03em;
+  }
+  .section-head h2 em{font-style:italic;color:var(--accent)}
+
+  .lines-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border-top:1px solid var(--ink);
+  }
+  @media(max-width:820px){.lines-grid{grid-template-columns:1fr}}
+
+  .line-card{
+    padding:32px 28px 36px;
+    border-right:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+    background:var(--paper);
+    transition:background .3s;
+    position:relative;
+  }
+  .line-card:last-child{border-right:none}
+  .line-card:hover{background:var(--paper-2)}
+  @media(max-width:820px){.line-card{border-right:none}}
+
+  .line-card .num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:.2em;
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+  .line-card h3{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 96,"WONK" 1;
+    font-weight:500;
+    font-size:28px;
+    line-height:1.05;
+    letter-spacing:-.025em;
+    margin-bottom:14px;
+  }
+  .line-card h3 .italic{font-style:italic;color:var(--accent)}
+  .line-card p{
+    font-size:14px;color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  .gen-tabs{
+    display:flex;gap:0;
+    margin-bottom:40px;
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+  }
+  .gen-tab{
+    flex:1;
+    padding:16px 14px;
+    border-right:1px solid var(--ink);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer;
+    text-align:left;
+    transition:background .2s;
+    display:flex;flex-direction:column;gap:4px;
+  }
+  .gen-tab:last-child{border-right:none}
+  .gen-tab:hover{background:var(--paper-2)}
+  .gen-tab.active{background:var(--ink);color:var(--paper)}
+  .gen-tab.active .gen-sub{color:var(--accent-3)}
+  .gen-tab .gen-yr{
+    font-size:20px;font-family:'Fraunces',serif;font-weight:500;
+    letter-spacing:-.02em;text-transform:none;
+  }
+  .gen-tab .gen-sub{color:var(--muted);font-size:10px}
+
+  .gen-panel{display:none}
+  .gen-panel.active{display:block;animation:fadeIn .4s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .gen-intro{
+    display:grid;grid-template-columns:1fr auto;gap:32px;
+    margin-bottom:30px;align-items:end;
+  }
+  @media(max-width:820px){.gen-intro{grid-template-columns:1fr}}
+  .gen-intro p{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:19px;
+    color:var(--ink-soft);
+    max-width:680px;
+  }
+  .gen-intro .count{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--muted);
+    text-align:right;
+    white-space:nowrap;
+  }
+  .gen-intro .count strong{
+    display:block;
+    font-family:'Fraunces',serif;
+    font-size:34px;color:var(--ink);
+    letter-spacing:-.02em;
+    margin-bottom:2px;
+  }
+
+  .research-list{border-top:1px solid rgba(20,20,20,.2)}
+  .research-row{
+    display:grid;
+    grid-template-columns:70px 230px 1fr;
+    gap:20px;
+    padding:14px 0;
+    border-bottom:1px solid rgba(20,20,20,.12);
+    align-items:baseline;
+    transition:background .2s;
+  }
+  .research-row:hover{background:var(--paper-2)}
+  @media(max-width:720px){
+    .research-row{grid-template-columns:60px 1fr;gap:10px}
+    .research-row .topic{grid-column:1/-1;padding-left:70px}
+  }
+
+  .research-row .badge{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px;letter-spacing:.12em;
+    color:var(--paper);
+    background:var(--ink);
+    padding:3px 7px;
+    display:inline-block;
+    justify-self:start;
+    align-self:center;
+  }
+  .research-row.doc .badge{background:var(--accent)}
+  .research-row.mes .badge{background:var(--accent-2)}
+  .research-row.ic .badge{background:var(--accent-3);color:var(--ink)}
+  .research-row.pos .badge{background:var(--ink)}
+  .research-row.jr .badge{background:var(--muted)}
+
+  .research-row .name{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 48,"WONK" 1;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:-.01em;
+  }
+  .research-row .topic{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:15px;
+    color:var(--ink-soft);
+    line-height:1.4;
+  }
+  .research-row .topic em{font-style:normal}
+
+  .two-col{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    border-top:1px solid var(--ink);
+    border-left:1px solid var(--ink);
+  }
+  @media(max-width:820px){.two-col{grid-template-columns:1fr}}
+
+  .col{
+    border-right:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+  }
+  .col-head{
+    padding:18px 24px;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  }
+  .link-item{
+    display:flex;justify-content:space-between;gap:16px;
+    padding:18px 24px;
+    border-top:1px solid rgba(20,20,20,.12);
+    text-decoration:none;color:var(--ink);
+    transition:background .2s;
+  }
+  .link-item:first-of-type{border-top:none}
+  .link-item:hover{background:var(--paper-2)}
+  .link-item:hover .arrow{transform:translateX(4px)}
+
+  .link-item .info{flex:1;min-width:0}
+  .link-item .meta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .link-item .title{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 48,"WONK" 1;
+    font-size:17px;
+    line-height:1.25;
+    letter-spacing:-.015em;
+    margin-bottom:4px;
+  }
+  .link-item .title em{font-style:italic}
+  .link-item .arrow{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--muted);
+    transition:transform .2s;
+    align-self:center;
+  }
+  .placeholder{
+    padding:24px;
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+  }
+
+  .support{
+    padding:60px 0;
+    background:var(--ink);
+    color:var(--paper);
+    border-bottom:none;
+  }
+  .support .section-head h2{color:var(--paper)}
+  .support .section-head .tag{color:var(--accent-3)}
+
+  .logos-row{
+    display:flex;flex-wrap:wrap;gap:14px 28px;
+    padding-top:24px;
+    border-top:1px solid rgba(243,239,230,.2);
+    align-items:baseline;
+  }
+  .logos-row .logo{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 96,"WONK" 1;
+    font-weight:500;
+    font-size:22px;
+    letter-spacing:-.015em;
+    color:var(--paper);
+    opacity:.9;
+  }
+  .logos-row .sep{
+    color:rgba(243,239,230,.3);
+    font-size:18px;
+  }
+
+  footer{
+    background:var(--ink);
+    color:var(--paper);
+    padding:40px 0 30px;
+    border-top:1px solid rgba(243,239,230,.2);
+  }
+  footer .foot-grid{
+    display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;
+    margin-bottom:32px;
+  }
+  @media(max-width:820px){footer .foot-grid{grid-template-columns:1fr}}
+
+  footer h5{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--accent-3);
+    margin-bottom:14px;
+  }
+  footer .foot-title{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 144,"WONK" 1;
+    font-size:32px;
+    line-height:1;
+    letter-spacing:-.03em;
+    margin-bottom:12px;
+  }
+  footer .foot-title em{font-style:italic;color:var(--accent)}
+  footer p{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:15px;
+    color:rgba(243,239,230,.75);
+    max-width:400px;
+  }
+  footer ul{list-style:none}
+  footer ul li{margin-bottom:8px}
+  footer ul a{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:rgba(243,239,230,.8);
+    text-decoration:none;
+    letter-spacing:.05em;
+    transition:color .2s;
+  }
+  footer ul a:hover{color:var(--accent)}
+  footer .copyright{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    color:rgba(243,239,230,.5);
+    padding-top:24px;
+    border-top:1px solid rgba(243,239,230,.2);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  @media print{
+    nav.topbar{display:none}
+    body::before{display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="row">
+    <div class="brand"><span class="dot"></span> CRIACOM · UEL</div>
+    <ul>
+      <li><a href="#linhas">Linhas</a></li>
+      <li><a href="#pesquisas">Pesquisas</a></li>
+      <li><a href="#publicacoes">Publicações</a></li>
+      <li><a href="#midia">Mídia</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow">Laboratório · UEL · desde 2021</div>
+    <h1 class="display">
+      Criatividade, desinformação <span class="italic">&amp; comportamento.</span>
+    </h1>
+    <p class="hero-lede">
+      O CRIACOM investiga como processos comportamentais dão origem ao novo — e como contingências sociais produzem, distribuem e sustentam a desinformação. Na fronteira entre ciência básica, psicoterapia e design de jogos.
+    </p>
+    <div class="stats-row">
+      <div class="stat"><span class="num">05</span><span class="desc">gerações de pesquisa</span></div>
+      <div class="stat"><span class="num">03</span><span class="desc">linhas de investigação</span></div>
+      <div class="stat"><span class="num">17</span><span class="desc">pesquisas ativas em 2025</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="linhas">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">§ 01 · escopo</div>
+      <h2>Três linhas, <em>uma única</em> questão.</h2>
+    </div>
+    <div class="lines-grid">
+      <article class="line-card">
+        <div class="num">L-01</div>
+        <h3>Criatividade <span class="italic">&amp; resolução de problemas</span></h3>
+        <p>Recombinação de repertórios, variabilidade operante, enriquecimento ambiental e síntese de processos comportamentais como origem do novo — em ratos, crianças e cultura.</p>
+      </article>
+      <article class="line-card">
+        <div class="num">L-02</div>
+        <h3>Desinformação <span class="italic">&amp; cultura digital</span></h3>
+        <p>Análise comportamental do compartilhamento de fake news, persuasão, vieses de atribuição e aceitação de conteúdos falsos em comunidades online.</p>
+      </article>
+      <article class="line-card">
+        <div class="num">L-03</div>
+        <h3>Behavioral <span class="italic">Game Design</span></h3>
+        <p>Jogos, videogames e RPGs como ferramentas terapêuticas, de ensino e de investigação experimental — design a partir da análise do comportamento.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="pesquisas">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">§ 02 · linhagem</div>
+      <h2>Cinco <em>gerações</em>, um ecossistema.</h2>
+    </div>
+
+    <div class="gen-tabs">
+      <button class="gen-tab active" data-gen="5"><span class="gen-sub">GEN-05 · atual</span><span class="gen-yr">2025</span></button>
+      <button class="gen-tab" data-gen="4"><span class="gen-sub">GEN-04</span><span class="gen-yr">2024</span></button>
+      <button class="gen-tab" data-gen="3"><span class="gen-sub">GEN-03</span><span class="gen-yr">2023</span></button>
+      <button class="gen-tab" data-gen="2"><span class="gen-sub">GEN-02</span><span class="gen-yr">2022</span></button>
+      <button class="gen-tab" data-gen="1"><span class="gen-sub">GEN-01 · origem</span><span class="gen-yr">2021</span></button>
+    </div>
+
+    <div class="gen-panel active" data-panel="5">
+      <div class="gen-intro">
+        <p>Ano com o maior número de pesquisas simultâneas na história do laboratório e início da parceria de pós-doutorado FAPESP-USP-UEL.</p>
+        <div class="count"><strong>17</strong>pesquisas</div>
+      </div>
+      <div class="research-list">
+        <div class="research-row doc"><span class="badge">DOC</span><span class="name">Amanda Viana</span><span class="topic">Teste de programa psicoterapêutico para resolução de problemas em crianças.</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><span class="name">Luan Mendes Teixeira</span><span class="topic">Contraste comportamental e fake news.</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><span class="name">Pedro Augusto dos Anjos Cabral</span><span class="topic">Vieses de atribuição e aceitação de desinformação no comportamento político.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Murilo Lecce Regiani</span><span class="topic">Persuasão e opinião pública: Moral Reframing e Teoria das Molduras Relacionais (RFT).</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Renan Dias Brigido</span><span class="topic">LaBehavior Quest: ensino de Análise do Comportamento e Game Design.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Beatriz Landim Fabri</span><span class="topic">RPGs como ferramentas terapêuticas.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Caique Magalhães</span><span class="topic">Aplicativo de pesquisa e intervenção com foco na tríplice contingência.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Julia Röcker dos Santos</span><span class="topic">Fake news: uma análise do comportamento de compartilhar.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Otávio Mota Ferreira</span><span class="topic">Leitura comportamental do conceito de "democracia" em Bobbio (1984/2009).</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Melissa Peixoto</span><span class="topic">Interpretação comportamental do <em>profiling</em> na psicologia investigativa.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Sara Isabele Santos Neves</span><span class="topic">O influenciador digital: uma análise behaviorista radical.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Maria Eduarda Hiromi Yoshida</span><span class="topic">Influências da Psicologia do Séc. XX nas Inteligências Artificiais do Séc. XXI.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Julia Abid dos Santos</span><span class="topic">Empatia na Análise do Comportamento e modelação em redes sociais.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Kaio A. Nardis</span><span class="topic">Interfaces diegéticas e controle de estímulos entre game design e AC.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Sergio Augusto Kenzo Yamamoto</span><span class="topic">Dog whistles e controle comportamental implícito na democracia.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Gabriel Toloczko Ferreira</span><span class="topic">Confrontos entre torcidas organizadas brasileiras de futebol.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Talita da Silva Guerrini</span><span class="topic">Obstáculos da inclusão no ensino superior — perspectiva analítico-comportamental.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Giovanna Catarina Nunes Bagni</span><span class="topic">Efeitos do uso de redes sociais: TikTok e adolescentes.</span></div>
+        <div class="research-row pos"><span class="badge">PD</span><span class="name">Marlon A. de Oliveira</span><span class="topic">Uso do recurso comum em um jogo digital (FAPESP-USP-UEL, sup. Maria H. L. Hünziker).</span></div>
+      </div>
+    </div>
+
+    <div class="gen-panel" data-panel="4">
+      <div class="gen-intro">
+        <p>Expansão da equipe de mestrado, consolidação da pesquisa básica sobre criatividade com ratos e crescimento da linha de desinformação.</p>
+        <div class="count"><strong>15</strong>pesquisas</div>
+      </div>
+      <div class="research-list">
+        <div class="research-row doc"><span class="badge">DOC</span><span class="name">Amanda Viana</span><span class="topic">Programa psicoterapêutico para resolução de problemas em crianças.</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><span class="name">Luan Mendes Teixeira</span><span class="topic">Contraste comportamental no compartilhamento de fake news sob reforço múltiplo.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Caique Magalhães</span><span class="topic">Aplicativo de pesquisa e intervenção comportamental.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Renan Brigido</span><span class="topic">Behavior Quest: ensino de AC e Game Design.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">João Vitor Maldonado</span><span class="topic">O conceito de "Liberdade" na Análise do Comportamento.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Beatriz Landim</span><span class="topic">Protocolo gamificado de ensino de habilidades sociais.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Isabella Roque</span><span class="topic">Revisão sistemática: 40 anos de pesquisa sobre recombinação de repertórios.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Julia Rocker</span><span class="topic">Fake news: análise do comportamento de compartilhar.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Amanda Lottermann</span><span class="topic">Enriquecimento ambiental e resolução de problemas IR em ratos.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Otávio Mota Ferreira</span><span class="topic">Livro-jogo para desenvolvimento de assertividade infantil.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Melissa Peixoto</span><span class="topic">Rediscutindo o especismo antropocentrista.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Lucas Amaro Bianchini</span><span class="topic">Empatia na AC: perspectiva recombinativa.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Sérgio Kenzo Yamamoto</span><span class="topic">Análise culturo-comportamental de comunidades digitais "Red Pill".</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Kaio A. Nardis</span><span class="topic">Aprendizagem por imitação em animais não humanos.</span></div>
+        <div class="research-row pos"><span class="badge">PD</span><span class="name">Yulla C. Knaus &amp; Marlon A. de Oliveira</span><span class="topic">Ratos, macacos e recurso comum em jogo digital (CAPES &amp; FAPESP).</span></div>
+      </div>
+    </div>
+
+    <div class="gen-panel" data-panel="3">
+      <div class="gen-intro">
+        <p>Estruturação da "Equipe Protocolos" para pesquisa aplicada e início da parceria com o Laboratório de Ecologia Animal (LECA-UEL).</p>
+        <div class="count"><strong>13</strong>pesquisas</div>
+      </div>
+      <div class="research-list">
+        <div class="research-row doc"><span class="badge">DOC</span><span class="name">Amanda Viana</span><span class="topic">Programa psicoterapêutico para resolução de problemas em crianças.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Caique Magalhães</span><span class="topic">Gamificação no treino de habilidades psicoterápicas (FAP).</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Lorena Morais</span><span class="topic">Variabilidade operante e suas implicações para a AC.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">João Vitor Maldonado</span><span class="topic">O conceito de "Liberdade" na Análise do Comportamento.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Laryssa Rodrigues</span><span class="topic">Criatividade em práticas culturais: revisão bibliográfica.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Isabella Roque</span><span class="topic">Criatividade para o aplicador ABA: protocolos comparativos.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Amanda Lottermann</span><span class="topic">Enriquecimento ambiental e resolução de problemas IR em ratos.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Bruno Teixeira</span><span class="topic">Imediaticidade de consequências culturais e informações falsas.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Gabriella Molina</span><span class="topic">Histórias infantis na terapia comportamental.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Lucas Amaro Bianchini</span><span class="topic">Antecedentes e consequentes de comportamentos de empatia.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Giovanna Monteverde</span><span class="topic">Protocolos comportamentais do século XXI.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Gabriel Guardiano Santana</span><span class="topic">Efeito do reforço para além da resposta reforçada.</span></div>
+        <div class="research-row pos"><span class="badge">PD</span><span class="name">Yulla C. Knaus</span><span class="topic">Resolução de problemas em ratos e macacos de vida livre (CAPES · LECA-UEL).</span></div>
+      </div>
+    </div>
+
+    <div class="gen-panel" data-panel="2">
+      <div class="gen-intro">
+        <p>Consolidação da pesquisa com ratos, entrada da linha de desinformação via metacontingências e início do programa PROIC-Jr no ensino médio.</p>
+        <div class="count"><strong>13</strong>pesquisas</div>
+      </div>
+      <div class="research-list">
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Amanda Viana</span><span class="topic">Design de programa psicoterapêutico para resolução de problemas infantil.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Lorena Morais</span><span class="topic">Variabilidade operante e suas implicações.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Miguel Abdala</span><span class="topic">Cultura como elo entre antropologia e etologia.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Laryssa Rodrigues</span><span class="topic">Criatividade em práticas culturais: revisão.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Amanda Lottermann</span><span class="topic">Variáveis biocomportamentais da resolução de problemas em ratos.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Isabella Roque</span><span class="topic">Papel da criatividade para o aplicador ABA.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Bruno Teixeira</span><span class="topic">Metacontingências e fake news: procedimento culturo-comportamental.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Giovanna Monteverde</span><span class="topic">Recombinação de repertórios e origem da criatividade.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Mônica Saito</span><span class="topic">Transmissão cultural em macacos-prego (<em>Sapajus spp.</em>) · LECA-CCB-UEL.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Gabriella Molina</span><span class="topic">Controle de estímulos na origem de comportamentos novos.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Lucas Caldeira</span><span class="topic">Da inteligência à ignorância: resolução de problemas na Psicologia.</span></div>
+        <div class="research-row jr"><span class="badge">JR</span><span class="name">Mariana Rodrigues Santos</span><span class="topic">Análise do Comportamento e Game Design (PROIC-Jr, Mega Man X).</span></div>
+        <div class="research-row pos"><span class="badge">PD</span><span class="name">Yulla C. Knaus</span><span class="topic">Resolução de problemas em ratos e macacos (LECA-UEL).</span></div>
+      </div>
+    </div>
+
+    <div class="gen-panel" data-panel="1">
+      <div class="gen-intro">
+        <p>A primeira geração do CRIACOM: três mestrados pioneiros, duas iniciações científicas e dois projetos de IC do ensino básico definindo os primeiros contornos do laboratório.</p>
+        <div class="count"><strong>07</strong>pesquisas</div>
+      </div>
+      <div class="research-list">
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Amanda Viana</span><span class="topic">Escolhas em situações-problemas: estratégia para crianças.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Lorena Morais</span><span class="topic">Variabilidade operante e suas implicações.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><span class="name">Miguel Abdala</span><span class="topic">Cultura como elo entre antropologia e etologia.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Laryssa Gomes</span><span class="topic">Da estética ao (contra)controle: estudo comportamental sobre a arte.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><span class="name">Heloisa Kohatsu</span><span class="topic">Aceitação e difusão de fake news (colab. Celina Tanaka, USP).</span></div>
+        <div class="research-row jr"><span class="badge">ICsb</span><span class="name">Mônica Saito</span><span class="topic">Criatividade e resiliência: revisão bibliográfica.</span></div>
+        <div class="research-row jr"><span class="badge">ICsb</span><span class="name">Giovana Monteverde</span><span class="topic">Criatividade e TEA: revisão bibliográfica.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publicacoes">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">§ 03 · produção</div>
+      <h2><em>Artigos</em>, livros, teses &amp; dissertações.</h2>
+    </div>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-head">Artigos · Livros · Capítulos</div>
+        <div class="placeholder">Em breve: links diretos para artigos e livros publicados pelos membros, incluindo <em>Criatividade: Uma Perspectiva Comportamental</em>.</div>
+      </div>
+      <div class="col">
+        <div class="col-head">Teses · Dissertações · Relatórios IC</div>
+        <div class="placeholder">Em breve: links para dissertações do PPG-AC/UEL, relatórios finais de IC e teses de doutorado no repositório institucional.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="midia">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">§ 04 · mídia</div>
+      <h2>Ciência do comportamento <em>na esfera pública.</em></h2>
+    </div>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-head">Palestras · Vídeos</div>
+        <a class="link-item" href="#" target="_blank" rel="noopener">
+          <div class="info">
+            <div class="meta">Palestra · YouTube STF</div>
+            <div class="title">Painel sobre <em>desinformação</em> no Supremo Tribunal Federal</div>
+          </div>
+          <span class="arrow">▶</span>
+        </a>
+        <a class="link-item" href="#" target="_blank" rel="noopener">
+          <div class="info">
+            <div class="meta">Conferência · JAC-UnB 2024</div>
+            <div class="title">Jornada de Análise do Comportamento — <em>fake news</em></div>
+          </div>
+          <span class="arrow">▶</span>
+        </a>
+      </div>
+      <div class="col">
+        <div class="col-head">Livros &amp; inserções na mídia</div>
+        <a class="link-item" href="#" target="_blank" rel="noopener">
+          <div class="info">
+            <div class="meta">Livro · 2023</div>
+            <div class="title"><em>Criatividade:</em> uma perspectiva comportamental</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="support no-border">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">§ 05 · apoio</div>
+      <h2>Financiado por <em>agências públicas</em> de fomento.</h2>
+    </div>
+    <div class="logos-row">
+      <span class="logo">UEL</span><span class="sep">/</span>
+      <span class="logo">PPG-AC</span><span class="sep">/</span>
+      <span class="logo">CNPq</span><span class="sep">/</span>
+      <span class="logo">CAPES</span><span class="sep">/</span>
+      <span class="logo">FAPESP</span><span class="sep">/</span>
+      <span class="logo">Fundação Araucária</span><span class="sep">/</span>
+      <span class="logo">PROPPG</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h5>CRIACOM · UEL</h5>
+        <div class="foot-title">Criatividade,<br><em>comportamento</em><br>&amp; cultura.</div>
+        <p>Laboratório de Criatividade, Inovação, Cognição e Comportamento. PPG-AC · Universidade Estadual de Londrina · PR · Brasil.</p>
+      </div>
+      <div>
+        <h5>Navegação</h5>
+        <ul>
+          <li><a href="#linhas">Linhas</a></li>
+          <li><a href="#pesquisas">Pesquisas</a></li>
+          <li><a href="#publicacoes">Publicações</a></li>
+          <li><a href="#midia">Mídia</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contato</h5>
+        <ul>
+          <li><a href="#">E-mail</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Lattes</a></li>
+          <li><a href="#">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© 2021–2026 CRIACOM-UEL</span>
+      <span>GEN-05</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.gen-tab');
+  const panels = document.querySelectorAll('.gen-panel');
+  tabs.forEach(t=>{
+    t.addEventListener('click',()=>{
+      const g = t.dataset.gen;
+      tabs.forEach(x=>x.classList.remove('active'));
+      panels.forEach(p=>p.classList.remove('active'));
+      t.classList.add('active');
+      document.querySelector(`.gen-panel[data-panel="${g}"]`).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
