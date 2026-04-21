@@ -627,8 +627,11 @@
   .foot-logo-main{
     height:80px; width:auto;
     display:block;
-    opacity:.92;
-    filter:brightness(0) invert(1);
+    opacity:1;
+    filter:none;
+    background:rgba(255,255,255,0.12);
+    padding:6px;
+    border-radius:2px;
   }
   .foot-logo-tagline{
     font-family:'Instrument Serif',serif;
@@ -1187,6 +1190,7 @@
     background:var(--paper);
     transition:background .2s;
     overflow:hidden;
+    text-decoration:none;
   }
   /* NY Declaration: imagem banner full-width em cima */
   .rec-feature.rf-banner{
@@ -1373,8 +1377,23 @@
   }
   .gallery-year-btn.active .g-count{color:var(--accent-3)}
 
-  .gallery-panel{display:none}
-  .gallery-panel.active{display:block; animation:fadeIn .4s ease}
+  .gallery-panel{
+    visibility:hidden;
+    position:absolute;
+    pointer-events:none;
+    opacity:0;
+    height:0;
+    overflow:hidden;
+  }
+  .gallery-panel.active{
+    visibility:visible;
+    position:static;
+    pointer-events:auto;
+    opacity:1;
+    height:auto;
+    overflow:visible;
+    animation:fadeIn .4s ease;
+  }
 
   .gallery-empty{
     padding:60px 28px;
@@ -2766,7 +2785,7 @@
     <div class="gallery-panel" data-panel="2022">
       <div class="photo-grid" id="grid-2022">
         <div class="photo-item" onclick="openLightbox('2022',0)">
-          <img src="img/2022_01.jpg" alt="CRIACOM 2022 — Qualificação Amanda Viana">
+          <img src="img/2022_01.png" alt="CRIACOM 2022 — Qualificação Amanda Viana">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2022',1)">
@@ -2972,10 +2991,10 @@
       <div>
         <h5>Contato</h5>
         <ul>
-          <li><a href="mailto:hernando@uel.br" rel="noopener">E-mail</a></li>
+          
           <li><a href="https://www.instagram.com/criacom.uel/" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="http://lattes.cnpq.br/2700793023719116" target="_blank" rel="noopener">Lattes</a></li>
-          <li><a href="https://github.com/criacom-uel" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://criacom.github.io/lab" target="_blank" rel="noopener">GitHub</a></li>
         </ul>
       </div>
     </div>
