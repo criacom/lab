@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>CRIACOM-UEL · Criatividade, Inovação, Cognição e Comportamento</title>
 <meta name="description" content="Laboratório da Universidade Estadual de Londrina dedicado à análise do comportamento aplicada à criatividade, desinformação e game design." />
-  <meta property="og:title" content="CRIACOM · UEL — Criatividade, Inovação, Cognição e Comportamento">
-  <meta property="og:description" content="Laboratório de pesquisa comportamental da UEL. Linhas: criatividade e resolução de problemas, desinformação e cultura digital, behavioral game design.">
-  <meta property="og:type" content="website">
-  <meta name="author" content="CRIACOM — Universidade Estadual de Londrina">
+<meta property="og:title" content="CRIACOM · UEL — Criatividade, Inovação, Cognição e Comportamento">
+<meta property="og:description" content="Laboratório de pesquisa comportamental da UEL. Linhas: criatividade e resolução de problemas, desinformação e cultura digital, behavioral game design.">
+<meta property="og:type" content="website">
+<meta name="author" content="CRIACOM — Universidade Estadual de Londrina">
 
 <link rel="icon" type="image/png" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -175,7 +175,7 @@
   .line-card-mascot{
     position:absolute;
     bottom:0; right:0;
-    width:270px;
+    width:300px;
     pointer-events:none;
     z-index:1;
   }
@@ -183,14 +183,12 @@
     display:block;
     width:100%; height:auto;
     image-rendering:pixelated;
-    opacity:.65;
-    transition:transform .4s ease, opacity .4s ease;
+    transition:transform .4s ease;
   }
   .line-card:hover .line-card-mascot img{
     transform:translateY(-10px);
-    opacity:.9;
   }
-  @media(max-width:960px){.line-card-mascot{width:190px}}
+  @media(max-width:960px){.line-card-mascot{width:210px}}
 
   /* Faixa laranja no topo */
   .line-card::before{
@@ -206,9 +204,9 @@
     flex:1;
     position:relative; z-index:2;
     display:flex; flex-direction:column;
-    padding-right:160px;
+    padding-right:200px;
   }
-  @media(max-width:960px){.line-card-body{padding-right:120px}}
+  @media(max-width:960px){.line-card-body{padding-right:140px}}
   @media(max-width:820px){.line-card-body{padding-right:28px}}
 
   .line-card .num{
@@ -344,12 +342,6 @@
     background:transparent;
     border-color:transparent;
   }
-  .research-row .avatar.initial{
-    font-family:'Fraunces',serif;
-    font-size:15px; font-weight:600;
-    color:var(--muted);
-    border-color:rgba(20,20,20,.12);
-  }
 
   .research-row .badge{
     font-family:'JetBrains Mono',monospace;
@@ -393,7 +385,7 @@
   @media(max-width:820px){}
   .link-item:first-of-type{border-top:none}
   .link-item .title em{font-style:italic}
-  .placeholder{
+
     padding:24px;
     font-family:'Instrument Serif',serif;
     font-style:italic;
@@ -485,7 +477,6 @@
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
   }
 
-  
   /* ===== ORIENTADORES ===== */
   .advisor-grid{
     display:grid;grid-template-columns:1fr 1fr;gap:0;
@@ -584,20 +575,18 @@
   .advisor-links a:hover{color:var(--accent);border-color:var(--accent)}
 
   /* ===== HISTÓRIA ===== */
-  .history-layout{
+
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:0;
     border-top:1px solid var(--ink);
   }
-  @media(max-width:820px){.history-layout{grid-template-columns:1fr}}
 
-  .history-text{
     padding:40px 36px 48px;
     border-right:1px solid var(--ink);
     border-bottom:1px solid var(--ink);
   }
-  .history-text p{
+
     font-family:'Instrument Serif',serif;
     font-style:italic;
     font-size:17px;
@@ -605,18 +594,16 @@
     color:var(--ink-soft);
     margin-bottom:20px;
   }
-  .history-text p:last-child{margin-bottom:0}
-  .history-text p strong{
+
     font-style:normal;
     font-weight:600;
     color:var(--ink);
   }
 
-  .history-milestones{
     padding:40px 36px 48px;
     border-bottom:1px solid var(--ink);
   }
-  .milestone{
+
     display:grid;
     grid-template-columns:64px 1fr;
     gap:16px;
@@ -624,8 +611,7 @@
     border-bottom:1px solid rgba(20,20,20,.12);
     align-items:start;
   }
-  .milestone:last-child{border-bottom:none}
-  .milestone .yr{
+
     font-family:'Fraunces',serif;
     font-variation-settings:"opsz" 96,"WONK" 1;
     font-weight:500;
@@ -634,16 +620,14 @@
     color:var(--accent);
     padding-top:2px;
   }
-  .milestone .txt{
+
     font-family:'Instrument Serif',serif;
     font-style:italic;
     font-size:15px;
     line-height:1.45;
     color:var(--ink-soft);
   }
-  .milestone .txt strong{font-style:normal;color:var(--ink);font-weight:600}
 
-  .history-eixos{
     grid-column:1/-1;
     border-bottom:1px solid var(--ink);
     display:grid;
@@ -651,19 +635,16 @@
     gap:0;
     border-top:1px solid rgba(20,20,20,.15);
   }
-  @media(max-width:820px){.history-eixos{grid-template-columns:1fr}}
 
-  .eixo{
     padding:28px 28px 32px;
     border-right:1px solid rgba(20,20,20,.15);
   }
-  .eixo:last-child{border-right:none}
-  .eixo .eixo-num{
+
     font-family:'JetBrains Mono',monospace;
     font-size:10px;letter-spacing:.2em;color:var(--muted);
     margin-bottom:12px;
   }
-  .eixo h4{
+
     font-family:'Fraunces',serif;
     font-variation-settings:"opsz" 96,"WONK" 1;
     font-weight:500;
@@ -671,8 +652,7 @@
     letter-spacing:-.02em;
     margin-bottom:10px;
   }
-  .eixo h4 em{font-style:italic;color:var(--accent)}
-  .eixo p{
+
     font-family:'Instrument Serif',serif;
     font-style:italic;
     font-size:14px;
@@ -716,16 +696,14 @@
   }
 
   /* ===== DESTAQUE / RECONHECIMENTO ===== */
-  .highlight-grid{
+
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:0;
     border-top:1px solid var(--ink);
     border-left:1px solid var(--ink);
   }
-  @media(max-width:820px){.highlight-grid{grid-template-columns:1fr}}
 
-  .highlight-card{
     border-right:1px solid var(--ink);
     border-bottom:1px solid var(--ink);
     padding:36px 32px 40px;
@@ -734,21 +712,16 @@
     transition:background .25s;
     display:flex; flex-direction:column;
   }
-  .highlight-card.full-width{
-    grid-column:1/-1;
-  }
-  .highlight-card:hover{background:var(--paper-2)}
 
-  .highlight-card .hc-label{
     font-family:'JetBrains Mono',monospace;
     font-size:10px; letter-spacing:.22em; text-transform:uppercase;
     color:var(--muted); margin-bottom:20px;
     display:flex; align-items:center; gap:10px;
   }
-  .highlight-card .hc-label::before{
+
     content:""; width:24px; height:2px; background:var(--accent); flex-shrink:0;
   }
-  .highlight-card h3{
+
     font-family:'Fraunces',serif;
     font-variation-settings:"opsz" 96,"WONK" 1;
     font-weight:400;
@@ -757,13 +730,12 @@
     letter-spacing:-.025em;
     margin-bottom:16px;
   }
-  .highlight-card h3 em{font-style:italic; color:var(--accent)}
-  .highlight-card .hc-meta{
+
     font-family:'JetBrains Mono',monospace;
     font-size:11px; letter-spacing:.1em; text-transform:uppercase;
     color:var(--muted); margin-bottom:16px;
   }
-  .highlight-card .hc-body{
+
     font-family:'Instrument Serif',serif;
     font-style:italic;
     font-size:16px; line-height:1.6;
@@ -771,8 +743,7 @@
     flex:1;
     margin-bottom:24px;
   }
-  .highlight-card .hc-body strong{font-style:normal; color:var(--ink)}
-  .highlight-card .hc-link{
+
     font-family:'JetBrains Mono',monospace;
     font-size:11px; letter-spacing:.1em; text-transform:uppercase;
     color:var(--ink); text-decoration:none;
@@ -783,32 +754,27 @@
     margin-top:auto;
     align-self:flex-start;
   }
-  .highlight-card .hc-link:hover{color:var(--accent); border-color:var(--accent)}
 
-  .highlight-card .signatories{
     display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;
   }
-  .highlight-card .signatory-tag{
+
     font-family:'JetBrains Mono',monospace;
     font-size:10px; letter-spacing:.08em;
     border:1px solid var(--ink); padding:5px 12px;
     color:var(--ink-soft);
   }
 
-  .stf-img-wrap{
     width:100%; overflow:hidden;
     border-bottom:1px solid var(--ink);
     margin-bottom:0;
   }
-  .stf-img-wrap img{
+
     width:100%; display:block;
     object-fit:cover;
     filter:grayscale(10%);
     transition:filter .3s;
   }
-  .highlight-card:hover .stf-img-wrap img{filter:grayscale(0%)}
 
-  /* Prêmios */
   .awards-list{
     border-top:1px solid rgba(20,20,20,.2);
   }
@@ -948,8 +914,6 @@
     animation:fadeIn .4s ease;
   }
 
-  .dl-year-group{margin-bottom:0}
-  .dl-year-label{
     font-family:'JetBrains Mono',monospace;
     font-size:11px; letter-spacing:.2em; text-transform:uppercase;
     color:var(--muted);
@@ -957,7 +921,7 @@
     border-bottom:1px solid rgba(20,20,20,.12);
     display:flex; align-items:center; gap:14px;
   }
-  .dl-year-label::before{
+
     font-family:'Fraunces',serif;
     font-size:22px; color:var(--accent);
     letter-spacing:-.02em; font-weight:500;
@@ -1268,7 +1232,6 @@
   }
   .featured-talk-stf:hover .ftalk-cta{color:var(--accent)}
 
-
   /* ===== RECONHECIMENTO CARDS COM IMAGEM ===== */
   .rec-feature{
     border:1px solid var(--ink);
@@ -1282,7 +1245,25 @@
   /* NY Declaration: imagem banner full-width em cima */
   .rec-feature.rf-banner{
     display:flex; flex-direction:column;
+    position:relative;
+    overflow:hidden;
   }
+  .rec-feature.rf-banner .rf-banner-mascot{
+    position:absolute;
+    bottom:0; right:40px;
+    width:200px;
+    pointer-events:none;
+    z-index:2;
+  }
+  .rec-feature.rf-banner .rf-banner-mascot img{
+    display:block; width:100%; height:auto;
+    image-rendering:pixelated;
+    transition:transform .4s ease;
+  }
+  .rec-feature.rf-banner:hover .rf-banner-mascot img{
+    transform:translateY(-8px);
+  }
+  @media(max-width:820px){.rec-feature.rf-banner .rf-banner-mascot{width:130px; right:16px}}
   .rec-feature.rf-banner .rf-img{
     width:100%; height:220px;
     overflow:hidden;
@@ -1301,8 +1282,10 @@
     grid-template-columns:1fr auto;
     gap:24px 40px;
     align-items:start;
+    padding-right:260px;
   }
-  @media(max-width:820px){.rec-feature.rf-banner .rf-body{grid-template-columns:1fr}}
+  @media(max-width:820px){.rec-feature.rf-banner .rf-body{grid-template-columns:1fr; padding-right:160px}}
+  @media(max-width:560px){.rec-feature.rf-banner .rf-body{padding-right:40px}}
   .rec-feature.rf-banner .rf-body-main{}
   .rec-feature.rf-banner .rf-body-side{
     display:flex; flex-direction:column; gap:14px; align-items:flex-start;
@@ -1454,7 +1437,6 @@
   }
   .anpepp-book-cta:hover{background:var(--accent)}
 
-
   .abai-watch-btn{
     display:inline-flex;
     align-items:center;
@@ -1504,7 +1486,6 @@
     padding:6px 14px;
   }
 
-
   .award-row .award-dl{
     display:inline-flex;
     align-items:center;
@@ -1526,7 +1507,6 @@
     color:var(--muted);
     cursor:default;
   }
-
 
   /* ===== BOX CONTATO ===== */
   .contact-box{
@@ -1645,8 +1625,6 @@
     color:rgba(243,239,230,.7);
     padding:4px 12px;
   }
-
-
 
   /* ===== HEX-BOX COMPACTO ===== */
   .hex-box{
@@ -1835,7 +1813,7 @@
   }
 
   /* Hexaverso: largura total, sem capa lateral */
-  .book-card-full{
+
     grid-column:1/-1;
     border-right:none;
     display:grid;
@@ -1847,33 +1825,15 @@
     border-bottom:1px solid var(--ink);
     background:#0d0d0d;
   }
-  .book-card-full:hover{background:#161616}
-  .book-card-full .book-card-body{
+
     padding:28px 32px;
     gap:10px;
   }
-  .book-card-full .book-card-year{color:rgba(232,73,159,.7)}
-  .book-card-full .book-card-title{
+
     font-size:22px; color:#f5f0e8;
   }
-  .book-card-full .book-card-title em{color:#E8499F}
-  .book-card-full .book-card-authors{color:rgba(245,240,232,.5)}
-  .book-card-full .book-card-meta{color:rgba(245,240,232,.35)}
-  .book-card-full .book-card-cta{
+
     background:#E8499F; color:#0d0d0d;
-  }
-  .book-card-full:hover .book-card-cta{background:#ff6ab8}
-  .book-card-full-badge{
-    padding:28px 32px;
-    display:flex; align-items:center; justify-content:center;
-    border-left:1px solid rgba(232,73,159,.2);
-  }
-  .book-card-full-badge span{
-    font-family:'JetBrains Mono',monospace;
-    font-size:9px; letter-spacing:.22em; text-transform:uppercase;
-    color:#E8499F;
-    border:1px solid rgba(232,73,159,.4);
-    padding:8px 16px;
   }
 
   /* Série Software: box cinza agrupado */
@@ -1889,7 +1849,6 @@
     background:rgba(20,20,20,.04);
     padding-left:16px;
   }
-
 
   /* ===== HISTÓRIA ===== */
   .historia-grid{
@@ -1990,7 +1949,6 @@
   }
   .historia-site .hs-cta:hover{background:var(--accent)}
 
-
   /* Historia evento com imagem */
   .historia-event.he-with-img{
     padding:0;
@@ -2076,7 +2034,6 @@
     color:var(--muted);
     margin-top:2px;
   }
-
 
   /* ===== PROMO BOX ===== */
   .promo-box{
@@ -2235,7 +2192,7 @@
     display:block;
     image-rendering:pixelated;
     position:relative; bottom:0;
-    height:200px; width:auto;
+    height:260px; width:auto;
     object-fit:contain;
     object-position:bottom center;
     flex-shrink:0;
@@ -2245,14 +2202,10 @@
   .promo-mascot-col .mascot-img:hover{
     filter:drop-shadow(1px 0 12px rgba(240,120,24,.55));
   }
-  @media(max-width:860px){.promo-mascot-col .mascot-img{height:140px}}
-  @media(max-width:680px){.promo-mascot-col .mascot-img{height:90px}}
+  @media(max-width:860px){.promo-mascot-col .mascot-img{height:180px}}
+  @media(max-width:680px){.promo-mascot-col .mascot-img{height:110px}}
   /* Quando há dois mascotes, ajusta largura da coluna */
-  .promo-main.two-mascots{
-    grid-template-columns:1fr 280px;
-  }
-  @media(max-width:860px){.promo-main.two-mascots{grid-template-columns:1fr 180px}}
-  @media(max-width:680px){.promo-main.two-mascots{grid-template-columns:1fr 120px}}
+
   .promo-bg-deco{
     position:absolute; right:-10px; bottom:-20px;
     font-family:'Fraunces',serif; font-size:160px; font-weight:700;
@@ -2274,7 +2227,6 @@
     color:var(--accent);
     flex-shrink:0;
   }
-
 
   .video-tabs{
     display:flex; gap:0; flex-wrap:wrap;
@@ -2309,7 +2261,6 @@
     pointer-events:auto; opacity:1;
     animation:fadeIn .35s ease;
   }
-
 
   /* Yullacon na seção de equipe */
   .orientadores-wrap{
@@ -2387,7 +2338,6 @@
     animation:fadeIn .4s ease;
   }
 
-  .gallery-empty{
     padding:60px 28px;
     font-family:'Instrument Serif',serif;
     font-style:italic;
@@ -2396,7 +2346,7 @@
     border:1px dashed rgba(20,20,20,.2);
     text-align:center;
   }
-  .gallery-empty span{
+
     font-family:'JetBrains Mono',monospace;
     font-size:11px; letter-spacing:.2em; text-transform:uppercase;
     color:var(--muted); display:block; margin-bottom:12px;
@@ -2474,6 +2424,7 @@
     body::before{display:none}
   }
 
+  .book-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
 </style>
 </head>
 <body>
@@ -2569,7 +2520,7 @@
     </div>
 
     <div class="promo-mascot-col">
-      <img class="mascot-img" src="img/yullacon_transp.png" alt="Yulla — pesquisadora CRIACOM" title="Profa. Dra. Yulla Christoffersen Knaus">
+      <img class="mascot-img" src="img/Boatacon_transp.png" alt="Hernando — orientador CRIACOM" title="Prof. Dr. Hernando Borges Neves Filho">
     </div>
     <span class="promo-bg-deco">★</span>
   </div>
@@ -2611,7 +2562,6 @@
     </div>
   </div>
 </section>
-
 
 <div class="hex-box">
   <a href="https://criacom.github.io/hexaverso/" target="_blank" rel="noopener">
@@ -3569,7 +3519,7 @@
             <div class="book-card-year">2020 · Imagine Publicações · ABPMC</div>
             <div class="book-card-title">Introdução ao Desenvolvimento de Softwares para Analistas do Comportamento — <em>Vol. 2</em></div>
             <div class="book-card-authors">Neves Filho, H.B.; Freitas, L.A.B.; Quinta, N.C.C. · Picanço, C.R.F. (orgs.)</div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+            <div class="book-tags">
               <a class="book-card-cta" href="https://www.researchgate.net/publication/339850997" target="_blank" rel="noopener">Português ↗</a>
               <a class="book-card-cta" href="https://www.researchgate.net/publication/343793780" target="_blank" rel="noopener">English ↗</a>
             </div>
@@ -3702,6 +3652,9 @@
   <a class="rec-feature rf-banner" href="https://sites.google.com/nyu.edu/nydeclaration/declaration" target="_blank" rel="noopener">
     <div class="rf-img">
       <img src="img/newyorkdeclaration.png" alt="The New York Declaration on Animal Consciousness — April 19, 2024 · New York University">
+    </div>
+    <div class="rf-banner-mascot">
+      <img src="img/yullacon_transp.png" alt="Yulla — CRIACOM">
     </div>
     <div class="rf-body">
       <div class="rf-body-main">
@@ -4305,7 +4258,7 @@
       <div>
         <h5>Contato</h5>
         <ul>
-          
+
           <li><a href="https://www.instagram.com/criacom.uel/" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="http://lattes.cnpq.br/2700793023719116" target="_blank" rel="noopener">Lattes</a></li>
           <li><a href="https://criacom.github.io/lab" target="_blank" rel="noopener">GitHub</a></li>
