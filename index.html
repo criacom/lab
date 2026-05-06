@@ -847,8 +847,19 @@
   .dl-tab .dl-tab-title{font-size:13px;font-family:'Fraunces',serif;font-weight:500;letter-spacing:-.01em;text-transform:none}
   .dl-tab .dl-tab-sub{color:var(--muted);font-size:10px}
 
-  .dl-panel{display:none}
-  .dl-panel.active{display:block;animation:fadeIn .4s ease}
+  .dl-panel{
+    position:fixed;
+    left:-99999px; top:-99999px;
+    width:1px; height:1px;
+    pointer-events:none; opacity:0;
+  }
+  .dl-panel.active{
+    position:static;
+    left:auto; top:auto;
+    width:auto; height:auto;
+    pointer-events:auto; opacity:1;
+    animation:fadeIn .4s ease;
+  }
 
   .dl-year-group{margin-bottom:0}
   .dl-year-label{
@@ -939,8 +950,19 @@
   .pub-tab:hover{background:var(--paper-2)}
   .pub-tab.active{background:var(--ink); color:var(--paper)}
 
-  .pub-panel{display:none}
-  .pub-panel.active{display:block; animation:fadeIn .35s ease}
+  .pub-panel{
+    position:fixed;
+    left:-99999px; top:-99999px;
+    width:1px; height:1px;
+    pointer-events:none; opacity:0;
+  }
+  .pub-panel.active{
+    position:static;
+    left:auto; top:auto;
+    width:auto; height:auto;
+    pointer-events:auto; opacity:1;
+    animation:fadeIn .4s ease;
+  }
 
   .pub-item{
     display:grid;
@@ -1757,20 +1779,22 @@
   .gallery-year-btn.active .g-count{color:var(--accent-3)}
 
   .gallery-panel{
-    visibility:hidden;
-    position:absolute;
+    position:fixed;
+    left:-99999px;
+    top:-99999px;
+    width:1px;
+    height:1px;
     pointer-events:none;
     opacity:0;
-    height:0;
-    overflow:hidden;
   }
   .gallery-panel.active{
-    visibility:visible;
     position:static;
+    left:auto;
+    top:auto;
+    width:auto;
+    height:auto;
     pointer-events:auto;
     opacity:1;
-    height:auto;
-    overflow:visible;
     animation:fadeIn .4s ease;
   }
 
@@ -3192,7 +3216,7 @@
         <span class="g-yr">2025</span>
       </button>
       <button class="gallery-year-btn active" data-gallery="2026">
-        <span class="g-count">GEN-06 · 1 foto</span>
+        <span class="g-count">GEN-06 · 7 fotos</span>
         <span class="g-yr">2026</span>
       </button>
     </div>
@@ -3324,6 +3348,30 @@
       <div class="photo-grid" id="grid-2026">
         <div class="photo-item" onclick="openLightbox('2026',0)">
           <img src="img/2026_01.png" alt="CRIACOM 2026 — Hernando em palestra">
+          <div class="photo-overlay"></div>
+        </div>
+        <div class="photo-item" onclick="openLightbox('2026',1)">
+          <img src="img/2026_02.png" alt="CRIACOM 2026 — Painel do trabalho vencedor CPAC-UEL">
+          <div class="photo-overlay"></div>
+        </div>
+        <div class="photo-item" onclick="openLightbox('2026',2)">
+          <img src="img/2026_03.png" alt="CRIACOM 2026 — Mesa no VIII CPAC-UEL 2026">
+          <div class="photo-overlay"></div>
+        </div>
+        <div class="photo-item" onclick="openLightbox('2026',3)">
+          <img src="img/2026_04.png" alt="CRIACOM 2026 — Hernando, Yulla e pesquisador no CPAC">
+          <div class="photo-overlay"></div>
+        </div>
+        <div class="photo-item" onclick="openLightbox('2026',4)">
+          <img src="img/2026_05.png" alt="CRIACOM 2026 — Possibilidades de Intervenção Comunitária">
+          <div class="photo-overlay"></div>
+        </div>
+        <div class="photo-item" onclick="openLightbox('2026',5)">
+          <img src="img/2026_06.png" alt="CRIACOM 2026 — Mesa no VIII CPAC-UEL">
+          <div class="photo-overlay"></div>
+        </div>
+        <div class="photo-item" onclick="openLightbox('2026',6)">
+          <img src="img/2026_08.png" alt="CRIACOM 2026 — Como Mudar o Mundo com Ciência Aplicada">
           <div class="photo-overlay"></div>
         </div>
       </div>
@@ -3531,7 +3579,13 @@
   // ── Lightbox ───────────────────────────────────────────────────
   var galleries = {
     '2026': [
-      {src:'img/2026_01.png', alt:'CRIACOM 2026 — Hernando em palestra'}
+      {src:'img/2026_01.png', alt:'CRIACOM 2026 — Hernando em palestra'},
+      {src:'img/2026_02.png', alt:'CRIACOM 2026 — Painel do trabalho vencedor CPAC-UEL'},
+      {src:'img/2026_03.png', alt:'CRIACOM 2026 — Mesa no VIII CPAC-UEL 2026'},
+      {src:'img/2026_04.png', alt:'CRIACOM 2026 — Hernando, Yulla e pesquisador no CPAC'},
+      {src:'img/2026_05.png', alt:'CRIACOM 2026 — Possibilidades de Intervenção Comunitária'},
+      {src:'img/2026_06.png', alt:'CRIACOM 2026 — Mesa no VIII CPAC-UEL'},
+      {src:'img/2026_08.png', alt:'CRIACOM 2026 — Como Mudar o Mundo com Ciência Aplicada'}
     ],
     '2025': [
       {src:'img/2025_01.png', alt:'CRIACOM 2025 — Equipe na Clínica Psicológica UEL'},
