@@ -1740,6 +1740,335 @@
     padding-left:16px;
   }
 
+
+  /* ===== HISTÓRIA ===== */
+  .historia-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border-top:1px solid var(--ink);
+    margin-top:0;
+  }
+  @media(max-width:820px){.historia-grid{grid-template-columns:1fr}}
+
+  .historia-event{
+    border-right:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding:32px 36px;
+  }
+  .historia-event:nth-child(2n){border-right:none}
+  @media(max-width:820px){.historia-event{border-right:none}}
+
+  .historia-event .he-year{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 144,"WONK" 1;
+    font-size:64px; font-weight:400;
+    line-height:.9; letter-spacing:-.04em;
+    color:rgba(20,20,20,.08);
+    margin-bottom:12px;
+    display:block;
+  }
+  .historia-event .he-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--muted);
+    display:flex; align-items:center; gap:8px;
+    margin-bottom:12px;
+  }
+  .historia-event .he-tag::before{
+    content:""; width:20px; height:1px; background:var(--accent); flex-shrink:0;
+  }
+  .historia-event .he-title{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 48,"WONK" 1;
+    font-size:18px; font-weight:600;
+    letter-spacing:-.015em; line-height:1.2;
+    margin-bottom:12px;
+  }
+  .historia-event .he-title em{font-style:italic; color:var(--accent); font-weight:400}
+  .historia-event .he-desc{
+    font-family:'Instrument Serif',serif;
+    font-style:italic; font-size:14px;
+    color:var(--ink-soft); line-height:1.6;
+    margin-bottom:18px;
+  }
+  .historia-event .he-links{
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .historia-event .he-link{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink); text-decoration:none;
+    display:flex; align-items:center; gap:8px;
+    transition:color .2s;
+  }
+  .historia-event .he-link::before{
+    content:"↗"; color:var(--accent); flex-shrink:0;
+  }
+  .historia-event .he-link:hover{color:var(--accent)}
+
+  .historia-site{
+    border-top:1px solid var(--ink);
+    padding:28px 36px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    background:rgba(20,20,20,.02);
+  }
+  .historia-site .hs-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .historia-site .hs-text{
+    font-family:'Instrument Serif',serif;
+    font-style:italic; font-size:14px;
+    color:var(--ink-soft);
+  }
+  .historia-site .hs-cta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--paper);
+    background:var(--ink);
+    padding:10px 22px;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:background .2s;
+  }
+  .historia-site .hs-cta:hover{background:var(--accent)}
+
+
+  /* Historia evento com imagem */
+  .historia-event.he-with-img{
+    padding:0;
+    display:flex; flex-direction:column;
+  }
+  .he-img-wrap{
+    position:relative;
+    overflow:hidden;
+    height:240px;
+    border-bottom:1px solid var(--ink);
+    flex-shrink:0;
+  }
+  .he-img-wrap img{
+    width:100%; height:100%;
+    object-fit:cover; object-position:center;
+    display:block;
+    filter:grayscale(15%);
+    transition:transform .6s ease, filter .4s;
+  }
+  .historia-event:hover .he-img-wrap img{
+    transform:scale(1.04);
+    filter:grayscale(0%);
+  }
+  .he-img-caption{
+    position:absolute;
+    bottom:0; left:0; right:0;
+    padding:10px 18px;
+    background:linear-gradient(transparent, rgba(20,20,20,.75));
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px; letter-spacing:.16em; text-transform:uppercase;
+    color:rgba(243,239,230,.7);
+  }
+  .he-body{
+    padding:28px 32px;
+    flex:1;
+    display:flex; flex-direction:column;
+  }
+  /* Links de destaque */
+  .he-doc-links{
+    display:flex; flex-direction:column; gap:10px;
+    margin-top:16px;
+  }
+  .he-doc-link{
+    display:flex;
+    align-items:center;
+    gap:0;
+    text-decoration:none;
+    border:1px solid var(--ink);
+    transition:background .2s;
+    overflow:hidden;
+  }
+  .he-doc-link:hover{background:var(--paper-2)}
+  .he-doc-link .hdl-icon{
+    background:var(--ink);
+    color:var(--paper);
+    padding:12px 16px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    flex-shrink:0;
+    transition:background .2s;
+  }
+  .he-doc-link:hover .hdl-icon{background:var(--accent)}
+  .he-doc-link .hdl-body{
+    padding:10px 16px;
+    flex:1;
+  }
+  .he-doc-link .hdl-type{
+    font-family:'JetBrains Mono',monospace;
+    font-size:8px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:3px;
+  }
+  .he-doc-link .hdl-title{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 36;
+    font-size:13px; font-weight:600;
+    letter-spacing:-.01em; line-height:1.2;
+    color:var(--ink);
+  }
+  .he-doc-link .hdl-src{
+    font-family:'JetBrains Mono',monospace;
+    font-size:8px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted);
+    margin-top:2px;
+  }
+
+
+  /* ===== PROMO BOX ===== */
+  .promo-box{
+    overflow:hidden;
+    position:relative;
+    border-bottom:3px solid var(--ink);
+  }
+  /* Faixa amarelo-preto tipo obra */
+  .promo-tape{
+    background:var(--accent);
+    border-top:3px solid var(--ink);
+    border-bottom:3px solid var(--ink);
+    padding:9px 0;
+    overflow:hidden;
+    white-space:nowrap;
+    position:relative;
+  }
+  .promo-tape-track{
+    display:inline-flex;
+    gap:0;
+    animation:tape-scroll 18s linear infinite;
+    white-space:nowrap;
+  }
+  .promo-tape-item{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; font-weight:700;
+    letter-spacing:.22em; text-transform:uppercase;
+    color:var(--paper);
+    padding:0 28px;
+    display:inline-flex; align-items:center; gap:16px;
+  }
+  .promo-tape-item::after{
+    content:"★";
+    color:var(--paper);
+    font-size:10px;
+  }
+  @keyframes tape-scroll{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-50%)}
+  }
+
+  /* Corpo do promo */
+  .promo-main{
+    background:var(--ink);
+    color:var(--paper);
+    display:grid;
+    grid-template-columns:180px 1fr;
+    align-items:end;
+    min-height:200px;
+    position:relative;
+    overflow:hidden;
+  }
+  @media(max-width:680px){.promo-main{grid-template-columns:110px 1fr; min-height:160px}}
+
+  .promo-mascot-col{
+    position:relative;
+    align-self:flex-end;
+    padding-left:28px;
+  }
+  .promo-mascot-col img{
+    width:160px; height:auto;
+    display:block;
+    image-rendering:pixelated;
+    position:relative; bottom:0;
+    filter:drop-shadow(2px 0 0 rgba(240,120,24,.4));
+  }
+  @media(max-width:680px){.promo-mascot-col img{width:100px}}
+
+  .promo-content{
+    padding:28px 44px 28px 24px;
+    display:flex; flex-direction:column; gap:18px;
+    position:relative; z-index:2;
+  }
+  .promo-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px; letter-spacing:.28em; text-transform:uppercase;
+    color:rgba(243,239,230,.4);
+  }
+  .promo-welcome{
+    font-family:'Instrument Serif',serif;
+    font-style:italic; font-size:14px;
+    color:rgba(243,239,230,.55);
+    line-height:1.55; margin:0;
+    max-width:480px;
+  }
+  .promo-welcome strong{font-style:normal; color:rgba(243,239,230,.85)}
+  .promo-heading{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 72,"WONK" 1;
+    font-size:clamp(26px,3.8vw,48px);
+    font-weight:400; line-height:.92;
+    letter-spacing:-.035em;
+    color:var(--paper);
+    margin:0;
+  }
+  .promo-heading em{font-style:italic; color:var(--accent)}
+
+  .promo-cards{
+    display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .promo-card{
+    display:flex; align-items:center; gap:10px;
+    padding:10px 16px;
+    border:1px solid rgba(243,239,230,.15);
+    text-decoration:none;
+    transition:border-color .2s, background .2s;
+    flex:1; min-width:180px;
+  }
+  .promo-card:hover{border-color:var(--accent); background:rgba(255,214,0,.06)}
+  .promo-card-num{
+    font-family:'Fraunces',serif;
+    font-size:28px; font-weight:400; line-height:1;
+    color:var(--accent); letter-spacing:-.03em; flex-shrink:0;
+  }
+  .promo-card .pct-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:8px; letter-spacing:.16em; text-transform:uppercase;
+    color:rgba(243,239,230,.38); margin-bottom:3px;
+  }
+  .promo-card .pct-title{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 36;
+    font-size:13px; font-weight:600;
+    color:rgba(243,239,230,.85); line-height:1.2;
+  }
+  .promo-card-arrow{
+    margin-left:auto; flex-shrink:0;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; color:rgba(243,239,230,.2);
+    transition:color .2s;
+  }
+  .promo-card:hover .promo-card-arrow{color:var(--accent)}
+  /* Ruído decorativo */
+  .promo-bg-deco{
+    position:absolute; right:-10px; bottom:-20px;
+    font-family:'Fraunces',serif;
+    font-size:160px; font-weight:700; line-height:1;
+    letter-spacing:-.05em;
+    color:rgba(243,239,230,.03);
+    pointer-events:none; user-select:none; z-index:1;
+  }
+
   /* ===== GALERIA ===== */
   .gallery-years{
     display:flex; gap:0;
@@ -1910,7 +2239,64 @@
   </div>
 </header>
 
-<section class="abai-section">
+<div class="promo-box">
+  <!-- Faixa de atenção animada -->
+  <div class="promo-tape">
+    <div class="promo-tape-track">
+      <span class="promo-tape-item">Atenção</span>
+      <span class="promo-tape-item">Destaques</span>
+      <span class="promo-tape-item">CRIACOM-UEL</span>
+      <span class="promo-tape-item">Atenção</span>
+      <span class="promo-tape-item">Destaques</span>
+      <span class="promo-tape-item">CRIACOM-UEL</span>
+      <span class="promo-tape-item">Atenção</span>
+      <span class="promo-tape-item">Destaques</span>
+      <span class="promo-tape-item">CRIACOM-UEL</span>
+      <span class="promo-tape-item">Atenção</span>
+      <span class="promo-tape-item">Destaques</span>
+      <span class="promo-tape-item">CRIACOM-UEL</span>
+      <span class="promo-tape-item">Atenção</span>
+      <span class="promo-tape-item">Destaques</span>
+      <span class="promo-tape-item">CRIACOM-UEL</span>
+      <span class="promo-tape-item">Atenção</span>
+      <span class="promo-tape-item">Destaques</span>
+      <span class="promo-tape-item">CRIACOM-UEL</span>
+    </div>
+  </div>
+
+  <!-- Corpo com mascote -->
+  <div class="promo-main">
+    <div class="promo-mascot-col">
+      <img src="img/Boatacon_transp.png" alt="Mascote CRIACOM">
+    </div>
+    <div class="promo-content">
+      <span class="promo-tag">Destaques do laboratório · 2026</span>
+      <p class="promo-welcome">Bem-vindo ao site do <strong>CRIACOM</strong>. Aqui você encontra publicações científicas, membros ativos, história do grupo, galeria de fotos e muito mais. E logo abaixo, dois destaques que não pode perder:</p>
+      <h2 class="promo-heading">Confira<br>logo <em>abaixo!</em></h2>
+      <div class="promo-cards">
+        <a class="promo-card" href="#webinar">
+          <span class="promo-card-num">01</span>
+          <div>
+            <div class="pct-label">Webinar · ABAI · Jan 2026</div>
+            <div class="pct-title">Internet como câmara operante — assista agora</div>
+          </div>
+          <span class="promo-card-arrow">↓</span>
+        </a>
+        <a class="promo-card" href="https://criacom.github.io/hexaverso/" target="_blank" rel="noopener">
+          <span class="promo-card-num">02</span>
+          <div>
+            <div class="pct-label">RPG de mesa · Beta-test aberto</div>
+            <div class="pct-title">Hexaverso — behavioral game design</div>
+          </div>
+          <span class="promo-card-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+    <span class="promo-bg-deco">★</span>
+  </div>
+</div>
+
+<section class="abai-section" id="webinar">
   <div class="container">
     <div class="abai-unified">
       <div class="abai-unified-top">
@@ -3423,10 +3809,84 @@
         <div class="info">
           <strong>Prêmio Reinier Johannes Antonius Rozestraten — Melhor Painel</strong> — 41ª Reunião Anual da SBP
           <span class="org">Sociedade Brasileira de Psicologia (SBP)</span>
+          <a class="award-dl" href="https://www.researchgate.net/publication/311946337_Engenharia_social_em_macacos-prego_em_cativeiro_Um_possivel_programa_de_enriquecimento_ambiental" target="_blank" rel="noopener">↗ Ver painel</a>
         </div>
       </div>
     </div>
   </div>
+</section>
+
+<section id="historia">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">§ 10 · história</div>
+      <h2>Uma década de <em>ciência comportamental.</em></h2>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="historia-grid">
+
+      <!-- Evento 1: ABPMC 2018 -->
+      <div class="historia-event he-with-img">
+        <div class="he-img-wrap">
+          <img src="img/encontro_criacom_maranhao_2018.jpg" alt="1º Encontro do CRIACOM — ABPMC São Luís do Maranhão, 2018">
+          <span class="he-img-caption">São Luís, Maranhão · Setembro 2018 · ABPMC</span>
+        </div>
+        <div class="he-body">
+          <div class="he-tag">1º Encontro do CRIACOM · São Luís, MA · 2018</div>
+          <div class="he-title">Simpósio <em>A Investigação Operante da Criatividade e Inovação</em> — ABPMC</div>
+          <p class="he-desc">
+            Primeiro encontro presencial do grupo, durante o Encontro Brasileiro de Psicologia e Medicina Comportamental da ABPMC no Maranhão. Reuniu os pesquisadores fundadores para apresentação e debate da agenda de pesquisa translacional em criatividade e comportamento animal.
+          </p>
+          <div class="he-doc-links">
+            <a class="he-doc-link" href="https://www.researchgate.net/publication/327281744_Caderno_de_resumos_do_simposio_A_Investigacao_Operante_da_Criatividade_e_Inovacao_CRIACOM_-_ABPMC_2018" target="_blank" rel="noopener">
+              <span class="hdl-icon">↓</span>
+              <div class="hdl-body">
+                <div class="hdl-type">Download · ResearchGate</div>
+                <div class="hdl-title">Caderno de Resumos — ABPMC 2018</div>
+                <div class="hdl-src">Simpósio A Investigação Operante da Criatividade e Inovação</div>
+              </div>
+            </a>
+            <a class="he-doc-link" href="https://www.researchgate.net/publication/327546424_BOLETIM_CRIACOM_VOL1_Setembro_2018" target="_blank" rel="noopener">
+              <span class="hdl-icon">↓</span>
+              <div class="hdl-body">
+                <div class="hdl-type">Download · ResearchGate</div>
+                <div class="hdl-title">Boletim CRIACOM — Vol. 1</div>
+                <div class="hdl-src">Setembro 2018 · Resumo do 1º Encontro</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Evento 2: Encontro remoto 2023 -->
+      <div class="historia-event he-with-img">
+        <div class="he-img-wrap">
+          <img src="img/encontro_criacom_remoto_2023.png" alt="2º Encontro do CRIACOM — Programação do evento remoto, outubro 2022" style="object-position:top center">
+          <span class="he-img-caption">Programação · 2º Encontro do CRIACOM · Outubro 2022 · Online</span>
+        </div>
+        <div class="he-body">
+          <div class="he-tag">2º Encontro do CRIACOM · Remoto · Outubro 2022</div>
+          <div class="he-title">Segundo Encontro do CRIACOM — <em>participações internacionais</em></div>
+          <p class="he-desc">
+            Realizado remotamente em outubro de 2022, o segundo encontro reuniu pesquisadores de USP, UFC, UFPA, UFRA, UFES, UNIFAMETRO, UFMT e instituições internacionais — University of Reno (EUA) e University of Guadalajara (México). A palestra principal foi da Dra. Ramona A. Houmanfar (University of Reno). O formato online permitiu ampliar o alcance do CRIACOM para além do Brasil pela primeira vez.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Link para o site antigo -->
+    <div class="historia-site">
+      <div>
+        <div class="hs-label">Site anterior do laboratório · 2011–2021</div>
+        <div class="hs-text">O primeiro site do CRIACOM documenta a história do grupo desde sua fundação em 2011 até 2021, quando o laboratório passou a integrar a UEL formalmente.</div>
+      </div>
+      <a class="hs-cta" href="https://hernandonevesfilho.wixsite.com/criacom" target="_blank" rel="noopener">Visitar site histórico ↗</a>
+    </div>
+  </div>
+
 </section>
 
 <div class="contact-box">
@@ -3515,15 +3975,15 @@
 </footer>
 
 <!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">ESC · fechar</button>
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close lb-close" onclick="closeLightboxNow()">✕ fechar</button>
   <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();navLightbox(-1)">←</button>
   <img id="lightbox-img" src="" alt="Foto do laboratório CRIACOM">
   <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();navLightbox(1)">→</button>
 </div>
 
 <script>
-  // ── Publicações: abas por ano ─────────────────────────────────────────
+  // ── Publicações: abas por ano ──────────────────────────────────
   var pubTabs = document.querySelectorAll('.pub-tab');
   var pubPanels = document.querySelectorAll('.pub-panel');
   pubTabs.forEach(function(t){
@@ -3537,39 +3997,39 @@
   });
 
   // ── Download tabs ──────────────────────────────────────────────
-  const dlTabs = document.querySelectorAll('.dl-tab');
-  const dlPanels = document.querySelectorAll('.dl-panel');
+  var dlTabs = document.querySelectorAll('.dl-tab');
+  var dlPanels = document.querySelectorAll('.dl-panel');
   dlTabs.forEach(function(t){
     t.addEventListener('click', function(){
       var d = t.dataset.dl;
       dlTabs.forEach(function(x){ x.classList.remove('active'); });
-      dlPanels.forEach(function(p){ p.classList.remove('active'); });
+      dlPanels.forEach(function(x){ x.classList.remove('active'); });
       t.classList.add('active');
       document.querySelector('[data-dlpanel="' + d + '"]').classList.add('active');
     });
   });
 
   // ── Galeria: abas por ano ──────────────────────────────────────
-  const galleryBtns = document.querySelectorAll('.gallery-year-btn');
-  const galleryPanels = document.querySelectorAll('.gallery-panel');
+  var galleryBtns = document.querySelectorAll('.gallery-year-btn');
+  var galleryPanels = document.querySelectorAll('.gallery-panel');
   galleryBtns.forEach(function(b){
     b.addEventListener('click', function(){
       var yr = b.dataset.gallery;
       galleryBtns.forEach(function(x){ x.classList.remove('active'); });
-      galleryPanels.forEach(function(p){ p.classList.remove('active'); });
+      galleryPanels.forEach(function(x){ x.classList.remove('active'); });
       b.classList.add('active');
       document.querySelector('[data-panel="' + yr + '"]').classList.add('active');
     });
   });
 
   // ── Pesquisas: abas por geração ────────────────────────────────
-  const genTabs = document.querySelectorAll('.gen-tab');
-  const genPanels = document.querySelectorAll('.gen-panel');
+  var genTabs = document.querySelectorAll('.gen-tab');
+  var genPanels = document.querySelectorAll('.gen-panel');
   genTabs.forEach(function(t){
     t.addEventListener('click', function(){
       var g = t.dataset.gen;
       genTabs.forEach(function(x){ x.classList.remove('active'); });
-      genPanels.forEach(function(p){ p.classList.remove('active'); });
+      genPanels.forEach(function(x){ x.classList.remove('active'); });
       t.classList.add('active');
       document.querySelector('[data-panel="' + g + '"]').classList.add('active');
     });
@@ -3636,11 +4096,10 @@
     document.body.style.overflow = 'hidden';
   }
 
-  function closeLightbox(e){
-    if(e.target === document.getElementById('lightbox')){
-      document.getElementById('lightbox').classList.remove('open');
-      document.body.style.overflow = '';
-    }
+  function closeLightboxNow(){
+    var lb = document.getElementById('lightbox');
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
   }
 
   function navLightbox(dir){
@@ -3652,13 +4111,27 @@
     document.getElementById('lightbox-img').alt = item.alt;
   }
 
+  // Fechar ao clicar no fundo escuro (não na imagem ou botões)
+  document.getElementById('lightbox').addEventListener('click', function(e){
+    if(e.target === this){ closeLightboxNow(); }
+  });
+
+  // Teclas: Escape fecha, setas navegam
   document.addEventListener('keydown', function(e){
     var lb = document.getElementById('lightbox');
     if(!lb.classList.contains('open')) return;
-    if(e.key === 'Escape'){ lb.classList.remove('open'); document.body.style.overflow = ''; }
-    if(e.key === 'ArrowLeft') navLightbox(-1);
-    if(e.key === 'ArrowRight') navLightbox(1);
+    if(e.key === 'Escape'){ closeLightboxNow(); }
+    if(e.key === 'ArrowLeft'){ navLightbox(-1); }
+    if(e.key === 'ArrowRight'){ navLightbox(1); }
   });
+
+  // Segurança: restaurar scroll se lightbox fechou mas overflow ficou preso
+  setInterval(function(){
+    var lb = document.getElementById('lightbox');
+    if(lb && !lb.classList.contains('open') && document.body.style.overflow === 'hidden'){
+      document.body.style.overflow = '';
+    }
+  }, 500);
 </script>
 
 </body>
