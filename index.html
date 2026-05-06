@@ -157,16 +157,59 @@
   @media(max-width:820px){.lines-grid{grid-template-columns:1fr}}
 
   .line-card{
-    padding:32px 28px 36px;
+    padding:0;
     border-right:1px solid var(--ink);
     border-bottom:1px solid var(--ink);
     background:var(--paper);
     transition:background .3s;
     position:relative;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
   }
   .line-card:last-child{border-right:none}
   .line-card:hover{background:var(--paper-2)}
   @media(max-width:820px){.line-card{border-right:none}}
+
+  /* Mascote flutua no canto inferior direito, fora do fluxo do texto */
+  .line-card-mascot{
+    position:absolute;
+    bottom:0; right:0;
+    width:270px;
+    pointer-events:none;
+    z-index:1;
+  }
+  .line-card-mascot img{
+    display:block;
+    width:100%; height:auto;
+    image-rendering:pixelated;
+    opacity:.65;
+    transition:transform .4s ease, opacity .4s ease;
+  }
+  .line-card:hover .line-card-mascot img{
+    transform:translateY(-10px);
+    opacity:.9;
+  }
+  @media(max-width:960px){.line-card-mascot{width:190px}}
+
+  /* Faixa laranja no topo */
+  .line-card::before{
+    content:"";
+    display:block;
+    height:3px;
+    background:var(--accent);
+    flex-shrink:0;
+  }
+
+  .line-card-body{
+    padding:28px 28px 32px;
+    flex:1;
+    position:relative; z-index:2;
+    display:flex; flex-direction:column;
+    padding-right:160px;
+  }
+  @media(max-width:960px){.line-card-body{padding-right:120px}}
+  @media(max-width:820px){.line-card-body{padding-right:28px}}
 
   .line-card .num{
     font-family:'JetBrains Mono',monospace;
@@ -178,15 +221,32 @@
     font-family:'Fraunces',serif;
     font-variation-settings:"opsz" 96,"WONK" 1;
     font-weight:500;
-    font-size:28px;
+    font-size:26px;
     line-height:1.05;
     letter-spacing:-.025em;
-    margin-bottom:14px;
+    margin-bottom:16px;
   }
   .line-card h3 .italic{font-style:italic;color:var(--accent)}
   .line-card p{
     font-size:14px;color:var(--ink-soft);
-    line-height:1.5;
+    line-height:1.6;
+    margin-bottom:0;
+  }
+  .line-card .line-details{
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px solid rgba(20,20,20,.12);
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    flex:1;
+  }
+  .line-card .line-details strong{
+    font-style:normal;
+    color:var(--ink);
+    font-weight:600;
   }
 
   .gen-tabs{
@@ -246,17 +306,49 @@
   .research-list{border-top:1px solid rgba(20,20,20,.2)}
   .research-row{
     display:grid;
-    grid-template-columns:70px 230px 1fr;
-    gap:20px;
-    padding:14px 0;
+    grid-template-columns:70px 48px 1fr 1fr;
+    gap:14px;
+    padding:10px 0;
     border-bottom:1px solid rgba(20,20,20,.12);
-    align-items:baseline;
+    align-items:center;
     transition:background .2s;
   }
   .research-row:hover{background:var(--paper-2)}
   @media(max-width:720px){
-    .research-row{grid-template-columns:60px 1fr;gap:10px}
-    .research-row .topic{grid-column:1/-1;padding-left:70px}
+    .research-row{grid-template-columns:60px 38px 1fr;gap:8px}
+    .research-row .topic{grid-column:2/-1;padding-left:0}
+  }
+
+  /* Avatar circular do pesquisador */
+  .research-row .avatar{
+    width:44px; height:44px;
+    border-radius:50%;
+    overflow:hidden;
+    flex-shrink:0;
+    border:2px solid rgba(20,20,20,.12);
+    background:var(--paper-2);
+    display:flex; align-items:center; justify-content:center;
+    transition:border-color .2s, transform .2s;
+  }
+  .research-row:hover .avatar{
+    border-color:var(--accent);
+    transform:scale(1.08);
+  }
+  .research-row .avatar img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    image-rendering:pixelated;
+  }
+  .research-row .avatar.empty{
+    background:transparent;
+    border-color:transparent;
+  }
+  .research-row .avatar.initial{
+    font-family:'Fraunces',serif;
+    font-size:15px; font-weight:600;
+    color:var(--muted);
+    border-color:rgba(20,20,20,.12);
   }
 
   .research-row .badge{
@@ -281,6 +373,7 @@
     font-weight:600;
     font-size:15px;
     letter-spacing:-.01em;
+    align-self:center;
   }
   .research-row .topic{
     font-family:'Instrument Serif',serif;
@@ -1439,16 +1532,51 @@
   .contact-box{
     border-top:2px solid var(--ink);
     border-bottom:1px solid var(--ink);
-    padding:52px 0;
+    padding:0;
     margin-top:0;
+    overflow:hidden;
+    position:relative;
   }
   .contact-box .container{
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr 1fr auto;
     gap:48px;
-    align-items:center;
+    align-items:stretch;
+    min-height:260px;
   }
-  @media(max-width:820px){.contact-box .container{grid-template-columns:1fr; gap:32px}}
+  @media(max-width:900px){.contact-box .container{grid-template-columns:1fr 1fr; gap:32px}}
+  @media(max-width:680px){.contact-box .container{grid-template-columns:1fr; gap:0}}
+
+  .contact-box-text{
+    padding:52px 0 52px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  @media(max-width:680px){.contact-box-text{padding:40px 0 0}}
+
+  .contact-box-mascot{
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    overflow:hidden;
+    padding:0;
+    flex-shrink:0;
+    width:160px;
+    border-left:1px solid var(--ink);
+  }
+  .contact-box-mascot img{
+    display:block;
+    height:260px; width:auto;
+    object-fit:contain;
+    object-position:bottom center;
+    image-rendering:pixelated;
+    filter:drop-shadow(-2px 0 8px rgba(20,20,20,.08));
+    transition:filter .4s, transform .4s;
+  }
+  .contact-box-mascot img:hover{
+    filter:drop-shadow(-2px 0 14px rgba(240,120,24,.3));
+    transform:translateY(-4px);
+  }
+  @media(max-width:900px){.contact-box-mascot{display:none}}
   .contact-box-text .cb-tag{
     font-family:'JetBrains Mono',monospace;
     font-size:10px; letter-spacing:.22em; text-transform:uppercase;
@@ -1988,13 +2116,13 @@
     background:var(--ink);
     color:var(--paper);
     display:grid;
-    grid-template-columns:1fr 140px;
+    grid-template-columns:1fr 160px;
     align-items:stretch;
     min-height:180px;
     position:relative;
     overflow:hidden;
   }
-  @media(max-width:680px){.promo-main{grid-template-columns:1fr 80px}}
+  @media(max-width:680px){.promo-main{grid-template-columns:1fr 100px}}
 
   .promo-content{
     padding:24px 28px;
@@ -2094,19 +2222,37 @@
   }
   .promo-card-sec:hover .ps-arr{color:rgba(243,239,230,.5)}
 
-  /* Mascote coluna direita */
+  /* Mascotes — coluna direita com dois personagens */
   .promo-mascot-col{
-    display:flex; align-items:flex-end; justify-content:center;
-    padding:0 8px 0 0;
+    display:flex;
+    align-items:flex-end;
+    justify-content:flex-end;
+    gap:0;
+    padding:0;
     overflow:hidden;
   }
-  .promo-mascot-col img{
-    width:130px; height:auto; display:block;
+  .promo-mascot-col .mascot-img{
+    display:block;
     image-rendering:pixelated;
     position:relative; bottom:0;
-    filter:drop-shadow(1px 0 8px rgba(240,120,24,.3));
+    height:200px; width:auto;
+    object-fit:contain;
+    object-position:bottom center;
+    flex-shrink:0;
+    filter:drop-shadow(1px 0 6px rgba(240,120,24,.25));
+    transition:filter .3s;
   }
-  @media(max-width:680px){.promo-mascot-col img{width:75px}}
+  .promo-mascot-col .mascot-img:hover{
+    filter:drop-shadow(1px 0 12px rgba(240,120,24,.55));
+  }
+  @media(max-width:860px){.promo-mascot-col .mascot-img{height:140px}}
+  @media(max-width:680px){.promo-mascot-col .mascot-img{height:90px}}
+  /* Quando há dois mascotes, ajusta largura da coluna */
+  .promo-main.two-mascots{
+    grid-template-columns:1fr 280px;
+  }
+  @media(max-width:860px){.promo-main.two-mascots{grid-template-columns:1fr 180px}}
+  @media(max-width:680px){.promo-main.two-mascots{grid-template-columns:1fr 120px}}
   .promo-bg-deco{
     position:absolute; right:-10px; bottom:-20px;
     font-family:'Fraunces',serif; font-size:160px; font-weight:700;
@@ -2163,6 +2309,35 @@
     pointer-events:auto; opacity:1;
     animation:fadeIn .35s ease;
   }
+
+
+  /* Yullacon na seção de equipe */
+  .orientadores-wrap{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:0;
+    align-items:flex-end;
+  }
+  @media(max-width:900px){.orientadores-wrap{grid-template-columns:1fr}}
+  .yullacon-aside{
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding:0 0 0 16px;
+    flex-shrink:0;
+  }
+  .yullacon-aside img{
+    height:320px; width:auto;
+    display:block;
+    image-rendering:pixelated;
+    filter:drop-shadow(-4px 0 8px rgba(20,20,20,.1));
+    transition:filter .4s, transform .4s;
+  }
+  .yullacon-aside img:hover{
+    filter:drop-shadow(-4px 0 14px rgba(240,120,24,.35));
+    transform:translateY(-6px);
+  }
+  @media(max-width:900px){.yullacon-aside{display:none}}
 
   /* ===== GALERIA ===== */
   .gallery-years{
@@ -2394,7 +2569,7 @@
     </div>
 
     <div class="promo-mascot-col">
-      <img src="img/Boatacon_transp.png" alt="Mascote CRIACOM">
+      <img class="mascot-img" src="img/yullacon_transp.png" alt="Yulla — pesquisadora CRIACOM" title="Profa. Dra. Yulla Christoffersen Knaus">
     </div>
     <span class="promo-bg-deco">★</span>
   </div>
@@ -2463,19 +2638,37 @@
     </div>
     <div class="lines-grid">
       <article class="line-card">
-        <div class="num">L-01</div>
-        <h3>Criatividade <span class="italic">&amp; resolução de problemas</span></h3>
-        <p>Recombinação de repertórios, variabilidade operante, enriquecimento ambiental e síntese de processos comportamentais como origem do novo — em ratos, crianças e cultura.</p>
+        <div class="line-card-mascot"><img src="img/yullacon2.png" alt=""></div>
+        <div class="line-card-body">
+          <div class="num">L-01</div>
+          <h3>Criatividade <span class="italic">&amp; resolução de problemas</span></h3>
+          <p>Como surgem comportamentos genuinamente novos? Investigamos as origens operantes da criatividade — variabilidade operante, enriquecimento ambiental e <em>insight</em> — em ratos, macacos-prego, crianças e cultura.</p>
+          <div class="line-details">
+            Partindo de <strong>Epstein et al. (1984)</strong>, a linha une pesquisa básica com modelos animais e aplicações terapêuticas: <strong>programas de resolução de problemas</strong> para crianças em contexto clínico e escolar.
+          </div>
+        </div>
       </article>
       <article class="line-card">
-        <div class="num">L-02</div>
-        <h3>Desinformação <span class="italic">&amp; cultura digital</span></h3>
-        <p>Análise comportamental do compartilhamento de fake news, persuasão, vieses de atribuição e aceitação de conteúdos falsos em comunidades online.</p>
+        <div class="line-card-mascot"><img src="img/boatacon3.png" alt=""></div>
+        <div class="line-card-body">
+          <div class="num">L-02</div>
+          <h3>Desinformação <span class="italic">&amp; cultura digital</span></h3>
+          <p>Por que pessoas compartilham fake news? Aplicamos análise do comportamento cultural — metacontingências, persuasão e vieses de atribuição — para explicar a desinformação em redes sociais.</p>
+          <div class="line-details">
+            Em parceria com o <strong>STF desde 2021</strong>, contribuímos com evidências científicas para políticas públicas de combate à desinformação no Brasil.
+          </div>
+        </div>
       </article>
       <article class="line-card">
-        <div class="num">L-03</div>
-        <h3>Behavioral <span class="italic">Game Design</span></h3>
-        <p>Jogos, videogames e RPGs como ferramentas terapêuticas, de ensino e de investigação experimental — design a partir da análise do comportamento.</p>
+        <div class="line-card-mascot"><img src="img/boatacon2.png" alt=""></div>
+        <div class="line-card-body">
+          <div class="num">L-03</div>
+          <h3>Behavioral <span class="italic">Game Design</span></h3>
+          <p>Jogos são câmaras operantes ecologicamente válidas. Projetamos videogames, RPGs e jogos de tabuleiro a partir dos princípios da análise do comportamento.</p>
+          <div class="line-details">
+            Desenvolvemos o <strong>Hexaverso</strong> (RPG de mesa) e o <strong>LaBehavior Quest</strong> como ferramentas terapêuticas e de ensino de Análise do Comportamento.
+          </div>
+        </div>
       </article>
     </div>
   </div>
@@ -2503,25 +2696,25 @@
             </div>
 </div>
       <div class="research-list">
-        <div class="research-row doc"><span class="badge">DOC</span><span class="name">Amanda Viana</span><span class="topic">Teste de programa psicoterapêutico para resolução de problemas em crianças.</span></div>
-        <div class="research-row doc"><span class="badge">DOC</span><span class="name">Luan Mendes Teixeira</span><span class="topic">Contraste comportamental e fake news.</span></div>
-        <div class="research-row doc"><span class="badge">DOC</span><span class="name">Pedro Augusto dos Anjos Cabral</span><span class="topic">Vieses de atribuição e aceitação de desinformação no comportamento político.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Murilo Lecce Regiani</span><span class="topic">Persuasão e opinião pública: Moral Reframing e Teoria das Molduras Relacionais (RFT).</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Renan Dias Brigido</span><span class="topic">LaBehavior Quest: ensino de Análise do Comportamento e Game Design.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Beatriz Landim Fabri</span><span class="topic">RPGs como ferramentas terapêuticas.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Caique Magalhães</span><span class="topic">Aplicativo de pesquisa e intervenção com foco na tríplice contingência.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Julia Röcker dos Santos</span><span class="topic">Fake news: uma análise do comportamento de compartilhar.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Otávio Mota Ferreira</span><span class="topic">Leitura comportamental do conceito de "democracia" em Bobbio (1984/2009).</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Melissa Peixoto</span><span class="topic">Interpretação comportamental do <em>profiling</em> na psicologia investigativa.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Sara Isabele Santos Neves</span><span class="topic">O influenciador digital: uma análise behaviorista radical.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Maria Eduarda Hiromi Yoshida</span><span class="topic">Influências da Psicologia do Séc. XX nas Inteligências Artificiais do Séc. XXI.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Julia Abid dos Santos</span><span class="topic">Empatia na Análise do Comportamento e modelação em redes sociais.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Kaio A. Nardis</span><span class="topic">Interfaces diegéticas e controle de estímulos entre game design e AC.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Sergio Augusto Kenzo Yamamoto</span><span class="topic">Dog whistles e controle comportamental implícito na democracia.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Gabriel Toloczko Ferreira</span><span class="topic">Confrontos entre torcidas organizadas brasileiras de futebol.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Talita da Silva Guerrini</span><span class="topic">Obstáculos da inclusão no ensino superior — perspectiva analítico-comportamental.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Giovanna Catarina Nunes Bagni</span><span class="topic">Efeitos do uso de redes sociais: TikTok e adolescentes.</span></div>
-        <div class="research-row pos"><span class="badge">PD</span><span class="name">Marlon A. de Oliveira</span><span class="topic">Uso do recurso comum em um jogo digital (FAPESP-USP-UEL, sup. Maria H. L. Hünziker).</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><div class="avatar"><img src="img/amandavianacon.png" alt="Amanda Viana"></div><span class="name">Amanda Viana</span><span class="topic">Teste de programa psicoterapêutico para resolução de problemas em crianças.</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><div class="avatar"><img src="img/luancon.png" alt="Luan Mendes Teixeira"></div><span class="name">Luan Mendes Teixeira</span><span class="topic">Contraste comportamental e fake news.</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><div class="avatar"><img src="img/pedrocabralcon.png" alt="Pedro Augusto dos Anjos Cabral"></div><span class="name">Pedro Augusto dos Anjos Cabral</span><span class="topic">Vieses de atribuição e aceitação de desinformação no comportamento político.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/murilocon.png" alt="Murilo Lecce Regiani"></div><span class="name">Murilo Lecce Regiani</span><span class="topic">Persuasão e opinião pública: Moral Reframing e Teoria das Molduras Relacionais (RFT).</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/renancon.png" alt="Renan Dias Brigido"></div><span class="name">Renan Dias Brigido</span><span class="topic">LaBehavior Quest: ensino de Análise do Comportamento e Game Design.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/beatrizcon.png" alt="Beatriz Landim Fabri"></div><span class="name">Beatriz Landim Fabri</span><span class="topic">RPGs como ferramentas terapêuticas.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/caiquecon.png" alt="Caique Magalhães"></div><span class="name">Caique Magalhães</span><span class="topic">Aplicativo de pesquisa e intervenção com foco na tríplice contingência.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/juliarockercon.png" alt="Julia Röcker dos Santos"></div><span class="name">Julia Röcker dos Santos</span><span class="topic">Fake news: uma análise do comportamento de compartilhar.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/otaviocon.png" alt="Otávio Mota Ferreira"></div><span class="name">Otávio Mota Ferreira</span><span class="topic">Leitura comportamental do conceito de "democracia" em Bobbio (1984/2009).</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/melissacon.png" alt="Melissa Peixoto"></div><span class="name">Melissa Peixoto</span><span class="topic">Interpretação comportamental do <em>profiling</em> na psicologia investigativa.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Sara Isabele Santos Neves</span><span class="topic">O influenciador digital: uma análise behaviorista radical.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Maria Eduarda Hiromi Yoshida</span><span class="topic">Influências da Psicologia do Séc. XX nas Inteligências Artificiais do Séc. XXI.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/juliaabidcon.png" alt="Julia Abid dos Santos"></div><span class="name">Julia Abid dos Santos</span><span class="topic">Empatia na Análise do Comportamento e modelação em redes sociais.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/kaiocon.png" alt="Kaio A. Nardis"></div><span class="name">Kaio A. Nardis</span><span class="topic">Interfaces diegéticas e controle de estímulos entre game design e AC.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/sergioaugustocon.png" alt="Sergio Augusto Kenzo Yamamoto"></div><span class="name">Sergio Augusto Kenzo Yamamoto</span><span class="topic">Dog whistles e controle comportamental implícito na democracia.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Gabriel Toloczko Ferreira</span><span class="topic">Confrontos entre torcidas organizadas brasileiras de futebol.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Talita da Silva Guerrini</span><span class="topic">Obstáculos da inclusão no ensino superior — perspectiva analítico-comportamental.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Giovanna Catarina Nunes Bagni</span><span class="topic">Efeitos do uso de redes sociais: TikTok e adolescentes.</span></div>
+        <div class="research-row pos"><span class="badge">PD</span><div class="avatar empty"></div><span class="name">Marlon A. de Oliveira</span><span class="topic">Uso do recurso comum em um jogo digital (FAPESP-USP-UEL, sup. Maria H. L. Hünziker).</span></div>
       </div>
     </div>
 
@@ -2532,21 +2725,22 @@
             </div>
 </div>
       <div class="research-list">
-        <div class="research-row doc"><span class="badge">DOC</span><span class="name">Amanda Viana</span><span class="topic">Programa psicoterapêutico para resolução de problemas em crianças.</span></div>
-        <div class="research-row doc"><span class="badge">DOC</span><span class="name">Luan Mendes Teixeira</span><span class="topic">Contraste comportamental no compartilhamento de fake news sob reforço múltiplo.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Caique Magalhães</span><span class="topic">Aplicativo de pesquisa e intervenção comportamental.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Renan Brigido</span><span class="topic">Behavior Quest: ensino de AC e Game Design.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">João Vitor Maldonado</span><span class="topic">O conceito de "Liberdade" na Análise do Comportamento.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Beatriz Landim</span><span class="topic">Protocolo gamificado de ensino de habilidades sociais.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name"><a href="https://www.uel.br/pos/pgac/wp-content/uploads/biblioteca/Dissertacao%20Isabella%20Nataly%20Roque.pdf" target="_blank" rel="noopener">Isabella Roque ↗</a></span><span class="topic"><em>Insight</em> e recombinação de repertórios: revisão de escopo desde Epstein et al. (1984).</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Julia Rocker</span><span class="topic">Fake news: análise do comportamento de compartilhar.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Amanda Lottermann</span><span class="topic">Enriquecimento ambiental e resolução de problemas IR em ratos.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Otávio Mota Ferreira</span><span class="topic">Livro-jogo para desenvolvimento de assertividade infantil.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Melissa Peixoto</span><span class="topic">Rediscutindo o especismo antropocentrista.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Lucas Amaro Bianchini</span><span class="topic">Empatia na AC: perspectiva recombinativa.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Sérgio Kenzo Yamamoto</span><span class="topic">Análise culturo-comportamental de comunidades digitais "Red Pill".</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Kaio A. Nardis</span><span class="topic">Aprendizagem por imitação em animais não humanos.</span></div>
-        <div class="research-row pos"><span class="badge">PD</span><span class="name">Yulla C. Knaus &amp; Marlon A. de Oliveira</span><span class="topic">Ratos, macacos e recurso comum em jogo digital (CAPES &amp; FAPESP).</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><div class="avatar"><img src="img/amandavianacon.png" alt="Amanda Viana"></div><span class="name">Amanda Viana</span><span class="topic">Programa psicoterapêutico para resolução de problemas em crianças.</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><div class="avatar"><img src="img/luancon.png" alt="Luan Mendes Teixeira"></div><span class="name">Luan Mendes Teixeira</span><span class="topic">Contraste comportamental no compartilhamento de fake news sob reforço múltiplo.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/caiquecon.png" alt="Caique Magalhães"></div><span class="name">Caique Magalhães</span><span class="topic">Aplicativo de pesquisa e intervenção comportamental.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/renancon.png" alt="Renan Brigido"></div><span class="name">Renan Brigido</span><span class="topic">Behavior Quest: ensino de AC e Game Design.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar empty"></div><span class="name">João Vitor Maldonado</span><span class="topic">O conceito de "Liberdade" na Análise do Comportamento.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/beatrizcon.png" alt="Beatriz Landim"></div><span class="name">Beatriz Landim</span><span class="topic">Protocolo gamificado de ensino de habilidades sociais.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/isabelaroquecon.png" alt="Isabella Roque ↗"></div><span class="name"><a href="https://www.uel.br/pos/pgac/wp-content/uploads/biblioteca/Dissertacao%20Isabella%20Nataly%20Roque.pdf" target="_blank" rel="noopener">Isabella Roque ↗</a></span><span class="topic"><em>Insight</em> e recombinação de repertórios: revisão de escopo desde Epstein et al. (1984).</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/juliarockercon.png" alt="Julia Rocker"></div><span class="name">Julia Rocker</span><span class="topic">Fake news: análise do comportamento de compartilhar.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/amandalottcon.png" alt="Amanda Lottermann"></div><span class="name">Amanda Lottermann</span><span class="topic">Enriquecimento ambiental e resolução de problemas IR em ratos.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/otaviocon.png" alt="Otávio Mota Ferreira"></div><span class="name">Otávio Mota Ferreira</span><span class="topic">Livro-jogo para desenvolvimento de assertividade infantil.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/melissacon.png" alt="Melissa Peixoto"></div><span class="name">Melissa Peixoto</span><span class="topic">Rediscutindo o especismo antropocentrista.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Lucas Amaro Bianchini</span><span class="topic">Empatia na AC: perspectiva recombinativa.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/sergioaugustocon.png" alt="Sérgio Kenzo Yamamoto"></div><span class="name">Sérgio Kenzo Yamamoto</span><span class="topic">Análise culturo-comportamental de comunidades digitais "Red Pill".</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/kaiocon.png" alt="Kaio A. Nardis"></div><span class="name">Kaio A. Nardis</span><span class="topic">Aprendizagem por imitação em animais não humanos.</span></div>
+        <div class="research-row jr"><span class="badge">IC-Jr</span><div class="avatar"><img src="img/joaovitorcon.png" alt="João Vitor Barboza"></div><span class="name">João Vitor Barboza</span><span class="topic">Contingências de reforço de Street Fighter II: Uma análise funcional dos controles de jogos de luta.</span></div>
+        <div class="research-row pos"><span class="badge">PD</span><div class="avatar empty"></div><span class="name">Yulla C. Knaus &amp; Marlon A. de Oliveira</span><span class="topic">Ratos, macacos e recurso comum em jogo digital (CAPES &amp; FAPESP).</span></div>
       </div>
     </div>
 
@@ -2557,19 +2751,20 @@
             </div>
 </div>
       <div class="research-list">
-        <div class="research-row doc"><span class="badge">DOC</span><span class="name">Amanda Viana</span><span class="topic">Programa psicoterapêutico para resolução de problemas em crianças.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Caique Magalhães</span><span class="topic">Gamificação no treino de habilidades psicoterápicas (FAP).</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Lorena Morais</span><span class="topic">Variabilidade operante e suas implicações para a AC.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">João Vitor Maldonado</span><span class="topic">O conceito de "Liberdade" na Análise do Comportamento.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Laryssa Rodrigues</span><span class="topic">Criatividade em práticas culturais: revisão bibliográfica.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Isabella Roque</span><span class="topic">Criatividade para o aplicador ABA: protocolos comparativos.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Amanda Lottermann</span><span class="topic">Enriquecimento ambiental e resolução de problemas IR em ratos.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Bruno Teixeira</span><span class="topic">Imediaticidade de consequências culturais e informações falsas.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Gabriella Molina</span><span class="topic">Histórias infantis na terapia comportamental.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Lucas Amaro Bianchini</span><span class="topic">Antecedentes e consequentes de comportamentos de empatia.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Giovanna Monteverde</span><span class="topic">Protocolos comportamentais do século XXI.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Gabriel Guardiano Santana</span><span class="topic">Efeito do reforço para além da resposta reforçada.</span></div>
-        <div class="research-row pos"><span class="badge">PD</span><span class="name">Yulla C. Knaus</span><span class="topic">Resolução de problemas em ratos e macacos de vida livre (CAPES · LECA-UEL).</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><div class="avatar"><img src="img/amandavianacon.png" alt="Amanda Viana"></div><span class="name">Amanda Viana</span><span class="topic">Programa psicoterapêutico para resolução de problemas em crianças.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/caiquecon.png" alt="Caique Magalhães"></div><span class="name">Caique Magalhães</span><span class="topic">Gamificação no treino de habilidades psicoterápicas (FAP).</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar empty"></div><span class="name">Lorena Morais</span><span class="topic">Variabilidade operante e suas implicações para a AC.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar empty"></div><span class="name">João Vitor Maldonado</span><span class="topic">O conceito de "Liberdade" na Análise do Comportamento.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/laryssacon.png" alt="Laryssa Rodrigues"></div><span class="name">Laryssa Rodrigues</span><span class="topic">Criatividade em práticas culturais: revisão bibliográfica.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/isabelaroquecon.png" alt="Isabella Roque"></div><span class="name">Isabella Roque</span><span class="topic">Criatividade para o aplicador ABA: protocolos comparativos.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/amandalottcon.png" alt="Amanda Lottermann"></div><span class="name">Amanda Lottermann</span><span class="topic">Enriquecimento ambiental e resolução de problemas IR em ratos.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/brunoteixeiracon.png" alt="Bruno Teixeira"></div><span class="name">Bruno Teixeira</span><span class="topic">Imediaticidade de consequências culturais e informações falsas.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/gabrielamolinacon.png" alt="Gabriella Molina"></div><span class="name">Gabriella Molina</span><span class="topic">Histórias infantis na terapia comportamental.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Lucas Amaro Bianchini</span><span class="topic">Antecedentes e consequentes de comportamentos de empatia.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/giomonteverdecon.png" alt="Giovanna Monteverde"></div><span class="name">Giovanna Monteverde</span><span class="topic">Protocolos comportamentais do século XXI.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/gabrielguardianocon.png" alt="Gabriel Guardiano Santana"></div><span class="name">Gabriel Guardiano Santana</span><span class="topic">Efeito do reforço para além da resposta reforçada.</span></div>
+        <div class="research-row jr"><span class="badge">IC-Jr</span><div class="avatar empty"></div><span class="name">Danielly Oliveira Leal</span><span class="topic">Analisando os analistas do comportamento: Conhecendo congressos de Psicologia.</span></div>
+        <div class="research-row pos"><span class="badge">PD</span><div class="avatar empty"></div><span class="name">Yulla C. Knaus</span><span class="topic">Resolução de problemas em ratos e macacos de vida livre (CAPES · LECA-UEL).</span></div>
       </div>
     </div>
 
@@ -2580,19 +2775,19 @@
             </div>
 </div>
       <div class="research-list">
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Amanda Viana</span><span class="topic">Design de programa psicoterapêutico para resolução de problemas infantil.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Lorena Morais</span><span class="topic">Variabilidade operante e suas implicações.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Miguel Abdala</span><span class="topic">Cultura como elo entre antropologia e etologia.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Laryssa Rodrigues</span><span class="topic">Criatividade em práticas culturais: revisão.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Amanda Lottermann</span><span class="topic">Variáveis biocomportamentais da resolução de problemas em ratos.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Isabella Roque</span><span class="topic">Papel da criatividade para o aplicador ABA.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Bruno Teixeira</span><span class="topic">Metacontingências e fake news: procedimento culturo-comportamental.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Giovanna Monteverde</span><span class="topic">Recombinação de repertórios e origem da criatividade.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Mônica Saito</span><span class="topic">Transmissão cultural em macacos-prego (<em>Sapajus spp.</em>) · LECA-CCB-UEL.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Gabriella Molina</span><span class="topic">Controle de estímulos na origem de comportamentos novos.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Lucas Caldeira</span><span class="topic">Da inteligência à ignorância: resolução de problemas na Psicologia.</span></div>
-        <div class="research-row jr"><span class="badge">JR</span><span class="name">Mariana Rodrigues Santos</span><span class="topic">Análise do Comportamento e Game Design (PROIC-Jr, Mega Man X).</span></div>
-        <div class="research-row pos"><span class="badge">PD</span><span class="name">Yulla C. Knaus</span><span class="topic">Resolução de problemas em ratos e macacos (LECA-UEL).</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/amandavianacon.png" alt="Amanda Viana"></div><span class="name">Amanda Viana</span><span class="topic">Design de programa psicoterapêutico para resolução de problemas infantil.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar empty"></div><span class="name">Lorena Morais</span><span class="topic">Variabilidade operante e suas implicações.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/abdalacon.png" alt="Miguel Abdala"></div><span class="name">Miguel Abdala</span><span class="topic">Cultura como elo entre antropologia e etologia.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/laryssacon.png" alt="Laryssa Rodrigues"></div><span class="name">Laryssa Rodrigues</span><span class="topic">Criatividade em práticas culturais: revisão.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/amandalottcon.png" alt="Amanda Lottermann"></div><span class="name">Amanda Lottermann</span><span class="topic">Variáveis biocomportamentais da resolução de problemas em ratos.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/isabelaroquecon.png" alt="Isabella Roque"></div><span class="name">Isabella Roque</span><span class="topic">Papel da criatividade para o aplicador ABA.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/brunoteixeiracon.png" alt="Bruno Teixeira"></div><span class="name">Bruno Teixeira</span><span class="topic">Metacontingências e fake news: procedimento culturo-comportamental.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/giomonteverdecon.png" alt="Giovanna Monteverde"></div><span class="name">Giovanna Monteverde</span><span class="topic">Recombinação de repertórios e origem da criatividade.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/monicasaitocon.png" alt="Mônica Saito"></div><span class="name">Mônica Saito</span><span class="topic">Transmissão cultural em macacos-prego (<em>Sapajus spp.</em>) · LECA-CCB-UEL.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/gabrielamolinacon.png" alt="Gabriella Molina"></div><span class="name">Gabriella Molina</span><span class="topic">Controle de estímulos na origem de comportamentos novos.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/lucascaldeiracon.png" alt="Lucas Caldeira"></div><span class="name">Lucas Caldeira</span><span class="topic">Da inteligência à ignorância: resolução de problemas na Psicologia.</span></div>
+        <div class="research-row jr"><span class="badge">JR</span><div class="avatar"><img src="img/marianarodriguescon.png" alt="Mariana Rodrigues Santos"></div><span class="name">Mariana Rodrigues Santos</span><span class="topic">Análise do Comportamento e Game Design (PROIC-Jr, Mega Man X).</span></div>
+        <div class="research-row pos"><span class="badge">PD</span><div class="avatar empty"></div><span class="name">Yulla C. Knaus</span><span class="topic">Resolução de problemas em ratos e macacos (LECA-UEL).</span></div>
       </div>
     </div>
 
@@ -2603,13 +2798,13 @@
             </div>
 </div>
       <div class="research-list">
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Amanda Viana</span><span class="topic">Escolhas em situações-problemas: estratégia para crianças.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Lorena Morais</span><span class="topic">Variabilidade operante e suas implicações.</span></div>
-        <div class="research-row mes"><span class="badge">MES</span><span class="name">Miguel Abdala</span><span class="topic">Cultura como elo entre antropologia e etologia.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Laryssa Gomes</span><span class="topic">Da estética ao (contra)controle: estudo comportamental sobre a arte.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><span class="name">Heloisa Kohatsu</span><span class="topic">Aceitação e difusão de fake news (colab. Celina Tanaka, USP).</span></div>
-        <div class="research-row jr"><span class="badge">ICsb</span><span class="name">Mônica Saito</span><span class="topic">Criatividade e resiliência: revisão bibliográfica.</span></div>
-        <div class="research-row jr"><span class="badge">ICsb</span><span class="name">Giovana Monteverde</span><span class="topic">Criatividade e TEA: revisão bibliográfica.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/amandavianacon.png" alt="Amanda Viana"></div><span class="name">Amanda Viana</span><span class="topic">Escolhas em situações-problemas: estratégia para crianças.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar empty"></div><span class="name">Lorena Morais</span><span class="topic">Variabilidade operante e suas implicações.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/abdalacon.png" alt="Miguel Abdala"></div><span class="name">Miguel Abdala</span><span class="topic">Cultura como elo entre antropologia e etologia.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/laryssacon.png" alt="Laryssa Rodrigues"></div><span class="name">Laryssa Rodrigues</span><span class="topic">Da estética ao (contra)controle: estudo comportamental sobre a arte.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/heloisakohatsucon.png" alt="Heloisa Kohatsu"></div><span class="name">Heloisa Kohatsu</span><span class="topic">Aceitação e difusão de fake news (colab. Celina Tanaka, USP).</span></div>
+        <div class="research-row jr"><span class="badge">ICsb</span><div class="avatar"><img src="img/monicasaitocon.png" alt="Mônica Saito"></div><span class="name">Mônica Saito</span><span class="topic">Criatividade e resiliência: revisão bibliográfica.</span></div>
+        <div class="research-row jr"><span class="badge">ICsb</span><div class="avatar"><img src="img/giomonteverdecon.png" alt="Giovana Monteverde"></div><span class="name">Giovana Monteverde</span><span class="topic">Criatividade e TEA: revisão bibliográfica.</span></div>
       </div>
     </div>
   </div>
@@ -2672,7 +2867,7 @@
       </div>
       <div class="dl-item">
         <div>
-          <div class="dl-name">Laryssa Rodrigues Gomes</div>
+          <div class="dl-name">Laryssa Rodrigues</div>
           <div class="dl-topic">Criatividade em B. F. Skinner: interface entre ontogênese e cultura.</div>
         </div>
         <div class="dl-actions">
@@ -2960,7 +3155,7 @@
       </div>
       <div class="dl-item">
         <div>
-          <div class="dl-name">Laryssa Gomes</div>
+          <div class="dl-name">Laryssa Rodrigues</div>
           <div class="dl-topic">Da estética ao (contra)controle: um estudo comportamental sobre a arte.</div>
         </div>
         <div class="dl-actions">
@@ -3440,7 +3635,8 @@
       <h2><em>Orientadores</em> do laboratório.</h2>
     </div>
 
-    <div class="advisor-grid">
+    <div class="orientadores-wrap">
+      <div class="advisor-grid">
       <!-- HERNANDO -->
       <div class="advisor-card">
         <img class="advisor-photo" src="img/orientador_hernando.png" alt="Hernando Borges Neves Filho">
@@ -3489,7 +3685,8 @@
           <a href="https://www.researchgate.net/profile/Yulla-Knaus" target="_blank" rel="noopener">ResearchGate ↗</a>
         </div>
       </div>
-    </div>
+      </div><!-- /advisor-grid -->
+    </div><!-- /orientadores-wrap -->
   </div>
 </section>
 
@@ -4056,6 +4253,9 @@
         Anexe seu currículo e uma breve descrição do seu interesse de pesquisa. Candidatos internacionais são bem-vindos.
       </p>
       <a href="https://www.uel.br/pos/pgac/" target="_blank" rel="noopener" style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,240,232,.45);text-decoration:none;border-bottom:1px solid rgba(232,73,159,.4);padding-bottom:2px;margin-top:4px;display:inline-block;transition:color .2s">Editais de seleção PPG-AC · UEL ↗</a>
+    </div>
+    <div class="contact-box-mascot">
+      <img src="img/Boatacon_transp.png" alt="Prof. Dr. Hernando Borges Neves Filho · CRIACOM-UEL" title="Prof. Dr. Hernando Borges Neves Filho">
     </div>
   </div>
 </div>
