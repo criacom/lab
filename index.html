@@ -150,76 +150,99 @@
   }
   .section-head h2 em{font-style:italic;color:var(--accent)}
 
+  /* ── LINHAS DE PESQUISA: layout horizontal em faixas ── */
   .lines-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
-    border-top:1px solid var(--ink);
-  }
-  @media(max-width:820px){.lines-grid{grid-template-columns:1fr}}
-
-  .line-card{
-    padding:0;
-    border-right:1px solid var(--ink);
-    border-bottom:1px solid var(--ink);
-    background:var(--paper);
-    transition:background .3s;
-    position:relative;
     display:flex;
     flex-direction:column;
-    overflow:hidden;
+    gap:0;
+    border-top:2px solid var(--ink);
   }
-  .line-card:last-child{border-right:none}
-  .line-card:hover{background:var(--paper-2)}
-  @media(max-width:820px){.line-card{border-right:none}}
 
-  /* Mascote flutua no canto inferior direito, fora do fluxo do texto */
-  .line-card-mascot{
+  .line-card{
+    display:grid;
+    grid-template-columns:1fr 320px;
+    border-bottom:1px solid var(--ink);
+    background:var(--paper);
+    transition:background .25s;
+    position:relative;
+    overflow:hidden;
+    min-height:280px;
+  }
+  .line-card:hover{background:var(--paper-2)}
+  @media(max-width:900px){.line-card{grid-template-columns:1fr 220px}}
+  @media(max-width:640px){.line-card{grid-template-columns:1fr; min-height:auto}}
+
+  /* Remove o ::before laranja — substituído por borda lateral */
+  .line-card::before{display:none}
+
+  /* Coluna de texto — esquerda */
+  .line-card-body{
+    padding:40px 44px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    border-right:1px solid var(--ink);
+    position:relative;
+  }
+  /* Barra laranja vertical na esquerda do texto */
+  .line-card-body::before{
+    content:"";
     position:absolute;
-    bottom:0; right:0;
-    width:300px;
-    pointer-events:none;
-    z-index:1;
+    left:0; top:0; bottom:0;
+    width:4px;
+    background:var(--accent);
+  }
+  @media(max-width:640px){
+    .line-card-body{
+      padding:28px 28px 28px 32px;
+      border-right:none;
+      border-bottom:1px solid var(--ink);
+    }
+  }
+
+  /* Coluna de imagem — direita, fundo levemente diferente */
+  .line-card-mascot{
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    background:var(--paper-2);
+    overflow:hidden;
+    position:relative;
+    padding:0;
   }
   .line-card-mascot img{
     display:block;
-    width:100%; height:auto;
+    width:auto;
+    height:100%;
+    max-height:320px;
+    max-width:100%;
+    object-fit:contain;
+    object-position:bottom center;
     image-rendering:pixelated;
     transition:transform .4s ease;
   }
   .line-card:hover .line-card-mascot img{
-    transform:translateY(-10px);
+    transform:translateY(-10px) scale(1.03);
   }
-  @media(max-width:960px){.line-card-mascot{width:210px}}
-
-  /* Faixa laranja no topo */
-  .line-card::before{
-    content:"";
-    display:block;
-    height:3px;
-    background:var(--accent);
-    flex-shrink:0;
+  @media(max-width:640px){
+    .line-card-mascot{
+      height:200px;
+      border-right:none;
+    }
+    .line-card-mascot img{max-height:200px}
   }
-
-  .line-card-body{
-    padding:28px 28px 32px;
-    flex:1;
-    position:relative; z-index:2;
-    display:flex; flex-direction:column;
-    padding-right:200px;
-  }
-  @media(max-width:960px){.line-card-body{padding-right:140px}}
-  @media(max-width:820px){.line-card-body{padding-right:28px}}
 
   .line-card .num{
     font-family:'JetBrains Mono',monospace;
     font-size:10px;letter-spacing:.2em;
     color:var(--muted);
-    margin-bottom:18px;
+    margin-bottom:16px;
   }
   .line-card h3{
     font-family:'Fraunces',serif;
     font-variation-settings:"opsz" 96,"WONK" 1;
     font-weight:500;
-    font-size:26px;
+    font-size:28px;
     line-height:1.05;
     letter-spacing:-.025em;
     margin-bottom:16px;
@@ -227,7 +250,7 @@
   .line-card h3 .italic{font-style:italic;color:var(--accent)}
   .line-card p{
     font-size:14px;color:var(--ink-soft);
-    line-height:1.6;
+    line-height:1.65;
     margin-bottom:0;
   }
   .line-card .line-details{
@@ -239,7 +262,6 @@
     font-size:13.5px;
     color:var(--ink-soft);
     line-height:1.6;
-    flex:1;
   }
   .line-card .line-details strong{
     font-style:normal;
@@ -404,23 +426,31 @@
   .support .section-head .tag{color:var(--accent-3)}
 
   .logos-row{
-    display:flex;flex-wrap:wrap;gap:14px 28px;
-    padding-top:24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    padding-top:32px;
     border-top:1px solid rgba(243,239,230,.2);
-    align-items:baseline;
+    align-items:center;
   }
   .logos-row .logo{
-    font-family:'Fraunces',serif;
-    font-variation-settings:"opsz" 96,"WONK" 1;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
     font-weight:500;
-    font-size:22px;
-    letter-spacing:-.015em;
-    color:var(--paper);
-    opacity:.9;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink);
+    background:rgba(243,239,230,.92);
+    padding:8px 18px;
+    border-radius:2px;
+    white-space:nowrap;
+    transition:background .2s;
+  }
+  .logos-row .logo:hover{
+    background:#fff;
   }
   .logos-row .sep{
-    color:rgba(243,239,230,.3);
-    font-size:18px;
+    display:none;
   }
 
   footer{
@@ -2588,7 +2618,6 @@
     </div>
     <div class="lines-grid">
       <article class="line-card">
-        <div class="line-card-mascot"><img src="img/yullacon2.png" alt=""></div>
         <div class="line-card-body">
           <div class="num">L-01</div>
           <h3>Criatividade <span class="italic">&amp; resolução de problemas</span></h3>
@@ -2597,9 +2626,11 @@
             Partindo de <strong>Epstein et al. (1984)</strong>, a linha une pesquisa básica com modelos animais e aplicações terapêuticas: <strong>programas de resolução de problemas</strong> para crianças em contexto clínico e escolar.
           </div>
         </div>
+        <div class="line-card-mascot">
+          <img src="img/yullacon2.png" alt="Yulla correndo de ratos — Criatividade CRIACOM">
+        </div>
       </article>
       <article class="line-card">
-        <div class="line-card-mascot"><img src="img/boatacon3.png" alt=""></div>
         <div class="line-card-body">
           <div class="num">L-02</div>
           <h3>Desinformação <span class="italic">&amp; cultura digital</span></h3>
@@ -2608,9 +2639,11 @@
             Em parceria com o <strong>STF desde 2021</strong>, contribuímos com evidências científicas para políticas públicas de combate à desinformação no Brasil.
           </div>
         </div>
+        <div class="line-card-mascot">
+          <img src="img/boatacon3.png" alt="Boatacon — Desinformação CRIACOM">
+        </div>
       </article>
       <article class="line-card">
-        <div class="line-card-mascot"><img src="img/boatacon2.png" alt=""></div>
         <div class="line-card-body">
           <div class="num">L-03</div>
           <h3>Behavioral <span class="italic">Game Design</span></h3>
@@ -2618,6 +2651,9 @@
           <div class="line-details">
             Desenvolvemos o <strong>Hexaverso</strong> (RPG de mesa) e o <strong>LaBehavior Quest</strong> como ferramentas terapêuticas e de ensino de Análise do Comportamento.
           </div>
+        </div>
+        <div class="line-card-mascot">
+          <img src="img/boatacon2.png" alt="Boatacon jogando — Game Design CRIACOM">
         </div>
       </article>
     </div>
@@ -2656,7 +2692,7 @@
         <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/juliarockercon.png" alt="Julia Röcker dos Santos"></div><span class="name">Julia Röcker dos Santos</span><span class="topic">Fake news: uma análise do comportamento de compartilhar.</span></div>
         <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/otaviocon.png" alt="Otávio Mota Ferreira"></div><span class="name">Otávio Mota Ferreira</span><span class="topic">Leitura comportamental do conceito de "democracia" em Bobbio (1984/2009).</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/melissacon.png" alt="Melissa Peixoto"></div><span class="name">Melissa Peixoto</span><span class="topic">Interpretação comportamental do <em>profiling</em> na psicologia investigativa.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Sara Isabele Santos Neves</span><span class="topic">O influenciador digital: uma análise behaviorista radical.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/saracon.png" alt="Sara Isabele Santos Neves"></div><span class="name">Sara Isabele Santos Neves</span><span class="topic">O influenciador digital: uma análise behaviorista radical.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Maria Eduarda Hiromi Yoshida</span><span class="topic">Influências da Psicologia do Séc. XX nas Inteligências Artificiais do Séc. XXI.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/juliaabidcon.png" alt="Julia Abid dos Santos"></div><span class="name">Julia Abid dos Santos</span><span class="topic">Empatia na Análise do Comportamento e modelação em redes sociais.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/kaiocon.png" alt="Kaio A. Nardis"></div><span class="name">Kaio A. Nardis</span><span class="topic">Interfaces diegéticas e controle de estímulos entre game design e AC.</span></div>
@@ -3200,10 +3236,11 @@
       <button class="pub-tab" data-pub="2014">2014</button>
       <button class="pub-tab" data-pub="2013">2013</button>
       <button class="pub-tab" data-pub="2009">2009</button>
+      <button class="pub-tab" data-pub="2007">2007</button>
     </div>
 
     <div class="pub-panel active" data-pubpanel="2026">
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://actacomportamentalia.cucba.udg.mx/index.php/acom/article/view/88823" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Uma Análise Interbehaviorista da Participação de Eventos Privados no Comportamento Verbal</div>
           <div class="pub-venue">2026 · Acta Comportamentalia 34 (1)</div>
@@ -3213,7 +3250,7 @@
       </a>
     </div>
     <div class="pub-panel" data-pubpanel="2025">
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://periodicos.ufpa.br/index.php/rebac/article/view/18845" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Treino desigual dos comportamentos pré-requisito prejudica a interconexão de comportamentos em pombos</div>
           <div class="pub-venue">2025 · Revista Brasileira de Análise do Comportamento 21 (1)</div>
@@ -3237,7 +3274,7 @@
         </div>
         <span class="pub-arrow">↗</span>
       </a>
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://actacomportamentalia.cucba.udg.mx/index.php/acom/article/view/88581" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Uma Ciência Intercomportamental das Relações Socioculturais Como Eventos Referenciais</div>
           <div class="pub-venue">2025 · Acta Comportamentalia 33 (2)</div>
@@ -3255,17 +3292,41 @@
       </a>
     </div>
     <div class="pub-panel" data-pubpanel="2024">
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://www.researchgate.net/publication/384843873_Uma_interpretacao_comportamental_sobre_a_producao_e_o_consumo_de_arte_Consideracoes_a_partir_da_obra_de_B_F_Skinner" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Uma interpretação comportamental sobre a produção e o consumo de arte: Considerações a partir da obra de B.F. Skinner</div>
-          <div class="pub-venue">2024 · Editora UEL [no prelo]</div>
+          <div class="pub-venue">2024 · Capítulo de livro · ISBN 978-65-01-13006-4</div>
           <div class="pub-authors">Rodrigues, L.; Vitti, G.R.; dos Reis, C.S.; Abdala, M.; Neves Filho, H.B.</div>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a class="pub-item" href="https://www.researchgate.net/publication/384765964_Construcao_de_nicho_como_elo_entre_ontogenese_e_cultura" target="_blank" rel="noopener">
+        <div>
+          <div class="pub-title">Construção de nicho como elo entre ontogênese e cultura</div>
+          <div class="pub-venue">2024 · Capítulo de livro · ISBN 978-65-01-13006-4</div>
+          <div class="pub-authors">Neves Filho, H.B.; Abdala, M.</div>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a class="pub-item" href="https://www.researchgate.net/publication/384765513_Processos_comportamentais_e_a_construcao_do_repertorio_de_resolucao_de_problemas_em_criancas" target="_blank" rel="noopener">
+        <div>
+          <div class="pub-title">Processos comportamentais e a construção do repertório de resolução de problemas em crianças</div>
+          <div class="pub-venue">2024 · Capítulo de livro · ISBN 978-65-01-13006-4</div>
+          <div class="pub-authors">Santos, A.V.; Neves Filho, H.B.</div>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a class="pub-item" href="https://www.researchgate.net/publication/384843875" target="_blank" rel="noopener">
+        <div>
+          <div class="pub-title">O que é a Criatividade e qual seu papel na Terapia Analítico-Comportamental</div>
+          <div class="pub-venue">2024 · Capítulo · In: Santos, A.V.; Pitanga, A.V. (orgs.) <em>Terapia Analítico-Comportamental Infantil</em> · Juruá Editora</div>
+          <div class="pub-authors">Neves Filho, H.B.</div>
         </div>
         <span class="pub-arrow">↗</span>
       </a>
     </div>
     <div class="pub-panel" data-pubpanel="2023">
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://www.actacomportamentalia.cucba.udg.mx/index.php/acom/article/view/86452" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Aproximações conceituais entre análise comportamental da cultura e a Antropologia interpretativa</div>
           <div class="pub-venue">2023 · Acta Comportamentalia: Revista Latina de Análisis del Comportamiento 31 (3)</div>
@@ -3275,7 +3336,7 @@
       </a>
     </div>
     <div class="pub-panel" data-pubpanel="2022">
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://rbtcc.com.br/RBTCC/article/view/1312" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Efeitos da administração aguda de cafeína sobre a resolução de problemas em ratos</div>
           <div class="pub-venue">2022 · Revista Brasileira de Terapia Comportamental e Cognitiva 24, e221312</div>
@@ -3285,7 +3346,7 @@
       </a>
     </div>
     <div class="pub-panel" data-pubpanel="2021">
-      <a class="pub-item" href="https://www.researchgate.net/publication/342112593" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://www.researchgate.net/publication/342112593_Learning_Behavioral_Repertoires_with_Different_Consequences_Hinders_the_Interconnection_of_These_Repertoires_in_Pigeons_in_the_Box_Displacement_Test" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Learning behavioral repertoires with different consequences hinders the interconnection of these repertoires in pigeons in the box displacement test</div>
           <div class="pub-venue">2021 · The Psychological Record 71 (4), 567–575</div>
@@ -3293,9 +3354,17 @@
         </div>
         <span class="pub-arrow">↗</span>
       </a>
+      <a class="pub-item" href="https://link.springer.com/chapter/10.1007/978-3-030-77395-3_20" target="_blank" rel="noopener">
+        <div>
+          <div class="pub-title">A Critical Appraisal of Ribes' Theory of Psychology</div>
+          <div class="pub-venue">2021 · Capítulo · Springer · In: Zilio, D.; Carrara, K. (eds.) <em>Contemporary Behaviorisms in Debate</em> · pp. 315–326</div>
+          <div class="pub-authors">Neves Filho, H.B.; Magalhães, T.d.O.</div>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
     </div>
     <div class="pub-panel" data-pubpanel="2020">
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://actacomportamentalia.cucba.udg.mx/index.php/acom/article/view/75178" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Treino de repertório sucessivo ou misto sobre a resolução de problema em Rattus norvegicus</div>
           <div class="pub-venue">2020 · Acta Comportamentalia: Revista Latina de Análisis de Comportamiento 28 (1), 5–21</div>
@@ -3303,7 +3372,7 @@
         </div>
         <span class="pub-arrow">↗</span>
       </a>
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://actacomportamentalia.cucba.udg.mx/index.php/acom/article/view/76767" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Análise interpretativa do planejamento de contingências em malha cicloviária</div>
           <div class="pub-venue">2020 · Acta Comportamentalia: Revista Latina De Análisis Del Comportamiento 28 (3)</div>
@@ -3321,7 +3390,7 @@
         </div>
         <span class="pub-arrow">↗</span>
       </a>
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://rbtcc.com.br/RBTCC/article/view/1348" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Modelo experimental de recombinação de repertórios em humanos em um ambiente virtual</div>
           <div class="pub-venue">2019 · Revista Brasileira de Terapia Comportamental e Cognitiva 21 (3), 272–288</div>
@@ -3339,7 +3408,7 @@
       </a>
     </div>
     <div class="pub-panel" data-pubpanel="2018">
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://www.researchgate.net/publication/327793418_O_que_nao_ha_de_complexo_no_comportamento_Behaviorismo_radical_self_insight_e_linguagem" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">O que (não) há de "complexo" no comportamento? Behaviorismo radical, self, insight e linguagem</div>
           <div class="pub-venue">2018 · Psicologia USP 29 (3), 374–384</div>
@@ -3347,7 +3416,7 @@
         </div>
         <span class="pub-arrow">↗</span>
       </a>
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://www.researchgate.net/publication/327832534_Columban_simulation_project_Quando_computadores_foram_substituidos_por_pombos" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Columban simulation project: Quando computadores foram substituídos por pombos</div>
           <div class="pub-venue">2018 · Perspectivas em Análise do Comportamento 9 (1), 127–140</div>
@@ -3355,11 +3424,27 @@
         </div>
         <span class="pub-arrow">↗</span>
       </a>
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://www.researchgate.net/publication/318310570_N_R_F_Maier_da_criatividade_as_industrias_entre_a_psicologia_da_Gestalt_e_a_Revolucao_Cognitiva" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">NRF Maier: da criatividade às indústrias, entre a psicologia da Gestalt e a revolução cognitiva</div>
           <div class="pub-venue">2017 · Memorandum: Memória e História em Psicologia 32, 33–57</div>
           <div class="pub-authors">Neves Filho, H.B.</div>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+        <div>
+          <div class="pub-title">Por que estudantes, profissionais e pesquisadores de psicologia deveriam aprender programação?</div>
+          <div class="pub-venue">2018 · Capítulo · In: Neves Filho, H.B. et al. (orgs.) <em>Introdução ao desenvolvimento de softwares para analistas do comportamento</em> Vol. 1</div>
+          <div class="pub-authors">Neves Filho, H.B.; Freitas, L.A.B.; Quinta, N.C.C.</div>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+        <div>
+          <div class="pub-title">Unity: Criando jogos e outras aplicações multi-plataforma</div>
+          <div class="pub-venue">2018 · Capítulo · In: Neves Filho, H.B. et al. (orgs.) <em>Introdução ao desenvolvimento de softwares para analistas do comportamento</em> Vol. 1</div>
+          <div class="pub-authors">da Silva Filho, G.O.; Furtado, P.G.F.; Leite, F.L.; Neves Filho, H.B.</div>
         </div>
         <span class="pub-arrow">↗</span>
       </a>
@@ -3381,11 +3466,19 @@
         </div>
         <span class="pub-arrow">↗</span>
       </a>
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://www.researchgate.net/publication/311607561_Recombinacao_de_repertorios_criatividade_e_a_integracao_de_aprendizagens_isoladas" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Recombinação de repertórios: criatividade e a integração de aprendizagens isoladas</div>
           <div class="pub-venue">2016 · Experimentos Clássicos em Análise do Comportamento 1 (1), 284–296</div>
           <div class="pub-authors">Neves Filho, H.B.</div>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+      <a class="pub-item" href="https://www.researchgate.net/publication/306111906" target="_blank" rel="noopener">
+        <div>
+          <div class="pub-title">Behavior analysis, creativity and insight</div>
+          <div class="pub-venue">2016 · Capítulo · In: Todorov, J.C. (ed.) <em>Trends in Behavior Analysis</em> Vol. 1, pp. 49–80 · Technopolitik</div>
+          <div class="pub-authors">Carvalho Neto, M.B.; Barbosa, J.I.C.; Neves Filho, H.B.; Delage, P.E.G.; Borges, R.P.</div>
         </div>
         <span class="pub-arrow">↗</span>
       </a>
@@ -3399,7 +3492,7 @@
         </div>
         <span class="pub-arrow">↗</span>
       </a>
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://repositorio.usp.br/item/002705557" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Efeito de variáveis de treino e teste sobre a recombinação de repertórios em pombos (Columba livia), ratos (Rattus norvegicus) e corvos da Nova Caledônia (Corvus moneduloides)</div>
           <div class="pub-venue">2015 · Universidade de São Paulo [Tese de doutorado]</div>
@@ -3419,7 +3512,7 @@
       </a>
     </div>
     <div class="pub-panel" data-pubpanel="2013">
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://www.researchgate.net/publication/263192882_Criatividade_nas_artes_A_Recombinacao_de_Repertorios_Comportamentais_como_Processo_Basico" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">A Criatividade nas Artes: A Recombinação de Repertórios Comportamentais como Processo Básico</div>
           <div class="pub-venue">2013 · Boletim Contexto 38 (1), 133–145</div>
@@ -3427,7 +3520,7 @@
         </div>
         <span class="pub-arrow">↗</span>
       </a>
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://www.researchgate.net/publication/263192412_Aprendizagem_social_em_caes_domesticos_Uma_revisao_dos_estudos_tendo_humanos_como_liberadores_de_dicas" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Aprendizagem social em cães domésticos: Uma revisão dos estudos tendo humanos como liberadores de dicas</div>
           <div class="pub-venue">2013 · Acta Comportamentalia 21 (4), 509–522</div>
@@ -3437,11 +3530,21 @@
       </a>
     </div>
     <div class="pub-panel" data-pubpanel="2009">
-      <a class="pub-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
+      <a class="pub-item" href="https://psycnet.apa.org/fulltext/2011-13717-006.html" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Discrimination of complex visual stimuli in Cebus apella: identity matching with pictures</div>
           <div class="pub-venue">2009 · Psychology & Neuroscience 2 (1), 35–42</div>
           <div class="pub-authors">Galvão, O.F.; Soares Filho, P.S.D.; Neves Filho, H.B.; Nagahama, M.M.</div>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
+    </div>
+    <div class="pub-panel" data-pubpanel="2007">
+      <a class="pub-item" href="https://www.researchgate.net/publication/305001484_Efeitos_da_apresentacao_contingente_FI1min_e_nao-contingente_FT1min_de_um_evento_aversivo_jatos_de_ar_quente_sobre_a_frequencia_de_pressao_a_barra_em_Rattus_Norvegicus" target="_blank" rel="noopener">
+        <div>
+          <div class="pub-title">Efeitos da apresentação contingente (FI1min.) e não-contingente (FT1min.) de um evento aversivo (jatos de ar quente) sobre a freqüência de pressão à barra em Rattus Norvegicus</div>
+          <div class="pub-venue">2007 · Revista Brasileira de Análise do Comportamento</div>
+          <div class="pub-authors">Carvalho Neto, M.B.; Neves Filho, H.B.; Borges, R.P.; Tobias, G.K.S.</div>
         </div>
         <span class="pub-arrow">↗</span>
       </a>
@@ -3531,49 +3634,7 @@
       <div class="pub-rg-note">Lista completa de publicações: <a href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">ResearchGate ↗</a> · <a href="https://scholar.google.com/citations?user=spSaT7EAAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a></div>
     </div>
 
-      <div class="book-table" style="margin-top:32px">
-        <div class="book-table-head">Capítulos de livro</div>
-        <a class="book-item" href="https://link.springer.com/chapter/10.1007/978-3-030-77395-3_20" target="_blank" rel="noopener">
-          <div>
-            <div class="book-title"><em>A Critical Appraisal of Ribes' Theory of Psychology</em></div>
-            <div class="book-meta">2021 · Springer · In: Zilio, D.; Carrara, K. (eds.) <em>Contemporary Behaviorisms in Debate</em> · pp. 315–326 · DOI 10.1007/978-3-030-77395-3_20</div>
-            <div class="book-authors">Neves Filho, H.B.; Magalhães, T.d.O.</div>
-          </div>
-          <span class="pub-arrow">↗</span>
-        </a>
-        <a class="book-item" href="https://www.researchgate.net/publication/306111906" target="_blank" rel="noopener">
-          <div>
-            <div class="book-title"><em>Behavior analysis, creativity and insight</em></div>
-            <div class="book-meta">2016 · In: Todorov, J.C. (ed.) <em>Trends in Behavior Analysis</em> Vol. 1, pp. 49–80 · Technopolitik</div>
-            <div class="book-authors">Carvalho Neto, M.B.; Barbosa, J.I.C.; Neves Filho, H.B.; Delage, P.E.G.; Borges, R.P.</div>
-          </div>
-          <span class="pub-arrow">↗</span>
-        </a>
-        <a class="book-item" href="https://www.researchgate.net/publication/384843875" target="_blank" rel="noopener">
-          <div>
-            <div class="book-title"><em>O que é a Criatividade e qual seu papel na Terapia Analítico-Comportamental</em></div>
-            <div class="book-meta">2024 · In: dos Santos, A.V.; Pitanga, A.V. (orgs.) <em>Terapia Analítico-Comportamental Infantil</em> · Juruá Editora</div>
-            <div class="book-authors">Neves Filho, H.B.</div>
-          </div>
-          <span class="pub-arrow">↗</span>
-        </a>
-        <a class="book-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
-          <div>
-            <div class="book-title"><em>Por que estudantes, profissionais e pesquisadores de psicologia deveriam aprender programação?</em></div>
-            <div class="book-meta">2018 · In: Neves Filho, H.B.; Freitas, L.A.B.; Quinta, N.C.C. (orgs.) <em>Introdução ao desenvolvimento de softwares para analistas do comportamento</em> Vol. 1</div>
-            <div class="book-authors">Neves Filho, H.B.; Freitas, L.A.B.; Quinta, N.C.C.</div>
-          </div>
-          <span class="pub-arrow">↗</span>
-        </a>
-        <a class="book-item" href="https://www.researchgate.net/profile/Hernando-Neves-Filho/research" target="_blank" rel="noopener">
-          <div>
-            <div class="book-title"><em>Unity: Criando jogos e outras aplicações multi-plataforma</em></div>
-            <div class="book-meta">2018 · In: Neves Filho, H.B. et al. (orgs.) <em>Introdução ao desenvolvimento de softwares para analistas do comportamento</em> Vol. 1</div>
-            <div class="book-authors">da Silva Filho, G.O.; Furtado, P.G.F.; Leite, F.L.; Neves Filho, H.B.</div>
-          </div>
-          <span class="pub-arrow">↗</span>
-        </a>
-      </div>
+
 
   </div>
 </section>
