@@ -150,6 +150,144 @@
   }
   .section-head h2 em{font-style:italic;color:var(--accent)}
 
+  /* ── MICRO-JOGOS ── */
+  section#jogos {
+    background: #0a0a0f;
+    border-bottom: 1px solid var(--ink);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  section#jogos::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,100,0,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,100,0,.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+  section#jogos .section-head .tag { color: #f07818; opacity: .7; }
+  section#jogos .section-head h2 { color: #f3efe6; }
+  section#jogos .section-head h2 em { color: #f07818; }
+  .jogos-intro {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(16px, 1.5vw, 19px);
+    color: rgba(243,239,230,.65);
+    max-width: 680px;
+    line-height: 1.55;
+    margin-bottom: 52px;
+  }
+  .jogos-serie-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #f07818;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .jogos-serie-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(240,120,24,.3);
+  }
+  .jogos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  @media(max-width: 640px) { .jogos-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+  .jogo-card {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.07);
+    background: #111118;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+  }
+  .jogo-card:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: 0 20px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(240,120,24,.4);
+    border-color: rgba(240,120,24,.4);
+  }
+  .jogo-card.em-breve { cursor: default; }
+  .jogo-card.em-breve:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    border-color: rgba(255,255,255,.1);
+  }
+  .jogo-cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: top;
+  }
+  .jogo-card-footer {
+    padding: 12px 14px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: #111118;
+  }
+  .jogo-vol {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: .2em;
+    color: rgba(243,239,230,.35);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .jogo-play-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .jogo-card:not(.em-breve) .jogo-play-btn {
+    color: #f07818;
+    border-color: rgba(240,120,24,.5);
+    background: rgba(240,120,24,.08);
+  }
+  .jogo-card:not(.em-breve):hover .jogo-play-btn {
+    background: rgba(240,120,24,.18);
+    border-color: #f07818;
+  }
+  .jogo-card.em-breve .jogo-play-btn {
+    color: rgba(243,239,230,.25);
+    border-color: rgba(243,239,230,.1);
+    background: transparent;
+  }
+  .jogo-em-breve-overlay {
+    position: absolute;
+    top: 12px; right: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(243,239,230,.5);
+    background: rgba(0,0,0,.7);
+    border: 1px solid rgba(255,255,255,.1);
+    padding: 4px 8px;
+    border-radius: 3px;
+    backdrop-filter: blur(4px);
+  }
+  .jogo-card:not(.em-breve) .jogo-em-breve-overlay { display: none; }
+
   /* ── LINHAS DE PESQUISA: layout horizontal em faixas ── */
   .lines-grid{
     display:flex;
@@ -2540,7 +2678,8 @@
         <a class="promo-card-sec" href="#pesquisas"><span class="ps-num">§02</span><span class="ps-text">Linhagem</span><span class="ps-arr">↓</span></a>
         <a class="promo-card-sec" href="#downloads"><span class="ps-num">§03</span><span class="ps-text">Acervo</span><span class="ps-arr">↓</span></a>
         <a class="promo-card-sec" href="#publicacoes"><span class="ps-num">§04</span><span class="ps-text">Publicações</span><span class="ps-arr">↓</span></a>
-        <a class="promo-card-sec" href="#orientadores"><span class="ps-num">§05</span><span class="ps-text">Equipe</span><span class="ps-arr">↓</span></a>
+        <a class="promo-card-sec" href="#jogos"><span class="ps-num">§05</span><span class="ps-text">Jogos</span><span class="ps-arr">↓</span></a>
+        <a class="promo-card-sec" href="#orientadores"><span class="ps-num">§06</span><span class="ps-text">Equipe</span><span class="ps-arr">↓</span></a>
         <a class="promo-card-sec" href="#reconhecimento"><span class="ps-num">§06</span><span class="ps-text">Parcerias</span><span class="ps-arr">↓</span></a>
         <a class="promo-card-sec" href="#midia"><span class="ps-num">§07</span><span class="ps-text">Mídia</span><span class="ps-arr">↓</span></a>
         <a class="promo-card-sec" href="#galeria"><span class="ps-num">§08</span><span class="ps-text">Galeria</span><span class="ps-arr">↓</span></a>
@@ -3639,10 +3778,96 @@
   </div>
 </section>
 
+<section id="jogos">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">§ 05 · jogos didáticos</div>
+      <h2>Micro-jogos<br><em>CRIACOM.</em></h2>
+    </div>
+
+    <p class="jogos-intro">Uma série de pequeníssimos jogos didáticos de Análise do Comportamento — feitos em HTML, jogados direto no navegador. Cada volume aborda um processo básico do comportamento. Experimente!</p>
+
+    <div class="jogos-serie-label">Micro-jogos CRIACOM · Série completa</div>
+
+    <div class="jogos-grid">
+
+      <!-- Vol. 1 -->
+      <a class="jogo-card" href="https://criacom.github.io/extincao/" target="_blank" rel="noopener">
+        <img class="jogo-cover" src="img/microjogos-vol1-extincao.png" alt="Micro-jogos CRIACOM Vol. 1 — O Botão da Extinção">
+        <div class="jogo-card-footer">
+          <span class="jogo-vol">Vol. 01</span>
+          <span class="jogo-play-btn">▶ Jogar</span>
+        </div>
+      </a>
+
+      <!-- Vol. 2 -->
+      <div class="jogo-card em-breve">
+        <img class="jogo-cover" src="img/microjogos-vol2-discriminacao.png" alt="Micro-jogos CRIACOM Vol. 2 — Discriminação Espacial">
+        <span class="jogo-em-breve-overlay">Em breve</span>
+        <div class="jogo-card-footer">
+          <span class="jogo-vol">Vol. 02</span>
+          <span class="jogo-play-btn">Em breve</span>
+        </div>
+      </div>
+
+      <!-- Vol. 3 -->
+      <div class="jogo-card em-breve">
+        <img class="jogo-cover" src="img/microjogos-vol3-inducao.png" alt="Micro-jogos CRIACOM Vol. 3 — Indução">
+        <span class="jogo-em-breve-overlay">Em breve</span>
+        <div class="jogo-card-footer">
+          <span class="jogo-vol">Vol. 03</span>
+          <span class="jogo-play-btn">Em breve</span>
+        </div>
+      </div>
+
+      <!-- Vol. 4 -->
+      <div class="jogo-card em-breve">
+        <img class="jogo-cover" src="img/microjogos-vol4-insight.png" alt="Micro-jogos CRIACOM Vol. 4 — Insight">
+        <span class="jogo-em-breve-overlay">Em breve</span>
+        <div class="jogo-card-footer">
+          <span class="jogo-vol">Vol. 04</span>
+          <span class="jogo-play-btn">Em breve</span>
+        </div>
+      </div>
+
+      <!-- Vol. 5 -->
+      <div class="jogo-card em-breve">
+        <img class="jogo-cover" src="img/microjogos-vol5-insight2.png" alt="Micro-jogos CRIACOM Vol. 5 — Insight 2">
+        <span class="jogo-em-breve-overlay">Em breve</span>
+        <div class="jogo-card-footer">
+          <span class="jogo-vol">Vol. 05</span>
+          <span class="jogo-play-btn">Em breve</span>
+        </div>
+      </div>
+
+      <!-- Vol. 6 -->
+      <div class="jogo-card em-breve">
+        <img class="jogo-cover" src="img/microjogos-vol6-desconto.png" alt="Micro-jogos CRIACOM Vol. 6 — Desconto Temporal">
+        <span class="jogo-em-breve-overlay">Em breve</span>
+        <div class="jogo-card-footer">
+          <span class="jogo-vol">Vol. 06</span>
+          <span class="jogo-play-btn">Em breve</span>
+        </div>
+      </div>
+
+      <!-- Vol. 7 -->
+      <div class="jogo-card em-breve">
+        <img class="jogo-cover" src="img/microjogos-vol7-esquemas.png" alt="Micro-jogos CRIACOM Vol. 7 — Jogo dos Esquemas">
+        <span class="jogo-em-breve-overlay">Em breve</span>
+        <div class="jogo-card-footer">
+          <span class="jogo-vol">Vol. 07</span>
+          <span class="jogo-play-btn">Em breve</span>
+        </div>
+      </div>
+
+    </div><!-- /jogos-grid -->
+  </div>
+</section>
+
 <section id="orientadores">
   <div class="container">
     <div class="section-head">
-      <div class="tag">§ 05 · equipe</div>
+      <div class="tag">§ 06 · equipe</div>
       <h2><em>Orientadores</em> do laboratório.</h2>
     </div>
 
@@ -4311,6 +4536,7 @@
           <li><a href="#pesquisas">Pesquisas</a></li>
       <li><a href="#galeria">Galeria</a></li>
           <li><a href="#publicacoes">Publicações</a></li>
+          <li><a href="#jogos">Jogos</a></li>
           <li><a href="#orientadores">Equipe</a></li>
       <li><a href="#reconhecimento">Destaque</a></li>
       <li><a href="#midia">Mídia</a></li>
