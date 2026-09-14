@@ -2506,6 +2506,8 @@
     animation:fadeIn .4s ease;
   }
 
+  /* Estado vazio: aparece enquanto nenhum ano estiver aberto */
+  .gallery-empty{
     padding:60px 28px;
     font-family:'Instrument Serif',serif;
     font-style:italic;
@@ -2514,7 +2516,10 @@
     border:1px dashed rgba(20,20,20,.2);
     text-align:center;
   }
+  .gallery-empty.is-hidden{display:none}
 
+  /* Legenda com ano e contagem de fotos, no topo de cada painel */
+  .gallery-caption{
     font-family:'JetBrains Mono',monospace;
     font-size:11px; letter-spacing:.2em; text-transform:uppercase;
     color:var(--muted); display:block; margin-bottom:12px;
@@ -3379,6 +3384,14 @@
     </div>
 
     <div class="pub-panel active" data-pubpanel="2026">
+      <a class="pub-item" href="https://www.researchgate.net/publication/414057036_Analises_do_controle_comportamental_nas_midias_sociais" target="_blank" rel="noopener">
+        <div>
+          <div class="pub-title">Análises do controle comportamental nas mídias sociais</div>
+          <div class="pub-venue">2026 · Capítulo 30 · <em>Comportamento em Foco</em>, v. 18, 371–385 · ABPMC</div>
+          <div class="pub-authors">Laporte, F.F.; Neves Filho, H.B.; Araujo, S.; Oliveira-Castro, J.</div>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
       <a class="pub-item" href="https://actacomportamentalia.cucba.udg.mx/index.php/acom/article/view/88823" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Uma Análise Interbehaviorista da Participação de Eventos Privados no Comportamento Verbal</div>
@@ -4166,32 +4179,36 @@
       <h2>O laboratório <em>em fotos.</em></h2>
     </div>
 
+    <p class="section-hint">Clique em um ano para abrir as fotos correspondentes.</p>
     <div class="gallery-years">
-      <button class="gallery-year-btn" data-gallery="2021">
+      <button class="gallery-year-btn" data-gallery="2021" aria-expanded="false">
         <span class="g-yr">2021</span>
       </button>
-      <button class="gallery-year-btn" data-gallery="2022">
+      <button class="gallery-year-btn" data-gallery="2022" aria-expanded="false">
         <span class="g-yr">2022</span>
       </button>
-      <button class="gallery-year-btn" data-gallery="2023">
+      <button class="gallery-year-btn" data-gallery="2023" aria-expanded="false">
         <span class="g-yr">2023</span>
       </button>
-      <button class="gallery-year-btn" data-gallery="2024">
+      <button class="gallery-year-btn" data-gallery="2024" aria-expanded="false">
         <span class="g-yr">2024</span>
       </button>
-      <button class="gallery-year-btn" data-gallery="2025">
+      <button class="gallery-year-btn" data-gallery="2025" aria-expanded="false">
         <span class="g-yr">2025</span>
       </button>
-      <button class="gallery-year-btn active" data-gallery="2026">
+      <button class="gallery-year-btn" data-gallery="2026" aria-expanded="false">
         <span class="g-yr">2026</span>
       </button>
     </div>
 
+    <div class="gallery-empty" id="gallery-empty">Nenhum ano aberto — escolha um ano acima para ver as fotos.</div>
+
     <!-- 2021 -->
     <div class="gallery-panel" data-panel="2021">
+      <span class="gallery-caption">2021 · 1 foto</span>
       <div class="photo-grid" id="grid-2021">
         <div class="photo-item" onclick="openLightbox('2021',0)">
-          <img src="img/2021_01.jpg" alt="CRIACOM 2021 — Hernando no biotério da UEL com os ratos">
+          <img loading="lazy" decoding="async" src="img/2021_01.jpg" alt="CRIACOM 2021 — Hernando no biotério da UEL com os ratos">
           <div class="photo-overlay"></div>
         </div>
       </div>
@@ -4199,29 +4216,30 @@
 
     <!-- 2022 -->
     <div class="gallery-panel" data-panel="2022">
+      <span class="gallery-caption">2022 · 6 fotos</span>
       <div class="photo-grid" id="grid-2022">
         <div class="photo-item" onclick="openLightbox('2022',0)">
-          <img src="img/2022_01.png" alt="CRIACOM 2022 — Qualificação Amanda Viana">
+          <img loading="lazy" decoding="async" src="img/2022_01.png" alt="CRIACOM 2022 — Qualificação Amanda Viana">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2022',1)">
-          <img src="img/2022_02.png" alt="CRIACOM 2022 — Reunião de equipe online">
+          <img loading="lazy" decoding="async" src="img/2022_02.png" alt="CRIACOM 2022 — Reunião de equipe online">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2022',2)">
-          <img src="img/2022_03.png" alt="CRIACOM 2022 — Palestra Hernando na Universidad de Guadalajara">
+          <img loading="lazy" decoding="async" src="img/2022_03.png" alt="CRIACOM 2022 — Palestra Hernando na Universidad de Guadalajara">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2022',3)">
-          <img src="img/2022_04.png" alt="CRIACOM 2022 — Seminário internacional de análise do comportamento">
+          <img loading="lazy" decoding="async" src="img/2022_04.png" alt="CRIACOM 2022 — Seminário internacional de análise do comportamento">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2022',4)">
-          <img src="img/2022_05.png" alt="CRIACOM 2022 — Defesa de mestrado Daniela Galvis Quintana">
+          <img loading="lazy" decoding="async" src="img/2022_05.png" alt="CRIACOM 2022 — Defesa de mestrado Daniela Galvis Quintana">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2022',5)">
-          <img src="img/2022_06.png" alt="CRIACOM 2022 — Equipe presencial com máscaras">
+          <img loading="lazy" decoding="async" src="img/2022_06.png" alt="CRIACOM 2022 — Equipe presencial com máscaras">
           <div class="photo-overlay"></div>
         </div>
       </div>
@@ -4229,25 +4247,26 @@
 
     <!-- 2023 -->
     <div class="gallery-panel" data-panel="2023">
+      <span class="gallery-caption">2023 · 5 fotos</span>
       <div class="photo-grid" id="grid-2023">
         <div class="photo-item" onclick="openLightbox('2023',0)">
-          <img src="img/2023_01.png" alt="CRIACOM 2023 — grupo de pesquisa">
+          <img loading="lazy" decoding="async" src="img/2023_01.png" alt="CRIACOM 2023 — grupo de pesquisa">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2023',1)">
-          <img src="img/2023_02.jpg" alt="CRIACOM 2023 — reunião de equipe">
+          <img loading="lazy" decoding="async" src="img/2023_02.jpg" alt="CRIACOM 2023 — reunião de equipe">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2023',2)">
-          <img src="img/2023_03.jpg" alt="CRIACOM 2023 — evento científico">
+          <img loading="lazy" decoding="async" src="img/2023_03.jpg" alt="CRIACOM 2023 — evento científico">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2023',3)">
-          <img src="img/2023_04.jpg" alt="CRIACOM 2023 — congresso">
+          <img loading="lazy" decoding="async" src="img/2023_04.jpg" alt="CRIACOM 2023 — congresso">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2023',4)">
-          <img src="img/2023_05.jpg" alt="CRIACOM 2023 — apresentação PROIC-Jr">
+          <img loading="lazy" decoding="async" src="img/2023_05.jpg" alt="CRIACOM 2023 — apresentação PROIC-Jr">
           <div class="photo-overlay"></div>
         </div>
       </div>
@@ -4255,17 +4274,18 @@
 
     <!-- 2024 -->
     <div class="gallery-panel" data-panel="2024">
+      <span class="gallery-caption">2024 · 3 fotos</span>
       <div class="photo-grid" id="grid-2024">
         <div class="photo-item" onclick="openLightbox('2024',0)">
-          <img src="img/2024_01.png" alt="CRIACOM 2024 — Sala do CRIACOM na UEL">
+          <img loading="lazy" decoding="async" src="img/2024_01.png" alt="CRIACOM 2024 — Sala do CRIACOM na UEL">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2024',1)">
-          <img src="img/2024_02.png" alt="CRIACOM 2024 — Reunião de equipe presencial">
+          <img loading="lazy" decoding="async" src="img/2024_02.png" alt="CRIACOM 2024 — Reunião de equipe presencial">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2024',2)">
-          <img src="img/2024_03.png" alt="CRIACOM 2024 — Congresso CPAC UEL">
+          <img loading="lazy" decoding="async" src="img/2024_03.png" alt="CRIACOM 2024 — Congresso CPAC UEL">
           <div class="photo-overlay"></div>
         </div>
       </div>
@@ -4273,71 +4293,73 @@
 
     <!-- 2025 -->
     <div class="gallery-panel" data-panel="2025">
+      <span class="gallery-caption">2025 · 8 fotos</span>
       <div class="photo-grid" id="grid-2025">
         <div class="photo-item" onclick="openLightbox('2025',0)">
-          <img src="img/2025_01.png" alt="CRIACOM 2025 — Equipe na Clínica Psicológica UEL">
+          <img loading="lazy" decoding="async" src="img/2025_01.png" alt="CRIACOM 2025 — Equipe na Clínica Psicológica UEL">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',1)">
-          <img src="img/2025_02.png" alt="CRIACOM 2025 — Demonstração de game design em evento">
+          <img loading="lazy" decoding="async" src="img/2025_02.png" alt="CRIACOM 2025 — Demonstração de game design em evento">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',2)">
-          <img src="img/2025_03.png" alt="CRIACOM 2025 — Stand do CRIACOM em congresso">
+          <img loading="lazy" decoding="async" src="img/2025_03.png" alt="CRIACOM 2025 — Stand do CRIACOM em congresso">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',3)">
-          <img src="img/2025_04.png" alt="CRIACOM 2025 — Congresso de análise do comportamento">
+          <img loading="lazy" decoding="async" src="img/2025_04.png" alt="CRIACOM 2025 — Congresso de análise do comportamento">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',4)">
-          <img src="img/2025_05.png" alt="CRIACOM 2025 — Turma em aula ou evento científico">
+          <img loading="lazy" decoding="async" src="img/2025_05.png" alt="CRIACOM 2025 — Turma em aula ou evento científico">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',5)">
-          <img src="img/2025_06.png" alt="CRIACOM 2025 — XXXIV Encontro da ABPMC">
+          <img loading="lazy" decoding="async" src="img/2025_06.png" alt="CRIACOM 2025 — XXXIV Encontro da ABPMC">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',6)">
-          <img src="img/2025_07.png" alt="CRIACOM 2025 — Apresentação com projeção de vídeo do laboratório">
+          <img loading="lazy" decoding="async" src="img/2025_07.png" alt="CRIACOM 2025 — Apresentação com projeção de vídeo do laboratório">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',7)">
-          <img src="img/2025_08.png" alt="CRIACOM 2025 — Reunião do GT ANPEPP">
+          <img loading="lazy" decoding="async" src="img/2025_08.png" alt="CRIACOM 2025 — Reunião do GT ANPEPP">
           <div class="photo-overlay"></div>
         </div>
       </div>
     </div>
 
     <!-- 2026 -->
-    <div class="gallery-panel active" data-panel="2026">
+    <div class="gallery-panel" data-panel="2026">
+      <span class="gallery-caption">2026 · 7 fotos</span>
       <div class="photo-grid" id="grid-2026">
         <div class="photo-item" onclick="openLightbox('2026',0)">
-          <img src="img/2026_01.png" alt="CRIACOM 2026 — Hernando em palestra">
+          <img loading="lazy" decoding="async" src="img/2026_01.png" alt="CRIACOM 2026 — Hernando em palestra">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2026',1)">
-          <img src="img/2026_02.png" alt="CRIACOM 2026 — Painel do trabalho vencedor CPAC-UEL">
+          <img loading="lazy" decoding="async" src="img/2026_02.png" alt="CRIACOM 2026 — Painel do trabalho vencedor CPAC-UEL">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2026',2)">
-          <img src="img/2026_03.png" alt="CRIACOM 2026 — Mesa no VIII CPAC-UEL 2026">
+          <img loading="lazy" decoding="async" src="img/2026_03.png" alt="CRIACOM 2026 — Mesa no VIII CPAC-UEL 2026">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2026',3)">
-          <img src="img/2026_04.png" alt="CRIACOM 2026 — Hernando, Yulla e pesquisador no CPAC">
+          <img loading="lazy" decoding="async" src="img/2026_04.png" alt="CRIACOM 2026 — Hernando, Yulla e pesquisador no CPAC">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2026',4)">
-          <img src="img/2026_05.png" alt="CRIACOM 2026 — Possibilidades de Intervenção Comunitária">
+          <img loading="lazy" decoding="async" src="img/2026_05.png" alt="CRIACOM 2026 — Possibilidades de Intervenção Comunitária">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2026',5)">
-          <img src="img/2026_06.png" alt="CRIACOM 2026 — Mesa no VIII CPAC-UEL">
+          <img loading="lazy" decoding="async" src="img/2026_06.png" alt="CRIACOM 2026 — Mesa no VIII CPAC-UEL">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2026',6)">
-          <img src="img/2026_08.png" alt="CRIACOM 2026 — Como Mudar o Mundo com Ciência Aplicada">
+          <img loading="lazy" decoding="async" src="img/2026_08.png" alt="CRIACOM 2026 — Como Mudar o Mundo com Ciência Aplicada">
           <div class="photo-overlay"></div>
         </div>
       </div>
@@ -4608,16 +4630,32 @@
     });
   });
 
-  // ── Galeria: abas por ano ──────────────────────────────────────
+  // ── Galeria: abas por ano (recolhida; abre e fecha ao clicar) ────
   var galleryBtns = document.querySelectorAll('.gallery-year-btn');
-  var galleryPanels = document.querySelectorAll('.gallery-panel');
+  var galleryPanels = document.querySelectorAll('#galeria .gallery-panel');
+  var galleryEmpty = document.getElementById('gallery-empty');
+
+  function closeGallery(){
+    galleryBtns.forEach(function(x){
+      x.classList.remove('active');
+      x.setAttribute('aria-expanded', 'false');
+    });
+    galleryPanels.forEach(function(x){ x.classList.remove('active'); });
+    if(galleryEmpty){ galleryEmpty.classList.remove('is-hidden'); }
+  }
+
   galleryBtns.forEach(function(b){
     b.addEventListener('click', function(){
+      var jaAberto = b.classList.contains('active');
+      closeGallery();
+      if(jaAberto) return;            // clicar no ano aberto recolhe a galeria
       var yr = b.dataset.gallery;
-      galleryBtns.forEach(function(x){ x.classList.remove('active'); });
-      galleryPanels.forEach(function(x){ x.classList.remove('active'); });
+      var panel = document.querySelector('#galeria [data-panel="' + yr + '"]');
+      if(!panel) return;
       b.classList.add('active');
-      document.querySelector('[data-panel="' + yr + '"]').classList.add('active');
+      b.setAttribute('aria-expanded', 'true');
+      panel.classList.add('active');
+      if(galleryEmpty){ galleryEmpty.classList.add('is-hidden'); }
     });
   });
 
