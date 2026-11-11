@@ -387,6 +387,18 @@
   }
   .gen-tab .gen-sub{color:var(--muted);font-size:10px}
 
+  /* 6 abas não cabem numa linha no celular: quebra em duas de três */
+  @media(max-width:720px){
+    .gen-tabs{flex-wrap:wrap;border-bottom:none}
+    .gen-tab{
+      flex:0 0 33.333%;max-width:33.333%;
+      padding:12px 10px;
+      border-bottom:1px solid var(--ink);
+    }
+    .gen-tab:nth-child(3n),.gen-tab:last-child{border-right:none}
+    .gen-tab .gen-yr{font-size:17px}
+  }
+
   .gen-panel{display:none}
   .gen-panel.active{display:block;animation:fadeIn .4s ease}
   @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -2800,15 +2812,37 @@
   <div class="container">
     <div class="section-head">
       <div class="tag">§ 02 · linhagem</div>
-      <h2>Cinco <em>gerações</em>, um ecossistema.</h2>
+      <h2>Seis <em>gerações</em>, um ecossistema.</h2>
     </div>
 
     <div class="gen-tabs">
-      <button class="gen-tab" data-gen="5"><span class="gen-sub">GEN-05 · atual</span><span class="gen-yr">2025</span></button>
+      <button class="gen-tab" data-gen="6"><span class="gen-sub">GEN-06 · atual</span><span class="gen-yr">2026</span></button>
+      <button class="gen-tab" data-gen="5"><span class="gen-sub">GEN-05</span><span class="gen-yr">2025</span></button>
       <button class="gen-tab" data-gen="4"><span class="gen-sub">GEN-04</span><span class="gen-yr">2024</span></button>
       <button class="gen-tab" data-gen="3"><span class="gen-sub">GEN-03</span><span class="gen-yr">2023</span></button>
       <button class="gen-tab" data-gen="2"><span class="gen-sub">GEN-02</span><span class="gen-yr">2022</span></button>
       <button class="gen-tab" data-gen="1"><span class="gen-sub">GEN-01 · origem</span><span class="gen-yr">2021</span></button>
+    </div>
+
+    <div class="gen-panel" data-panel="6">
+      <div class="gen-panel-inner">
+      <div class="gen-intro">
+        <p>Renovação do quadro: conclusão de três mestrados, entrada de novos pesquisadores de mestrado e doutorado em agosto e continuidade do pós-doutorado FAPESP.</p>
+            </div>
+</div>
+      <div class="research-list">
+        <div class="research-row doc"><span class="badge">DOC</span><div class="avatar"><img src="img/amandavianacon.png" alt="Amanda Viana"></div><span class="name">Amanda Viana</span><span class="topic">Teste de programa psicoterapêutico para resolução de problemas em crianças.</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><div class="avatar"><img src="img/luancon.png" alt="Luan Mendes Teixeira"></div><span class="name">Luan Mendes Teixeira</span><span class="topic">Contraste comportamental e fake news.</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><div class="avatar"><img src="img/pedrocabralcon.png" alt="Pedro Augusto dos Anjos Cabral"></div><span class="name">Pedro Augusto dos Anjos Cabral</span><span class="topic">Vieses de atribuição e aceitação de desinformação no comportamento político.</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><div class="avatar"><img src="img/juliarockercon.png" alt="Julia Röcker dos Santos"></div><span class="name">Julia Röcker dos Santos</span><span class="topic">Análise do Comportamento aplicada à desinformação.</span></div>
+        <div class="research-row doc"><span class="badge">DOC</span><div class="avatar"><img src="img/acauacon.png" alt="Acauã Galdino"></div><span class="name">Acauã Galdino</span><span class="topic">Análise do Comportamento, bets e ludopatia.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/murilocon.png" alt="Murilo Lecce Regiani"></div><span class="name">Murilo Lecce Regiani</span><span class="topic">Persuasão e opinião pública: Moral Reframing e Teoria das Molduras Relacionais (RFT).</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/renancon.png" alt="Renan Dias Brigido"></div><span class="name">Renan Dias Brigido</span><span class="topic">LaBehavior Quest: ensino de Análise do Comportamento e Game Design.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/beatrizcon.png" alt="Beatriz Landim Fabri"></div><span class="name">Beatriz Landim Fabri</span><span class="topic">RPGs como ferramentas terapêuticas.</span></div>
+        <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/matheuscon.png" alt="Matheus Gonzales"></div><span class="name">Matheus Gonzales</span><span class="topic">Estudos sobre Byung-Chul Han e Skinner.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/kaiocon.png" alt="Kaio A. Nartis"></div><span class="name">Kaio A. Nartis</span><span class="topic">Desenvolvimento de um equipamento operante de coleta de dados em ambiente natural para <em>Sapajus spp.</em> de Londrina.</span></div>
+        <div class="research-row pos"><span class="badge">PD</span><div class="avatar"><img src="img/marloncon.png" alt="Marlon A. de Oliveira"></div><span class="name">Marlon A. de Oliveira</span><span class="topic">Uso do recurso comum em um jogo digital (FAPESP-USP-UEL, sup. Maria H. L. Hünziker).</span></div>
+      </div>
     </div>
 
     <div class="gen-panel" data-panel="5">
@@ -2828,15 +2862,15 @@
         <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/juliarockercon.png" alt="Julia Röcker dos Santos"></div><span class="name">Julia Röcker dos Santos</span><span class="topic">Fake news: uma análise do comportamento de compartilhar.</span></div>
         <div class="research-row mes"><span class="badge">MES</span><div class="avatar"><img src="img/otaviocon.png" alt="Otávio Mota Ferreira"></div><span class="name">Otávio Mota Ferreira</span><span class="topic">Leitura comportamental do conceito de "democracia" em Bobbio (1984/2009).</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/melissacon.png" alt="Melissa Peixoto"></div><span class="name">Melissa Peixoto</span><span class="topic">Interpretação comportamental do <em>profiling</em> na psicologia investigativa.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/saracon.png" alt="Sara Isabele Santos Neves"></div><span class="name">Sara Isabele Santos Neves</span><span class="topic">O influenciador digital: uma análise behaviorista radical.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/saracon.png" alt="Sarah Isabele Santos Neves"></div><span class="name">Sarah Isabele Santos Neves</span><span class="topic">O influenciador digital: uma análise behaviorista radical.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Maria Eduarda Hiromi Yoshida</span><span class="topic">Influências da Psicologia do Séc. XX nas Inteligências Artificiais do Séc. XXI.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/juliaabidcon.png" alt="Julia Abid dos Santos"></div><span class="name">Julia Abid dos Santos</span><span class="topic">Empatia na Análise do Comportamento e modelação em redes sociais.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/kaiocon.png" alt="Kaio A. Nardis"></div><span class="name">Kaio A. Nardis</span><span class="topic">Interfaces diegéticas e controle de estímulos entre game design e AC.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/sergioaugustocon.png" alt="Sergio Augusto Kenzo Yamamoto"></div><span class="name">Sergio Augusto Kenzo Yamamoto</span><span class="topic">Dog whistles e controle comportamental implícito na democracia.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/kaiocon.png" alt="Kaio A. Nartis"></div><span class="name">Kaio A. Nartis</span><span class="topic">Interfaces diegéticas e controle de estímulos entre game design e AC.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/sergioaugustocon.png" alt="Sérgio Augusto Kenzo Yamamoto"></div><span class="name">Sérgio Augusto Kenzo Yamamoto</span><span class="topic">Dog whistles e controle comportamental implícito na democracia.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Gabriel Toloczko Ferreira</span><span class="topic">Confrontos entre torcidas organizadas brasileiras de futebol.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Talita da Silva Guerrini</span><span class="topic">Obstáculos da inclusão no ensino superior — perspectiva analítico-comportamental.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Giovanna Catarina Nunes Bagni</span><span class="topic">Efeitos do uso de redes sociais: TikTok e adolescentes.</span></div>
-        <div class="research-row pos"><span class="badge">PD</span><div class="avatar empty"></div><span class="name">Marlon A. de Oliveira</span><span class="topic">Uso do recurso comum em um jogo digital (FAPESP-USP-UEL, sup. Maria H. L. Hünziker).</span></div>
+        <div class="research-row pos"><span class="badge">PD</span><div class="avatar"><img src="img/marloncon.png" alt="Marlon A. de Oliveira"></div><span class="name">Marlon A. de Oliveira</span><span class="topic">Uso do recurso comum em um jogo digital (FAPESP-USP-UEL, sup. Maria H. L. Hünziker).</span></div>
       </div>
     </div>
 
@@ -2860,9 +2894,9 @@
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/melissacon.png" alt="Melissa Peixoto"></div><span class="name">Melissa Peixoto</span><span class="topic">Rediscutindo o especismo antropocentrista.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Lucas Amaro Bianchini</span><span class="topic">Empatia na AC: perspectiva recombinativa.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/sergioaugustocon.png" alt="Sérgio Kenzo Yamamoto"></div><span class="name">Sérgio Kenzo Yamamoto</span><span class="topic">Análise culturo-comportamental de comunidades digitais "Red Pill".</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/kaiocon.png" alt="Kaio A. Nardis"></div><span class="name">Kaio A. Nardis</span><span class="topic">Aprendizagem por imitação em animais não humanos.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/kaiocon.png" alt="Kaio A. Nartis"></div><span class="name">Kaio A. Nartis</span><span class="topic">Aprendizagem por imitação em animais não humanos.</span></div>
         <div class="research-row jr"><span class="badge">IC-Jr</span><div class="avatar"><img src="img/joaovitorcon.png" alt="João Vitor Barboza"></div><span class="name">João Vitor Barboza</span><span class="topic">Contingências de reforço de Street Fighter II: Uma análise funcional dos controles de jogos de luta.</span></div>
-        <div class="research-row pos"><span class="badge">PD</span><div class="avatar empty"></div><span class="name">Yulla C. Knaus &amp; Marlon A. de Oliveira</span><span class="topic">Ratos, macacos e recurso comum em jogo digital (CAPES &amp; FAPESP).</span></div>
+        <div class="research-row pos"><span class="badge">PD</span><div class="avatar"><img src="img/marloncon.png" alt="Marlon A. de Oliveira"></div><span class="name">Yulla C. Knaus &amp; Marlon A. de Oliveira</span><span class="topic">Ratos, macacos e recurso comum em jogo digital (CAPES &amp; FAPESP).</span></div>
       </div>
     </div>
 
@@ -3068,31 +3102,31 @@
       <div class="dl-item">
         <div>
           <div class="dl-name">Melissa Peixoto</div>
-          <div class="dl-topic">Iniciação científica em andamento.</div>
+          <div class="dl-topic">Criminal profiling sob a perspectiva da Análise do Comportamento.</div>
         </div>
         <div class="dl-actions">
           <span class="dl-year-tag">2025 · IC</span>
-          <span class="dl-btn no-link">Em andamento</span>
+          <a class="dl-btn" href="docs/IC2025-melissa-peixoto-criminal-profiling.pdf" target="_blank" rel="noopener">PDF ↗</a>
         </div>
       </div>
       <div class="dl-item">
         <div>
-          <div class="dl-name">Sara Isabele Santos Neves</div>
-          <div class="dl-topic">Iniciação científica em andamento.</div>
+          <div class="dl-name">Sarah Isabele Santos Neves</div>
+          <div class="dl-topic">O influenciador digital: como produz e é produzido, em uma análise behaviorista radical.</div>
         </div>
         <div class="dl-actions">
           <span class="dl-year-tag">2025 · IC</span>
-          <span class="dl-btn no-link">Em andamento</span>
+          <a class="dl-btn" href="docs/IC2025-sarah-neves-influenciador-digital.pdf" target="_blank" rel="noopener">PDF ↗</a>
         </div>
       </div>
       <div class="dl-item">
         <div>
           <div class="dl-name">Maria Eduarda Hiromi Yoshida</div>
-          <div class="dl-topic">Iniciação científica em andamento.</div>
+          <div class="dl-topic">Seguindo caminhos paralelos ou separados? Influências da Psicologia do século XX nas inteligências artificiais do século XXI.</div>
         </div>
         <div class="dl-actions">
           <span class="dl-year-tag">2025 · IC</span>
-          <span class="dl-btn no-link">Em andamento</span>
+          <a class="dl-btn" href="docs/IC2025-hiromi-yoshida-psicologia-e-ia.pdf" target="_blank" rel="noopener">PDF ↗</a>
         </div>
       </div>
       <div class="dl-item">
@@ -3107,22 +3141,22 @@
       </div>
       <div class="dl-item">
         <div>
-          <div class="dl-name">Kaio Augusto Nardis</div>
-          <div class="dl-topic">Iniciação científica em andamento.</div>
+          <div class="dl-name">Kaio Augusto Nartis</div>
+          <div class="dl-topic">Controle de estímulos e diegese no game design: uma análise conceitual sob a perspectiva do comportamentalismo radical.</div>
         </div>
         <div class="dl-actions">
           <span class="dl-year-tag">2025 · IC</span>
-          <span class="dl-btn no-link">Em andamento</span>
+          <a class="dl-btn" href="docs/IC2025-kaio-nartis-diegese-game-design.pdf" target="_blank" rel="noopener">PDF ↗</a>
         </div>
       </div>
       <div class="dl-item">
         <div>
-          <div class="dl-name">Sergio Augusto Kenzo Yamamoto</div>
-          <div class="dl-topic">Iniciação científica em andamento.</div>
+          <div class="dl-name">Sérgio Augusto Kenzo Yamamoto</div>
+          <div class="dl-topic">Comportamento verbal subliminar: uma interpretação comportamental dos dog whistles e as consequências do controle comportamental implícito na democracia.</div>
         </div>
         <div class="dl-actions">
           <span class="dl-year-tag">2025 · IC</span>
-          <span class="dl-btn no-link">Em andamento</span>
+          <a class="dl-btn" href="docs/IC2025-sergio-yamamoto-dog-whistles.pdf" target="_blank" rel="noopener">PDF ↗</a>
         </div>
       </div>
       <div class="dl-item">
@@ -3167,7 +3201,7 @@
       </div>
       <div class="dl-item">
         <div>
-          <div class="dl-name">Sergio Augusto Kenzo Yamamoto</div>
+          <div class="dl-name">Sérgio Augusto Kenzo Yamamoto</div>
           <div class="dl-topic">Uma análise culturo-comportamental de comunidades digitais "Red Pill".</div>
         </div>
         <div class="dl-actions">
@@ -3177,7 +3211,7 @@
       </div>
       <div class="dl-item">
         <div>
-          <div class="dl-name">Kaio Augusto Nardis</div>
+          <div class="dl-name">Kaio Augusto Nartis</div>
           <div class="dl-topic">Uma análise comportamental da aprendizagem por imitação em animais não-humanos.</div>
         </div>
         <div class="dl-actions">
@@ -4508,7 +4542,7 @@
     </div>
     <div class="copyright">
       <span>© 2021–2026 CRIACOM-UEL</span>
-      <span>GEN-05</span>
+      <span>GEN-06</span>
     </div>
   </div>
 </footer>
