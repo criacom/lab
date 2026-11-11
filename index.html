@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>CRIACOM-UEL · Criatividade, Inovação, Cognição e Comportamento</title>
 <meta name="description" content="Laboratório da Universidade Estadual de Londrina dedicado à análise do comportamento aplicada à criatividade, desinformação e game design." />
-<meta property="og:title" content="CRIACOM · UEL — Criatividade, Inovação, Cognição e Comportamento">
+<meta property="og:title" content="CRIACOM · UEL · Criatividade, Inovação, Cognição e Comportamento">
 <meta property="og:description" content="Laboratório de pesquisa comportamental da UEL. Linhas: criatividade e resolução de problemas, desinformação e cultura digital, behavioral game design.">
 <meta property="og:type" content="website">
-<meta name="author" content="CRIACOM — Universidade Estadual de Londrina">
+<meta name="author" content="CRIACOM · Universidade Estadual de Londrina">
 
 <link rel="icon" type="image/png" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -261,10 +261,10 @@
   @media(max-width:900px){.line-card{grid-template-columns:1fr 220px}}
   @media(max-width:640px){.line-card{grid-template-columns:1fr; min-height:auto}}
 
-  /* Remove o ::before laranja — substituído por borda lateral */
+  /* Remove o ::before laranja · substituído por borda lateral */
   .line-card::before{display:none}
 
-  /* Coluna de texto — esquerda */
+  /* Coluna de texto · esquerda */
   .line-card-body{
     padding:40px 44px;
     display:flex;
@@ -289,7 +289,7 @@
     }
   }
 
-  /* Coluna de imagem — direita, fundo levemente diferente */
+  /* Coluna de imagem · direita, fundo levemente diferente */
   .line-card-mascot{
     display:flex;
     align-items:flex-end;
@@ -342,6 +342,24 @@
     line-height:1.65;
     margin-bottom:0;
   }
+  .secao-intro{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:clamp(17px,1.65vw,21px);
+    line-height:1.5;
+    color:var(--ink-soft);
+    max-width:700px;
+    margin:-16px 0 40px;
+  }
+  .line-card .line-details a{
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid var(--accent);
+    transition:color .2s;
+  }
+  .line-card .line-details a:hover{color:var(--accent)}
+  /* titulo de obra dentro de texto em itálico vai em redondo */
+  .line-card .line-details em{font-style:normal}
   .line-card .line-details{
     margin-top:16px;
     padding-top:14px;
@@ -953,11 +971,23 @@
 
   /* ===== ABAI WEBINAR FEATURE ===== */
   .abai-section{
-    border-bottom:1px solid var(--ink);
-    border-top:1px solid var(--ink);
-    padding:56px 0;
+    border-top:2px solid var(--accent);
+    border-bottom:2px solid var(--accent);
+    padding:60px 0;
     background:var(--paper);
   }
+  .destaque-flag{
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:.26em; text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:26px;
+  }
+  .destaque-flag .marca{
+    background:var(--accent); color:var(--paper);
+    padding:5px 12px; font-weight:700; letter-spacing:.16em;
+  }
+  .destaque-flag::after{content:""; flex:1; height:1px; background:rgba(20,20,20,.25)}
   .abai-unified{
     display:flex; flex-direction:column; gap:32px;
   }
@@ -1009,6 +1039,14 @@
   }
   .abai-title em{font-style:italic; color:var(--accent)}
 
+  .abai-title-orig{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px; letter-spacing:.04em;
+    color:var(--muted);
+    margin:-10px 0 18px;
+    line-height:1.5;
+  }
+  .abai-title-orig em{font-style:normal; color:var(--ink-soft)}
   .abai-dateline{
     font-family:'JetBrains Mono',monospace;
     font-size:11px; letter-spacing:.1em; text-transform:uppercase;
@@ -1789,7 +1827,7 @@
     background:#0d0d0d;
     border-top:2px solid var(--accent);
     border-bottom:2px solid var(--accent);
-    padding:52px 0;
+    padding:64px 0;
     position:relative;
     overflow:hidden;
   }
@@ -1797,94 +1835,139 @@
     content:"";
     position:absolute; inset:0;
     background-image:
-      linear-gradient(rgba(240,120,24,.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(240,120,24,.045) 1px, transparent 1px);
+      linear-gradient(rgba(240,120,24,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240,120,24,.05) 1px, transparent 1px);
     background-size:44px 44px;
     pointer-events:none;
   }
-  .pubfeat-inner{
-    position:relative;
-    z-index:2;
+  .pubfeat-flag{
+    position:relative; z-index:2;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    max-width:900px; margin:0 auto 22px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:.26em; text-transform:uppercase;
+    color:rgba(240,120,24,.8);
+  }
+  .pubfeat-flag .marca{
+    background:var(--accent); color:#0d0d0d;
+    padding:5px 12px; font-weight:700; letter-spacing:.16em;
+  }
+  .pubfeat-flag::after{content:""; flex:1; height:1px; background:rgba(240,120,24,.3)}
+
+  /* folha de artigo */
+  .paper-card{
+    position:relative; z-index:2;
+    max-width:900px; margin:0 auto;
+    background:var(--paper);
+    border:1px solid rgba(20,20,20,.18);
+    box-shadow:0 26px 70px rgba(0,0,0,.55);
+    padding:46px 52px 40px;
+  }
+  @media(max-width:720px){.paper-card{padding:32px 24px 30px}}
+
+  .paper-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    gap:18px; flex-wrap:wrap;
+    padding-bottom:14px;
+    border-bottom:2px solid var(--ink);
+    margin-bottom:26px;
+  }
+  .paper-journal{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 96,"WONK" 1;
+    font-size:17px; font-style:italic;
+    letter-spacing:-.01em;
+  }
+  .paper-ids{
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;
+    font-size:9.5px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--muted);
+  }
+  .paper-oa{
+    background:var(--accent); color:var(--paper);
+    padding:4px 9px; font-weight:700; letter-spacing:.12em;
   }
 
-  .pubfeat-tag{
-    font-family:'JetBrains Mono',monospace;
-    font-size:9px; letter-spacing:.28em; text-transform:uppercase;
-    color:rgba(240,120,24,.75);
-    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  .paper-title{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 144,"SOFT" 60,"WONK" 1;
+    font-weight:400;
+    font-size:clamp(27px,3.6vw,42px);
+    line-height:1.02;
+    letter-spacing:-.03em;
     margin-bottom:18px;
   }
-  .pubfeat-tag::before{content:"★"; color:var(--accent)}
-  .pubfeat-tag .pubfeat-new{
-    background:var(--accent); color:#0d0d0d;
-    padding:3px 9px; font-weight:700; letter-spacing:.14em;
-  }
-  .pubfeat-title{
-    font-family:'Fraunces',serif;
-    font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
-    font-weight:400;
-    font-size:clamp(26px,3.8vw,46px);
-    line-height:.98;
-    letter-spacing:-.03em;
-    color:#f5f0e8;
-    margin-bottom:16px;
-  }
-  .pubfeat-title em{font-style:italic; color:var(--accent)}
-  .pubfeat-meta{
+  .paper-title em{font-style:italic; color:var(--accent)}
+
+  .paper-title-orig{
     font-family:'JetBrains Mono',monospace;
-    font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
-    color:rgba(245,240,232,.42);
+    font-size:10.5px; letter-spacing:.04em;
+    color:var(--muted);
+    margin:-8px 0 18px;
+    line-height:1.5;
+  }
+  .paper-title-orig em{font-style:normal; color:var(--ink-soft)}
+  .paper-authors{
+    font-size:15.5px; line-height:1.5;
+    color:var(--ink);
     margin-bottom:8px;
   }
-  .pubfeat-doi{text-transform:none; letter-spacing:.04em}
-  .pubfeat-authors{
+  .paper-authors sup{font-size:10px; color:var(--accent); font-weight:600}
+  .paper-affil{
+    font-size:12px; line-height:1.55;
+    color:var(--muted);
+    margin-bottom:26px;
+  }
+  .paper-affil sup{color:var(--accent); font-weight:600}
+
+  .paper-abstract-bloco{
+    border-left:3px solid var(--accent);
+    padding-left:22px;
+    margin-bottom:26px;
+  }
+  @media(max-width:720px){.paper-abstract-bloco{padding-left:16px}}
+  .paper-abstract-label{
     font-family:'JetBrains Mono',monospace;
-    font-size:11px; letter-spacing:.06em;
-    color:rgba(245,240,232,.62);
-    margin-bottom:18px;
+    font-size:10px; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:12px;
   }
-  .pubfeat-abstract{
-    font-family:'Instrument Serif',serif;
-    font-style:italic;
-    font-size:16.5px; line-height:1.6;
-    color:rgba(245,240,232,.72);
-    max-width:62ch;
+  .paper-abstract{
+    font-size:15px; line-height:1.7;
+    text-align:justify;
+    hyphens:auto;
+    color:var(--ink-soft);
   }
-  .pubfeat-abstract em{font-style:normal}
-  .pubfeat-cta-wrap{
-    margin-top:26px;
-    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  .paper-abstract em{font-style:italic; hyphens:none}
+
+  .paper-foot{
+    display:flex; justify-content:space-between; align-items:center;
+    gap:18px; flex-wrap:wrap;
+    border-top:1px solid rgba(20,20,20,.15);
+    padding-top:22px;
   }
-  .pubfeat-cta{
+  .paper-cta{
     display:inline-flex; align-items:center; gap:10px;
     padding:14px 26px;
-    background:var(--accent); color:#0d0d0d;
+    background:var(--ink); color:var(--paper);
     text-decoration:none;
     font-family:'JetBrains Mono',monospace;
     font-size:11px; letter-spacing:.18em; text-transform:uppercase;
     font-weight:700;
     transition:background .2s, transform .15s;
   }
-  .pubfeat-cta:hover{
-    background:#f5f0e8;
-    transform:translateY(-2px);
-  }
-  .pubfeat-cta .btn-icon{font-size:15px; line-height:1}
-  .pubfeat-cta .btn-sub{
-    display:block;
-    font-size:9px; letter-spacing:.1em; font-weight:400;
-    opacity:.72; margin-top:2px;
-  }
-  .pubfeat-badge{
+  .paper-cta:hover{background:var(--accent); transform:translateY(-2px)}
+  .paper-doi{
     font-family:'JetBrains Mono',monospace;
-    font-size:10px; letter-spacing:.14em; text-transform:uppercase;
-    color:rgba(240,120,24,.85);
-    border:1px solid rgba(240,120,24,.4);
-    padding:6px 14px;
+    font-size:10.5px; letter-spacing:.04em;
+    color:var(--muted);
   }
-  @media(max-width:680px){
-    .pubfeat-box{padding:40px 0}
-    .pubfeat-cta{width:100%; justify-content:center; text-align:center}
+  @media(max-width:720px){
+    .pubfeat-box{padding:44px 0}
+    .paper-cta{width:100%; justify-content:center}
+    .paper-foot{justify-content:center; text-align:center}
+    .paper-abstract{text-align:left}
   }
 
   /* ===== LIVROS DESTAQUE ===== */
@@ -2265,44 +2348,49 @@
   }
   .promo-heading em{font-style:italic; color:var(--accent)}
 
-  /* Grid de cards — destaques + seções juntos */
+  /* Grid de cards · destaques + seções juntos */
   .promo-all-cards{
     display:flex; flex-wrap:wrap; gap:6px;
   }
 
   /* Card destaque (maior, mais chamativo) */
   .promo-card-hi{
-    display:flex; align-items:center; gap:10px;
-    padding:10px 16px;
-    border:1px solid rgba(243,239,230,.25);
+    display:flex; align-items:center; gap:18px;
+    padding:16px 20px;
+    border:1px solid rgba(240,120,24,.45);
     text-decoration:none;
-    background:rgba(240,120,24,.1);
-    transition:border-color .2s, background .2s;
-    min-width:220px; flex:1.5;
+    background:rgba(240,120,24,.12);
+    transition:border-color .2s, background .2s, transform .2s;
+    flex:1 1 100%;
+    margin-bottom:2px;
   }
-  .promo-card-hi:hover{border-color:var(--accent); background:rgba(240,120,24,.2)}
+  .promo-card-hi:hover{
+    border-color:var(--accent); background:rgba(240,120,24,.24);
+    transform:translateX(5px);
+  }
   .promo-card-hi .pc-num{
     font-family:'JetBrains Mono',monospace;
-    font-size:9px; font-weight:700; letter-spacing:.1em;
-    color:var(--accent); flex-shrink:0;
+    font-size:9.5px; font-weight:700; letter-spacing:.14em;
+    background:var(--accent); color:#17100a;
+    padding:9px 11px; flex-shrink:0;
     text-transform:uppercase;
-    line-height:1.2; text-align:center;
+    line-height:1.25; text-align:center;
   }
   .promo-card-hi .pc-label{
     font-family:'JetBrains Mono',monospace;
-    font-size:8px; letter-spacing:.14em; text-transform:uppercase;
-    color:rgba(243,239,230,.4); margin-bottom:2px;
+    font-size:9px; letter-spacing:.18em; text-transform:uppercase;
+    color:rgba(243,239,230,.5); margin-bottom:5px;
   }
   .promo-card-hi .pc-title{
     font-family:'Fraunces',serif;
-    font-variation-settings:"opsz" 36;
-    font-size:13px; font-weight:600;
-    color:rgba(243,239,230,.9); line-height:1.2;
+    font-variation-settings:"opsz" 72,"WONK" 1;
+    font-size:clamp(16px,1.9vw,21px); font-weight:600;
+    color:#f5f1e8; line-height:1.14; letter-spacing:-.015em;
   }
   .promo-card-hi .pc-arrow{
     margin-left:auto; flex-shrink:0;
     font-family:'JetBrains Mono',monospace;
-    font-size:11px; color:var(--accent);
+    font-size:16px; color:var(--accent);
     transition:transform .2s;
   }
   .promo-card-hi:hover .pc-arrow{transform:translateY(3px)}
@@ -2335,7 +2423,7 @@
   }
   .promo-card-sec:hover .ps-arr{color:rgba(243,239,230,.5)}
 
-  /* Mascotes — coluna direita com dois personagens */
+  /* Mascotes · coluna direita com dois personagens */
   .promo-mascot-col{
     display:flex;
     align-items:flex-end;
@@ -2613,7 +2701,7 @@
       Criatividade, Inovação, Cognição <span class="italic">&amp; Comportamento.</span>
     </h1>
     <p class="hero-lede">
-      O CRIACOM investiga como processos comportamentais dão origem ao novo — e como contingências sociais produzem, distribuem e sustentam a desinformação. Na fronteira entre ciência básica, psicoterapia e design de jogos.
+      O CRIACOM investiga como processos comportamentais dão origem ao novo e como contingências sociais produzem, distribuem e sustentam a desinformação, na fronteira entre ciência básica, psicoterapia e design de jogos.
     </p>
   </div>
 </header>
@@ -2645,24 +2733,24 @@
   <div class="promo-main">
     <div class="promo-content">
       <span class="promo-tag">Destaques do laboratório · CRIACOM-UEL · 2026</span>
-      <p class="promo-welcome">Bem-vindo ao site do <strong>CRIACOM</strong>. Aqui você encontra publicações científicas, membros ativos, história do grupo, galeria de fotos e muito mais. E logo abaixo, dois destaques que não pode perder:</p>
+      <p class="promo-welcome">Bem-vindo ao site do <strong>CRIACOM</strong>. Aqui estão as publicações do laboratório, os membros, a história do grupo e a galeria de fotos.</p>
       <h2 class="promo-heading">Confira logo <em>abaixo!</em></h2>
 
       <div class="promo-all-cards">
         <!-- Destaques -->
-        <a class="promo-card-hi" href="#webinar">
+        <a class="promo-card-hi" href="#destaque-publicacao">
           <div class="pc-num">Destaque<br>01</div>
           <div>
-            <div class="pc-label">Webinar · ABAI · Internet como câmara operante</div>
-            <div class="pc-title">Assista ao webinar do Prof. Hernando na ABAI!</div>
+            <div class="pc-label">Nova publicação · <em>Perspectives on Behavior Science</em> · acesso aberto</div>
+            <div class="pc-title">Análise do Comportamento e Game Design: as contingências dos gêneros de videogame</div>
           </div>
           <span class="pc-arrow">↓</span>
         </a>
-        <a class="promo-card-hi" href="#destaque-publicacao">
+        <a class="promo-card-hi" href="#webinar">
           <div class="pc-num">Destaque<br>02</div>
           <div>
-            <div class="pc-label">Nova publicação · Perspectives on Behavior Science</div>
-            <div class="pc-title">Behavior Analysis and Game Design</div>
+            <div class="pc-label">Webinar · ABAI · Internet como câmara operante</div>
+            <div class="pc-title">Assista ao webinar do Prof. Hernando na ABAI!</div>
           </div>
           <span class="pc-arrow">↓</span>
         </a>
@@ -2683,17 +2771,58 @@
     </div>
 
     <div class="promo-mascot-col">
-      <img class="mascot-img" src="img/Boatacon_transp.png" alt="Hernando — orientador CRIACOM" title="Prof. Dr. Hernando Borges Neves Filho">
+      <img class="mascot-img" src="img/Boatacon_transp.png" alt="Hernando · orientador CRIACOM" title="Prof. Dr. Hernando Borges Neves Filho">
     </div>
     <span class="promo-bg-deco">★</span>
   </div>
 </div>
 
+<div class="pubfeat-box" id="destaque-publicacao">
+  <div class="container">
+    <div class="pubfeat-flag">
+      <span class="marca">Destaque 01</span>
+      Nova publicação · Novembro de 2026
+    </div>
+
+    <article class="paper-card">
+      <div class="paper-head">
+        <div class="paper-journal">Perspectives on Behavior Science</div>
+        <div class="paper-ids">
+          <span class="paper-oa">Open Access</span>
+          <span>Research article</span>
+          <span>09 nov 2026 · p. 1–21</span>
+        </div>
+      </div>
+
+      <h2 class="paper-title">Análise do Comportamento e Game Design: <em>as contingências dos gêneros de videogame</em></h2>
+      <div class="paper-title-orig">Título original: <em>Behavior Analysis and Game Design: The Contingencies of Video Game Genres</em></div>
+
+      <div class="paper-authors">
+        Marlon Alexandre de Oliveira<sup>1</sup> · Lilian Cerri Mazza<sup>2</sup> · Hernando Borges Neves Filho<sup>2</sup>
+      </div>
+      <div class="paper-affil">
+        <sup>1</sup> Universidade de São Paulo, Instituto de Psicologia, Programa de Pós-graduação em Psicologia Experimental, São Paulo, SP, Brasil<br>
+        <sup>2</sup> Universidade Estadual de Londrina, Programa de Pós-graduação em Análise do Comportamento, Londrina, PR, Brasil
+      </div>
+
+      <div class="paper-abstract-bloco">
+        <div class="paper-abstract-label">Resumo · tradução do original em inglês</div>
+        <p class="paper-abstract">Este artigo propõe um quadro conceitual integrado para analisar videogames por meio da análise funcional, argumentando que o game design é, fundamentalmente, o arranjo de contingências de reforçamento e punição. Gêneros de videogame são sistemas funcionais definidos por esquemas de reforçamento, punição operante e consequências temporalmente estendidas programadas em ambientes de jogo. Para ilustrar essa interpretação comportamental dos videogames, conduzimos uma análise funcional das contingências em operação em três gêneros comerciais ilustrativos: os jogos de plataforma (centrados em precisão e modelagem), os <em>Metroidvanias</em> (baseados em discriminação condicional e interconexão de repertórios) e os RPGs de turno (governados por regras e encadeamento). Além disso, foram examinados os elementos de jogo que seguem modelando o comportamento do jogador, incluindo elementos estéticos e metassistemas transversais aos gêneros, como conquistas, <em>leaderboards</em> e <em>loot boxes</em>. A análise demonstra que um game design bem-sucedido é também um design de contingências bem-sucedido. Por fim, discutimos as implicações éticas dos metassistemas monetizados (como as <em>loot boxes</em>) e propomos que os princípios da análise do comportamento podem ser usados para fazer a &ldquo;engenharia reversa&rdquo; do game design, de modo a ilustrar como tanto o domínio experimental quanto o aplicado podem se beneficiar da consiliência entre análise do comportamento e game design.</p>
+      </div>
+
+      <div class="paper-foot">
+        <a class="paper-cta" href="https://doi.org/10.1007/s40614-026-00528-x" target="_blank" rel="noopener">Ler o artigo completo ↗</a>
+        <span class="paper-doi">DOI 10.1007/s40614-026-00528-x</span>
+      </div>
+    </article>
+  </div>
+</div>
 <section class="abai-section" id="webinar">
   <div class="container">
     <div class="abai-unified">
       <div class="abai-unified-top">
-        <div class="abai-eyebrow">
+        <div class="destaque-flag">
+          <span class="marca">Destaque 02</span>
           Webinar · ABAI · Janeiro 2026
           <span class="pill-accent">assista agora</span>
         </div>
@@ -2701,11 +2830,12 @@
           <div class="abai-unified-text">
             <div class="abai-callout">Assista ao webinar do Prof. Hernando na ABAI!</div>
             <h2 class="abai-title">
-              How the Internet Became the Most Advanced <em>Operant Chamber</em> Ever Built
+              Como a Internet se tornou a <em>câmara operante</em> mais avançada já construída
             </h2>
+            <div class="abai-title-orig">Título original: <em>How the Internet Became the Most Advanced Operant Chamber Ever Built</em></div>
             <div class="abai-dateline">13 Jan 2026 · 10h EST · Association for Behavior Analysis International · Hernando Borges Neves Filho</div>
             <p class="abai-abstract">
-              O que seria a câmara operante mais sofisticada já construída? Não um laboratório — mas o celular no seu bolso. Neste webinar para a maior associação internacional de análise do comportamento, Hernando Neves Filho argumenta que a Internet evoluiu de páginas estáticas para arquiteturas embebidas em IA que organizam contingências de reforço em escala global. A apresentação conecta pesquisa básica com modelos animais de criatividade à pesquisa aplicada sobre desinformação no STF, propondo que analistas do comportamento estão em posição privilegiada para interpretar e intervir nos ambientes digitais contemporâneos.
+              Qual seria a câmara operante mais sofisticada já construída? Não um laboratório, mas o celular no seu bolso. Neste webinar para a maior associação internacional de análise do comportamento, Hernando Neves Filho argumenta que a Internet evoluiu de páginas estáticas para arquiteturas embebidas em IA que organizam contingências de reforço em escala global. A apresentação liga a pesquisa básica sobre criatividade em modelos animais à pesquisa aplicada sobre desinformação no STF, e propõe o que analistas do comportamento podem dizer sobre os ambientes digitais de hoje.
             </p>
             <div class="abai-watch-wrap">
               <a class="abai-watch-btn" href="https://www.abainternational.org/learning-center/version3/watch-video.aspx?ikey=38444&trackid=WBN" target="_blank" rel="noopener">
@@ -2727,68 +2857,38 @@
   </div>
 </section>
 
-<div class="pubfeat-box" id="destaque-publicacao">
-  <div class="container">
-    <div class="pubfeat-inner">
-      <div class="pubfeat-body">
-        <div class="pubfeat-tag">
-          <span class="pubfeat-new">Nova publicação em destaque</span>
-          Novembro de 2026 · acesso aberto
-        </div>
-        <h2 class="pubfeat-title">
-          Behavior Analysis and Game Design: <em>The Contingencies of Video Game Genres</em>
-        </h2>
-        <div class="pubfeat-meta">Perspectives on Behavior Science · 09 nov 2026 · p. 1–21 · DOI <span class="pubfeat-doi">10.1007/s40614-026-00528-x</span></div>
-        <div class="pubfeat-authors">Marlon Alexandre de Oliveira · Lilian Cerri Mazza · Hernando Borges Neves Filho</div>
-        <p class="pubfeat-abstract">
-          O artigo propõe um quadro conceitual para analisar videogames por análise funcional: game design é, antes de tudo, arranjo de contingências de reforçamento e punição. Gêneros são tratados como sistemas funcionais — plataformas (precisão e modelagem), Metroidvanias (discriminação condicional e interconexão de repertórios) e RPGs de turno (regras e encadeamento). Os metassistemas que atravessam gêneros, como conquistas, placares e <em>loot boxes</em>, recebem análise própria, incluindo as implicações éticas de sua monetização.
-        </p>
-        <div class="pubfeat-cta-wrap">
-          <a class="pubfeat-cta" href="https://doi.org/10.1007/s40614-026-00528-x" target="_blank" rel="noopener">
-            <span class="btn-icon">★</span>
-            <span>
-              Leia o artigo completo
-              <span class="btn-sub">Springer · acesso livre e gratuito</span>
-            </span>
-          </a>
-          <span class="pubfeat-badge">Open Access</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <section id="linhas">
   <div class="container">
     <div class="section-head">
       <div class="tag">§ 01 · escopo</div>
       <h2>Três linhas, <em>uma única</em> questão.</h2>
     </div>
+    <p class="secao-intro">Conheça as três linhas de pesquisa do CRIACOM. Fazemos pesquisa comportamental básica, aplicada e conceitual nestes três eixos!</p>
     <div class="lines-grid">
       <article class="line-card">
         <div class="line-card-body">
           <div class="num">L-01</div>
           <h3>Criatividade <span class="italic">&amp; resolução de problemas</span></h3>
-          <p>Como surgem comportamentos genuinamente novos? Investigamos as origens operantes da criatividade — variabilidade operante, enriquecimento ambiental e <em>insight</em> — em ratos, macacos-prego, crianças e cultura.</p>
+          <p>Como surgem comportamentos genuinamente novos? Investigamos as origens operantes da criatividade (variabilidade operante, enriquecimento ambiental e <em>insight</em>) em ratos, macacos-prego, crianças e cultura.</p>
           <div class="line-details">
-            Partindo de <strong>Epstein et al. (1984)</strong>, a linha une pesquisa básica com modelos animais e aplicações terapêuticas: <strong>programas de resolução de problemas</strong> para crianças em contexto clínico e escolar.
+            Partindo do clássico artigo <a href="https://www.nature.com/articles/308061a0" target="_blank" rel="noopener"><em>Insight in the Pigeon</em></a>, da revista <em>Nature</em>, a linha une pesquisa básica com modelos animais e aplicações terapêuticas: <strong>programas de resolução de problemas</strong> para crianças em contexto clínico e escolar.
           </div>
         </div>
         <div class="line-card-mascot">
-          <img src="img/yullacon2.png" alt="Yulla correndo de ratos — Criatividade CRIACOM">
+          <img src="img/yullacon2.png" alt="Yulla correndo de ratos · Criatividade CRIACOM">
         </div>
       </article>
       <article class="line-card">
         <div class="line-card-body">
           <div class="num">L-02</div>
           <h3>Desinformação <span class="italic">&amp; cultura digital</span></h3>
-          <p>Por que pessoas compartilham fake news? Aplicamos análise do comportamento cultural — metacontingências, persuasão e vieses de atribuição — para explicar a desinformação em redes sociais.</p>
+          <p>Por que pessoas compartilham fake news? Aplicamos análise do comportamento cultural (metacontingências, persuasão e vieses de atribuição) para explicar a desinformação em redes sociais.</p>
           <div class="line-details">
             Em parceria com o <strong>STF desde 2021</strong>, contribuímos com evidências científicas para políticas públicas de combate à desinformação no Brasil.
           </div>
         </div>
         <div class="line-card-mascot">
-          <img src="img/boatacon3.png" alt="Boatacon — Desinformação CRIACOM">
+          <img src="img/boatacon3.png" alt="Boatacon · Desinformação CRIACOM">
         </div>
       </article>
       <article class="line-card">
@@ -2801,7 +2901,7 @@
           </div>
         </div>
         <div class="line-card-mascot">
-          <img src="img/boatacon2.png" alt="Boatacon jogando — Game Design CRIACOM">
+          <img src="img/boatacon2.png" alt="Boatacon jogando · Game Design CRIACOM">
         </div>
       </article>
     </div>
@@ -2827,7 +2927,7 @@
     <div class="gen-panel" data-panel="6">
       <div class="gen-panel-inner">
       <div class="gen-intro">
-        <p>Renovação do quadro: conclusão de três mestrados, entrada de novos pesquisadores de mestrado e doutorado em agosto e continuidade do pós-doutorado FAPESP.</p>
+        <p>Três mestrados concluídos, novos pesquisadores de mestrado e doutorado em agosto, pós-doutorado FAPESP em andamento.</p>
             </div>
 </div>
       <div class="research-list">
@@ -2868,7 +2968,7 @@
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/kaiocon.png" alt="Kaio A. Nartis"></div><span class="name">Kaio A. Nartis</span><span class="topic">Interfaces diegéticas e controle de estímulos entre game design e AC.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar"><img src="img/sergioaugustocon.png" alt="Sérgio Augusto Kenzo Yamamoto"></div><span class="name">Sérgio Augusto Kenzo Yamamoto</span><span class="topic">Dog whistles e controle comportamental implícito na democracia.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Gabriel Toloczko Ferreira</span><span class="topic">Confrontos entre torcidas organizadas brasileiras de futebol.</span></div>
-        <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Talita da Silva Guerrini</span><span class="topic">Obstáculos da inclusão no ensino superior — perspectiva analítico-comportamental.</span></div>
+        <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Talita da Silva Guerrini</span><span class="topic">Obstáculos da inclusão no ensino superior: perspectiva analítico-comportamental.</span></div>
         <div class="research-row ic"><span class="badge">IC</span><div class="avatar empty"></div><span class="name">Giovanna Catarina Nunes Bagni</span><span class="topic">Efeitos do uso de redes sociais: TikTok e adolescentes.</span></div>
         <div class="research-row pos"><span class="badge">PD</span><div class="avatar"><img src="img/marloncon.png" alt="Marlon A. de Oliveira"></div><span class="name">Marlon A. de Oliveira</span><span class="topic">Uso do recurso comum em um jogo digital (FAPESP-USP-UEL, sup. Maria H. L. Hünziker).</span></div>
       </div>
@@ -3068,7 +3168,7 @@
       <div class="dl-item">
         <div>
           <div class="dl-name">Amanda Viana</div>
-          <div class="dl-topic">Teste de um programa psicoterapêutico para a resolução de problemas em crianças. <em>(Em andamento — previsão 2025/2026)</em></div>
+          <div class="dl-topic">Teste de um programa psicoterapêutico para a resolução de problemas em crianças. <em>(Em andamento, previsão 2025/2026)</em></div>
         </div>
         <div class="dl-actions">
           <span class="dl-year-tag">2025 · DOC</span>
@@ -3352,7 +3452,7 @@
       <div class="dl-item">
         <div>
           <div class="dl-name">João Vitor Barboza</div>
-          <div class="dl-topic">Análise do Comportamento e Game Design em jogos de luta 2D — Analisando contingências de Street Fighter II.</div>
+          <div class="dl-topic">Análise do Comportamento e Game Design em jogos de luta 2D: contingências de Street Fighter II.</div>
         </div>
         <div class="dl-actions">
           <span class="dl-year-tag">2024 · IC-Jr</span>
@@ -3372,7 +3472,7 @@
       <div class="dl-item">
         <div>
           <div class="dl-name">Mariana Rodrigues Santos</div>
-          <div class="dl-topic">Análise do Comportamento e Game Design — Analisando o Tutorial de Mega Man X de SNES.</div>
+          <div class="dl-topic">Análise do Comportamento e Game Design: o tutorial de Mega Man X de SNES.</div>
         </div>
         <div class="dl-actions">
           <span class="dl-year-tag">2022 · IC-Jr</span>
@@ -3789,24 +3889,24 @@
         <!-- Vol 1 PT - com capa -->
         <div class="book-card">
           <div class="book-card-cover">
-            <img src="img/capa_intro1.png" alt="Introdução ao Desenvolvimento de Softwares — Vol. 1">
+            <img src="img/capa_intro1.png" alt="Introdução ao Desenvolvimento de Softwares · Vol. 1">
           </div>
           <div class="book-card-body">
             <div class="book-card-year">2018 · Imagine Publicações · ABPMC</div>
-            <div class="book-card-title">Introdução ao Desenvolvimento de Softwares para Analistas do Comportamento — <em>Vol. 1</em></div>
+            <div class="book-card-title">Introdução ao Desenvolvimento de Softwares para Analistas do Comportamento · <em>Vol. 1</em></div>
             <div class="book-card-authors">Neves Filho, H.B.; Freitas, L.A.B.; Quinta, N.C.C. (orgs.)</div>
             <a class="book-card-cta" href="https://www.researchgate.net/publication/323904284" target="_blank" rel="noopener">ResearchGate ↗</a>
           </div>
         </div>
 
-        <!-- Vol 2 PT + EN — entrada unificada com capa -->
+        <!-- Vol 2 PT + EN · entrada unificada com capa -->
         <div class="book-card">
           <div class="book-card-cover">
-            <img src="img/capa_intro2.png" alt="Introdução ao Desenvolvimento de Softwares — Vol. 2">
+            <img src="img/capa_intro2.png" alt="Introdução ao Desenvolvimento de Softwares · Vol. 2">
           </div>
           <div class="book-card-body">
             <div class="book-card-year">2020 · Imagine Publicações · ABPMC</div>
-            <div class="book-card-title">Introdução ao Desenvolvimento de Softwares para Analistas do Comportamento — <em>Vol. 2</em></div>
+            <div class="book-card-title">Introdução ao Desenvolvimento de Softwares para Analistas do Comportamento · <em>Vol. 2</em></div>
             <div class="book-card-authors">Neves Filho, H.B.; Freitas, L.A.B.; Quinta, N.C.C. · Picanço, C.R.F. (orgs.)</div>
             <div class="book-tags">
               <a class="book-card-cta" href="https://www.researchgate.net/publication/339850997" target="_blank" rel="noopener">Português ↗</a>
@@ -3835,7 +3935,7 @@
     <div class="jogos-compact">
       <img class="jogos-compact-cover" src="img/microjogos-vol1-extincao.png" alt="Capa dos Micro-jogos CRIACOM">
       <div class="jogos-compact-body">
-        <p class="jogos-compact-text">Uma série de pequeníssimos jogos didáticos de Análise do Comportamento, feitos em HTML e jogados direto no navegador. Cada volume toma um processo básico — extinção, discriminação, variabilidade, esquemas de reforço, desconto temporal, criatividade — e o transforma numa partida de poucos minutos. O catálogo completo, com os volumes disponíveis e os que estão por vir, fica no hotsite da série.</p>
+        <p class="jogos-compact-text">Uma série de pequeníssimos jogos didáticos de Análise do Comportamento, feitos em HTML e jogados direto no navegador. Cada volume toma um processo básico, como extinção, discriminação, variabilidade ou desconto temporal, e o transforma numa partida de poucos minutos. O catálogo completo fica no hotsite da série.</p>
         <a class="jogos-cta" href="https://criacom.github.io/microjogos/" target="_blank" rel="noopener">▶ Jogar os micro-jogos</a>
       </div>
     </div>
@@ -3857,7 +3957,7 @@
         <div class="role">Coordenador · Prof. Adjunto UEL</div>
         <h3>Hernando<br><em>Neves Filho</em></h3>
         <div class="inst">Dep. Psicologia Geral e Análise do Comportamento · UEL · Londrina, PR</div>
-        <p class="bio">Bacharel em Psicologia pela UFPA, mestre pelo PPG em Teoria e Pesquisa do Comportamento (UFPA) e doutor em Psicologia Experimental pela USP. Realizou doutorado sanduíche na University of Auckland (Nova Zelândia) e dois pós-doutorados — na PUC-GO (CAPES/FAPEG) e na UFPA (PNPD/CAPES). Professor efetivo do Departamento de Psicologia Geral e Análise do Comportamento da UEL desde 2021, orientador de mestrado e doutorado no PPG-AC.</p>
+        <p class="bio">Bacharel em Psicologia pela UFPA, mestre pelo PPG em Teoria e Pesquisa do Comportamento (UFPA) e doutor em Psicologia Experimental pela USP. Realizou doutorado sanduíche na University of Auckland (Nova Zelândia) e dois pós-doutorados, na PUC-GO (CAPES/FAPEG) e na UFPA (PNPD/CAPES). Professor efetivo do Departamento de Psicologia Geral e Análise do Comportamento da UEL desde 2021, orientador de mestrado e doutorado no PPG-AC.</p>
         <div class="interests">
           <div class="interests-title">Interesses de pesquisa</div>
           <div class="tag-list">
@@ -3915,10 +4015,10 @@
   <!-- NEW YORK DECLARATION -->
   <a class="rec-feature rf-banner" href="https://sites.google.com/nyu.edu/nydeclaration/declaration" target="_blank" rel="noopener">
     <div class="rf-img">
-      <img src="img/newyorkdeclaration.png" alt="The New York Declaration on Animal Consciousness — April 19, 2024 · New York University">
+      <img src="img/newyorkdeclaration.png" alt="The New York Declaration on Animal Consciousness · April 19, 2024 · New York University">
     </div>
     <div class="rf-banner-mascot">
-      <img src="img/yullacon_transp.png" alt="Yulla — CRIACOM">
+      <img src="img/yullacon_transp.png" alt="Yulla · CRIACOM">
     </div>
     <div class="rf-body">
       <div class="rf-body-main">
@@ -3926,7 +4026,7 @@
         <div class="rf-title">New York Declaration on <em>Animal Consciousness</em></div>
         <div class="rf-meta">595 signatários · 19 de abril de 2024 · NYU</div>
         <p>
-          Publicada na NYU em 19 de abril de 2024, a <strong>New York Declaration on Animal Consciousness</strong> afirma haver forte suporte empírico para experiências conscientes em mamíferos e aves, e ao menos a possibilidade realista em todos os vertebrados e muitos invertebrados. Ambos os pesquisadores do CRIACOM-UEL são signatários, em reconhecimento às suas contribuições à <strong>Psicologia Animal Comparada</strong> — com ratos, macacos-prego, pombos e corvos da Nova Caledônia.
+          Publicada na NYU em 19 de abril de 2024, a <strong>New York Declaration on Animal Consciousness</strong> afirma haver forte suporte empírico para experiências conscientes em mamíferos e aves, e ao menos a possibilidade realista em todos os vertebrados e muitos invertebrados. Ambos os pesquisadores do CRIACOM-UEL são signatários, em reconhecimento às suas contribuições à <strong>Psicologia Animal Comparada</strong>, com ratos, macacos-prego, pombos e corvos da Nova Caledônia.
         </p>
       </div>
       <div class="rf-body-side">
@@ -3942,14 +4042,14 @@
   <!-- STF -->
   <a class="rec-feature rf-lateral" href="https://portal.stf.jus.br/hotsites/desinformacao/" target="_blank" rel="noopener">
     <div class="rf-img">
-      <img src="img/stf_desinformacao.png" alt="Programa de Combate à Desinformação — STF">
+      <img src="img/stf_desinformacao.png" alt="Programa de Combate à Desinformação · STF">
     </div>
     <div class="rf-body">
       <div class="rf-label">Colaboração institucional · desde 2021 · STF</div>
-      <div class="rf-title">Programa de Combate à <em>Desinformação</em> — STF</div>
+      <div class="rf-title">Programa de Combate à <em>Desinformação</em> · STF</div>
       <div class="rf-meta">Supremo Tribunal Federal · Brasília</div>
       <p>
-        O CRIACOM colabora desde 2021 com o <strong>Programa de Combate à Desinformação do Supremo Tribunal Federal</strong>, iniciativa que reúne instituições científicas e jurídicas no enfrentamento à disseminação de informações falsas no Brasil. Conecta as pesquisas do laboratório — sobre fake news, persuasão, vieses de atribuição e aceitação de conteúdos falsos — ao esforço institucional de embasar políticas públicas em evidências científicas. <em>«Sociedade Informada, Democracia Forte.»</em>
+        O CRIACOM colabora desde 2021 com o <strong>Programa de Combate à Desinformação do Supremo Tribunal Federal</strong>, que reúne instituições científicas e jurídicas contra a disseminação de informações falsas no Brasil. A parceria leva as pesquisas do laboratório sobre fake news, persuasão e vieses de atribuição para dentro do esforço de embasar políticas públicas em evidências. <em>«Sociedade Informada, Democracia Forte.»</em>
       </p>
       <span class="rf-link">Site do programa ↗</span>
     </div>
@@ -3962,17 +4062,17 @@
         <div class="rf-label">Grupo de Trabalho · desde 2022 · ANPEPP</div>
         <div class="rf-title">GT de Pesquisa Teórica em <em>Análise do Comportamento</em></div>
         <p>
-          Desde 2022, o CRIACOM integra o <strong>Grupo de Trabalho de Pesquisa Teórica em Análise do Comportamento</strong> da ANPEPP — Associação Nacional de Pesquisa e Pós-Graduação em Psicologia. A participação consolida a inserção do laboratório no debate teórico e conceitual da Análise do Comportamento em âmbito nacional, articulando as pesquisas do CRIACOM com a comunidade mais ampla da Psicologia científica brasileira.
+          Desde 2022, o CRIACOM integra o <strong>Grupo de Trabalho de Pesquisa Teórica em Análise do Comportamento</strong> da ANPEPP, Associação Nacional de Pesquisa e Pós-Graduação em Psicologia. O GT reúne o laboratório ao debate teórico e conceitual da Análise do Comportamento no país.
         </p>
         <a class="rf-link" href="https://www.cadastro.anpepp.org.br/grupotrabalho/view?ID_GRUPO_TRABALHO=95" target="_blank" rel="noopener">Ver o GT na ANPEPP ↗</a>
       </div>
       <div class="anpepp-book">
         <div class="anpepp-book-cover">
-          <img src="img/capa_pesquisateorica.png" alt="Pesquisas Teóricas em Análise do Comportamento — 2024">
+          <img src="img/capa_pesquisateorica.png" alt="Pesquisas Teóricas em Análise do Comportamento · 2024">
         </div>
         <div class="anpepp-book-footer">
           <div class="anpepp-book-badge">Produção do GT · 2024 · Instituto Par</div>
-          <div class="anpepp-book-title">Pesquisas Teóricas em Análise do Comportamento — o manual mais atualizado e completo sobre pesquisa teórica da área</div>
+          <div class="anpepp-book-title">Pesquisas Teóricas em Análise do Comportamento, manual de referência sobre pesquisa teórica na área</div>
           <a class="anpepp-book-cta" href="https://www.institutopar.org/produto/pesquisas-teoricas-em-analise-do-comportamento/" target="_blank" rel="noopener">Adquirir o livro ↗</a>
         </div>
       </div>
@@ -3996,7 +4096,7 @@
       <div class="ftalk-body">
         <div>
           <div class="ftalk-tag">Painel · STF · Setembro 2023</div>
-          <div class="ftalk-title">Contornos da verdade e <em>algoritmos</em> — Debate no STF com Ministro Luiz Fux</div>
+          <div class="ftalk-title">Contornos da verdade e <em>algoritmos</em> · Debate no STF com Ministro Luiz Fux</div>
         </div>
         <div class="ftalk-desc">
           Seminário Combate à Desinformação e Defesa da Democracia · 14 set. 2023 · STF, Brasília. Mediação: Prof. Dr. Hernando Borges Neves Filho (PPG-AC · UEL). Mesa presidida pelo Ministro Luiz Fux. Debatedores: Prof. Dr. Murilo César Ramos (UnB), Prof. Dr. Marco Antônio Alves (UFMG) e Dr. Francisco Brito Cruz (InternetLab).
@@ -4021,13 +4121,13 @@
       <div class="video-grid">
         <a class="video-card" href="https://www.youtube.com/watch?v=VdpDtX8zAcE" target="_blank" rel="noopener">
           <div class="vc-meta">2024 · 3ª JAC UnB</div>
-          <div class="vc-title">Minicurso — Bases evolutivas e operantes da desinformação e radicalização</div>
+          <div class="vc-title">Minicurso · Bases evolutivas e operantes da desinformação e radicalização</div>
           <div class="vc-host">Jornada de Análise do Comportamento · UnB · com Prof. Dr. Mauro Silva Jr. (UnB)</div>
           <span class="vc-arrow">↗</span>
         </a>
         <a class="video-card" href="https://www.youtube.com/watch?v=CreJkxEbnl0" target="_blank" rel="noopener">
           <div class="vc-meta">2024 · 3ª JAC UnB</div>
-          <div class="vc-title">Mesa redonda — Comportamento, tecnologia e democracias do século XXI</div>
+          <div class="vc-title">Mesa redonda · Comportamento, tecnologia e democracias do século XXI</div>
           <div class="vc-host">Política, desinformação e análise do comportamento · com Prof. Dr. Alexandre Dittrich (UFPR)</div>
           <span class="vc-arrow">↗</span>
         </a>
@@ -4037,8 +4137,8 @@
       <div class="video-grid">
         <a class="video-card" href="https://www.youtube.com/watch?v=HcrFzj-tDCk" target="_blank" rel="noopener">
           <div class="vc-meta">2023 · UFPR</div>
-          <div class="vc-title">Palestra — Senso Crítico UFPR</div>
-          <div class="vc-host">Senso Crítico — Universidade Federal do Paraná</div>
+          <div class="vc-title">Palestra · Senso Crítico UFPR</div>
+          <div class="vc-host">Senso Crítico · Universidade Federal do Paraná</div>
           <span class="vc-arrow">↗</span>
         </a>
       </div>
@@ -4058,19 +4158,19 @@
         <a class="video-card" href="https://www.youtube.com/watch?v=WgVesxln_-k" target="_blank" rel="noopener">
           <div class="vc-meta">2021 · IACC</div>
           <div class="vc-title">Criatividade histórica em psicoterapia: inovações e tecnologias nas ondas da terapia comportamental</div>
-          <div class="vc-host">IACC Séries — com Paulo Abreu · Instituto de Análise do Comportamento de Curitiba</div>
+          <div class="vc-host">IACC Séries · com Paulo Abreu · Instituto de Análise do Comportamento de Curitiba</div>
           <span class="vc-arrow">↗</span>
         </a>
         <a class="video-card" href="https://www.youtube.com/watch?v=EpS5-JSan5g" target="_blank" rel="noopener">
           <div class="vc-meta">2021 · Instituto Par</div>
           <div class="vc-title">Criatividade: suas origens e produtos em perspectiva comportamental</div>
-          <div class="vc-host">Live — Instituto Par · com Dr. Henrique Angelo</div>
+          <div class="vc-host">Live · Instituto Par · com Dr. Henrique Angelo</div>
           <span class="vc-arrow">↗</span>
         </a>
         <a class="video-card" href="https://www.youtube.com/watch?v=8Cu1mx6GJUs" target="_blank" rel="noopener">
           <div class="vc-meta">2021 · ABPMC</div>
           <div class="vc-title">Revista Brasileira de Terapia Comportamental e Cognitiva (RBTCC)</div>
-          <div class="vc-host">Canal ABPMC — Canal dos Berrekas</div>
+          <div class="vc-host">Canal ABPMC · Canal dos Berrekas</div>
           <span class="vc-arrow">↗</span>
         </a>
       </div>
@@ -4086,7 +4186,7 @@
         <a class="video-card" href="https://www.youtube.com/watch?v=EICJk5i-PtQ" target="_blank" rel="noopener">
           <div class="vc-meta">2020 · JAC</div>
           <div class="vc-title">Problemas, resoluções e crises: a necessidade da criatividade em situações-problema</div>
-          <div class="vc-host">JAC Online — em tempos de pandemia</div>
+          <div class="vc-host">JAC Online · em tempos de pandemia</div>
           <span class="vc-arrow">↗</span>
         </a>
       </div>
@@ -4096,7 +4196,7 @@
         <a class="video-card" href="https://www.youtube.com/watch?v=nd92awvdm1w" target="_blank" rel="noopener">
           <div class="vc-meta">2019 · UFABC</div>
           <div class="vc-title">Estética experimental: Por que gostamos ou não gostamos de uma obra de arte?</div>
-          <div class="vc-host">Conversas Neuromusicais — NEUROMÚSICA UFABC</div>
+          <div class="vc-host">Conversas Neuromusicais · NEUROMÚSICA UFABC</div>
           <span class="vc-arrow">↗</span>
         </a>
         <a class="video-card" href="https://www.youtube.com/watch?v=NbXt3Vw7-pM" target="_blank" rel="noopener">
@@ -4112,7 +4212,7 @@
         <a class="video-card" href="https://www.youtube.com/watch?v=wwgGA_MXGcM" target="_blank" rel="noopener">
           <div class="vc-meta">2018 · UFABC</div>
           <div class="vc-title">Processos psicológicos da criação: fontes operantes da criatividade e interfaces com as neurociências</div>
-          <div class="vc-host">Ciclo Conversas Neuromusicais — NEUROMÚSICA UFABC</div>
+          <div class="vc-host">Ciclo Conversas Neuromusicais · NEUROMÚSICA UFABC</div>
           <span class="vc-arrow">↗</span>
         </a>
       </div>
@@ -4121,7 +4221,7 @@
       <div class="video-grid">
         <a class="video-card" href="https://www.youtube.com/watch?v=6q7l4DzZxtA" target="_blank" rel="noopener">
           <div class="vc-meta">2016 · ACBr</div>
-          <div class="vc-title">ACBr Indica — Hernando Borges</div>
+          <div class="vc-title">ACBr Indica · Hernando Borges</div>
           <div class="vc-host">ACBr Análise do Comportamento</div>
           <span class="vc-arrow">↗</span>
         </a>
@@ -4166,14 +4266,14 @@
       </button>
     </div>
 
-    <div class="gallery-empty" id="gallery-empty">Nenhum ano aberto — escolha um ano acima para ver as fotos.</div>
+    <div class="gallery-empty" id="gallery-empty">Nenhum ano aberto. Escolha um ano acima para ver as fotos.</div>
 
     <!-- 2021 -->
     <div class="gallery-panel" data-panel="2021">
       <span class="gallery-caption">2021 · 1 foto</span>
       <div class="photo-grid" id="grid-2021">
         <div class="photo-item" onclick="openLightbox('2021',0)">
-          <img loading="lazy" decoding="async" src="img/2021_01.jpg" alt="CRIACOM 2021 — Hernando no biotério da UEL com os ratos">
+          <img loading="lazy" decoding="async" src="img/2021_01.jpg" alt="CRIACOM 2021 · Hernando no biotério da UEL com os ratos">
           <div class="photo-overlay"></div>
         </div>
       </div>
@@ -4184,27 +4284,27 @@
       <span class="gallery-caption">2022 · 6 fotos</span>
       <div class="photo-grid" id="grid-2022">
         <div class="photo-item" onclick="openLightbox('2022',0)">
-          <img loading="lazy" decoding="async" src="img/2022_01.png" alt="CRIACOM 2022 — Qualificação Amanda Viana">
+          <img loading="lazy" decoding="async" src="img/2022_01.png" alt="CRIACOM 2022 · Qualificação Amanda Viana">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2022',1)">
-          <img loading="lazy" decoding="async" src="img/2022_02.png" alt="CRIACOM 2022 — Reunião de equipe online">
+          <img loading="lazy" decoding="async" src="img/2022_02.png" alt="CRIACOM 2022 · Reunião de equipe online">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2022',2)">
-          <img loading="lazy" decoding="async" src="img/2022_03.png" alt="CRIACOM 2022 — Palestra Hernando na Universidad de Guadalajara">
+          <img loading="lazy" decoding="async" src="img/2022_03.png" alt="CRIACOM 2022 · Palestra Hernando na Universidad de Guadalajara">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2022',3)">
-          <img loading="lazy" decoding="async" src="img/2022_04.png" alt="CRIACOM 2022 — Seminário internacional de análise do comportamento">
+          <img loading="lazy" decoding="async" src="img/2022_04.png" alt="CRIACOM 2022 · Seminário internacional de análise do comportamento">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2022',4)">
-          <img loading="lazy" decoding="async" src="img/2022_05.png" alt="CRIACOM 2022 — Defesa de mestrado Daniela Galvis Quintana">
+          <img loading="lazy" decoding="async" src="img/2022_05.png" alt="CRIACOM 2022 · Defesa de mestrado Daniela Galvis Quintana">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2022',5)">
-          <img loading="lazy" decoding="async" src="img/2022_06.png" alt="CRIACOM 2022 — Equipe presencial com máscaras">
+          <img loading="lazy" decoding="async" src="img/2022_06.png" alt="CRIACOM 2022 · Equipe presencial com máscaras">
           <div class="photo-overlay"></div>
         </div>
       </div>
@@ -4215,23 +4315,23 @@
       <span class="gallery-caption">2023 · 5 fotos</span>
       <div class="photo-grid" id="grid-2023">
         <div class="photo-item" onclick="openLightbox('2023',0)">
-          <img loading="lazy" decoding="async" src="img/2023_01.png" alt="CRIACOM 2023 — grupo de pesquisa">
+          <img loading="lazy" decoding="async" src="img/2023_01.png" alt="CRIACOM 2023 · grupo de pesquisa">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2023',1)">
-          <img loading="lazy" decoding="async" src="img/2023_02.jpg" alt="CRIACOM 2023 — reunião de equipe">
+          <img loading="lazy" decoding="async" src="img/2023_02.jpg" alt="CRIACOM 2023 · reunião de equipe">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2023',2)">
-          <img loading="lazy" decoding="async" src="img/2023_03.jpg" alt="CRIACOM 2023 — evento científico">
+          <img loading="lazy" decoding="async" src="img/2023_03.jpg" alt="CRIACOM 2023 · evento científico">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2023',3)">
-          <img loading="lazy" decoding="async" src="img/2023_04.jpg" alt="CRIACOM 2023 — congresso">
+          <img loading="lazy" decoding="async" src="img/2023_04.jpg" alt="CRIACOM 2023 · congresso">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2023',4)">
-          <img loading="lazy" decoding="async" src="img/2023_05.jpg" alt="CRIACOM 2023 — apresentação PROIC-Jr">
+          <img loading="lazy" decoding="async" src="img/2023_05.jpg" alt="CRIACOM 2023 · apresentação PROIC-Jr">
           <div class="photo-overlay"></div>
         </div>
       </div>
@@ -4242,15 +4342,15 @@
       <span class="gallery-caption">2024 · 3 fotos</span>
       <div class="photo-grid" id="grid-2024">
         <div class="photo-item" onclick="openLightbox('2024',0)">
-          <img loading="lazy" decoding="async" src="img/2024_01.png" alt="CRIACOM 2024 — Sala do CRIACOM na UEL">
+          <img loading="lazy" decoding="async" src="img/2024_01.png" alt="CRIACOM 2024 · Sala do CRIACOM na UEL">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2024',1)">
-          <img loading="lazy" decoding="async" src="img/2024_02.png" alt="CRIACOM 2024 — Reunião de equipe presencial">
+          <img loading="lazy" decoding="async" src="img/2024_02.png" alt="CRIACOM 2024 · Reunião de equipe presencial">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2024',2)">
-          <img loading="lazy" decoding="async" src="img/2024_03.png" alt="CRIACOM 2024 — Congresso CPAC UEL">
+          <img loading="lazy" decoding="async" src="img/2024_03.png" alt="CRIACOM 2024 · Congresso CPAC UEL">
           <div class="photo-overlay"></div>
         </div>
       </div>
@@ -4261,35 +4361,35 @@
       <span class="gallery-caption">2025 · 8 fotos</span>
       <div class="photo-grid" id="grid-2025">
         <div class="photo-item" onclick="openLightbox('2025',0)">
-          <img loading="lazy" decoding="async" src="img/2025_01.png" alt="CRIACOM 2025 — Equipe na Clínica Psicológica UEL">
+          <img loading="lazy" decoding="async" src="img/2025_01.png" alt="CRIACOM 2025 · Equipe na Clínica Psicológica UEL">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',1)">
-          <img loading="lazy" decoding="async" src="img/2025_02.png" alt="CRIACOM 2025 — Demonstração de game design em evento">
+          <img loading="lazy" decoding="async" src="img/2025_02.png" alt="CRIACOM 2025 · Demonstração de game design em evento">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',2)">
-          <img loading="lazy" decoding="async" src="img/2025_03.png" alt="CRIACOM 2025 — Stand do CRIACOM em congresso">
+          <img loading="lazy" decoding="async" src="img/2025_03.png" alt="CRIACOM 2025 · Stand do CRIACOM em congresso">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',3)">
-          <img loading="lazy" decoding="async" src="img/2025_04.png" alt="CRIACOM 2025 — Congresso de análise do comportamento">
+          <img loading="lazy" decoding="async" src="img/2025_04.png" alt="CRIACOM 2025 · Congresso de análise do comportamento">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',4)">
-          <img loading="lazy" decoding="async" src="img/2025_05.png" alt="CRIACOM 2025 — Turma em aula ou evento científico">
+          <img loading="lazy" decoding="async" src="img/2025_05.png" alt="CRIACOM 2025 · Turma em aula ou evento científico">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',5)">
-          <img loading="lazy" decoding="async" src="img/2025_06.png" alt="CRIACOM 2025 — XXXIV Encontro da ABPMC">
+          <img loading="lazy" decoding="async" src="img/2025_06.png" alt="CRIACOM 2025 · XXXIV Encontro da ABPMC">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',6)">
-          <img loading="lazy" decoding="async" src="img/2025_07.png" alt="CRIACOM 2025 — Apresentação com projeção de vídeo do laboratório">
+          <img loading="lazy" decoding="async" src="img/2025_07.png" alt="CRIACOM 2025 · Apresentação com projeção de vídeo do laboratório">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2025',7)">
-          <img loading="lazy" decoding="async" src="img/2025_08.png" alt="CRIACOM 2025 — Reunião do GT ANPEPP">
+          <img loading="lazy" decoding="async" src="img/2025_08.png" alt="CRIACOM 2025 · Reunião do GT ANPEPP">
           <div class="photo-overlay"></div>
         </div>
       </div>
@@ -4300,31 +4400,31 @@
       <span class="gallery-caption">2026 · 7 fotos</span>
       <div class="photo-grid" id="grid-2026">
         <div class="photo-item" onclick="openLightbox('2026',0)">
-          <img loading="lazy" decoding="async" src="img/2026_01.png" alt="CRIACOM 2026 — Hernando em palestra">
+          <img loading="lazy" decoding="async" src="img/2026_01.png" alt="CRIACOM 2026 · Hernando em palestra">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2026',1)">
-          <img loading="lazy" decoding="async" src="img/2026_02.png" alt="CRIACOM 2026 — Painel do trabalho vencedor CPAC-UEL">
+          <img loading="lazy" decoding="async" src="img/2026_02.png" alt="CRIACOM 2026 · Painel do trabalho vencedor CPAC-UEL">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2026',2)">
-          <img loading="lazy" decoding="async" src="img/2026_03.png" alt="CRIACOM 2026 — Mesa no VIII CPAC-UEL 2026">
+          <img loading="lazy" decoding="async" src="img/2026_03.png" alt="CRIACOM 2026 · Mesa no VIII CPAC-UEL 2026">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2026',3)">
-          <img loading="lazy" decoding="async" src="img/2026_04.png" alt="CRIACOM 2026 — Hernando, Yulla e pesquisador no CPAC">
+          <img loading="lazy" decoding="async" src="img/2026_04.png" alt="CRIACOM 2026 · Hernando, Yulla e pesquisador no CPAC">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2026',4)">
-          <img loading="lazy" decoding="async" src="img/2026_05.png" alt="CRIACOM 2026 — Possibilidades de Intervenção Comunitária">
+          <img loading="lazy" decoding="async" src="img/2026_05.png" alt="CRIACOM 2026 · Possibilidades de Intervenção Comunitária">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2026',5)">
-          <img loading="lazy" decoding="async" src="img/2026_06.png" alt="CRIACOM 2026 — Mesa no VIII CPAC-UEL">
+          <img loading="lazy" decoding="async" src="img/2026_06.png" alt="CRIACOM 2026 · Mesa no VIII CPAC-UEL">
           <div class="photo-overlay"></div>
         </div>
         <div class="photo-item" onclick="openLightbox('2026',6)">
-          <img loading="lazy" decoding="async" src="img/2026_08.png" alt="CRIACOM 2026 — Como Mudar o Mundo com Ciência Aplicada">
+          <img loading="lazy" decoding="async" src="img/2026_08.png" alt="CRIACOM 2026 · Como Mudar o Mundo com Ciência Aplicada">
           <div class="photo-overlay"></div>
         </div>
       </div>
@@ -4344,7 +4444,7 @@
       <div class="award-row">
         <span class="yr">2026</span>
         <div class="info">
-          <strong>Prêmio de Melhor Trabalho Apresentado — CPAC-UEL 2026</strong>
+          <strong>Prêmio de Melhor Trabalho Apresentado · CPAC-UEL 2026</strong>
           <em>Teoria dos Fundamentos Morais e Análise do Comportamento</em>
           <span class="org">Congresso de Psicologia e Análise do Comportamento · Universidade Estadual de Londrina</span>
           <span class="org">Autoria: Murilo Lecce Regiani · CRIACOM-UEL</span>
@@ -4354,7 +4454,7 @@
             <div class="award-row">
         <span class="yr">2016</span>
         <div class="info">
-          <strong>Menção Honrosa — Prêmio Carolina Martuscelli Bori</strong> (categoria Doutorado)
+          <strong>Menção Honrosa · Prêmio Carolina Martuscelli Bori</strong> (categoria Doutorado)
           <span class="org">Sociedade Brasileira de Psicologia (SBP)</span>
         </div>
       </div>
@@ -4368,14 +4468,14 @@
       <div class="award-row">
         <span class="yr">2013</span>
         <div class="info">
-          <strong>Menção Honrosa por co-orientação</strong> — 21º Simpósio Internacional de Iniciação Científica da USP (SICUSP)
+          <strong>Menção Honrosa por co-orientação</strong> · 21º Simpósio Internacional de Iniciação Científica da USP (SICUSP)
           <span class="org">Universidade de São Paulo</span>
         </div>
       </div>
       <div class="award-row">
         <span class="yr">2011</span>
         <div class="info">
-          <strong>Prêmio Reinier Johannes Antonius Rozestraten — Melhor Painel</strong> — 41ª Reunião Anual da SBP
+          <strong>Prêmio Reinier Johannes Antonius Rozestraten · Melhor Painel</strong> · 41ª Reunião Anual da SBP
           <span class="org">Sociedade Brasileira de Psicologia (SBP)</span>
           <a class="award-dl" href="https://www.researchgate.net/publication/311946337_Engenharia_social_em_macacos-prego_em_cativeiro_Um_possivel_programa_de_enriquecimento_ambiental" target="_blank" rel="noopener">↗ Ver painel</a>
         </div>
@@ -4390,6 +4490,7 @@
       <div class="tag">§ 10 · história</div>
       <h2>Uma década de <em>ciência comportamental.</em></h2>
     </div>
+    <p class="secao-intro">A pré-história do CRIACOM! O grupo nasceu na USP em 2011 e ficou lá até 2014. Depois teve sede em Belém, no Pará, e em Fortaleza, no Ceará, até 2020. Em 2021 fixou-se na UEL.</p>
   </div>
 
   <div class="container">
@@ -4398,21 +4499,21 @@
       <!-- Evento 1: ABPMC 2018 -->
       <div class="historia-event he-with-img">
         <div class="he-img-wrap">
-          <img src="img/encontro_criacom_maranhao_2018.jpg" alt="1º Encontro do CRIACOM — ABPMC São Luís do Maranhão, 2018">
+          <img src="img/encontro_criacom_maranhao_2018.jpg" alt="1º Encontro do CRIACOM · ABPMC São Luís do Maranhão, 2018">
           <span class="he-img-caption">São Luís, Maranhão · Setembro 2018 · ABPMC</span>
         </div>
         <div class="he-body">
           <div class="he-tag">1º Encontro do CRIACOM · São Luís, MA · 2018</div>
-          <div class="he-title">Simpósio <em>A Investigação Operante da Criatividade e Inovação</em> — ABPMC</div>
+          <div class="he-title">Simpósio <em>A Investigação Operante da Criatividade e Inovação</em> · ABPMC</div>
           <p class="he-desc">
-            Primeiro encontro presencial do grupo, durante o Encontro Brasileiro de Psicologia e Medicina Comportamental da ABPMC no Maranhão. Reuniu os pesquisadores fundadores para apresentação e debate da agenda de pesquisa translacional em criatividade e comportamento animal.
+            Primeiro encontro presencial do grupo, durante o Encontro Brasileiro de Psicologia e Medicina Comportamental da ABPMC no Maranhão. Reuniu os pesquisadores fundadores para debater a agenda de pesquisa translacional em criatividade e comportamento animal.
           </p>
           <div class="he-doc-links">
             <a class="he-doc-link" href="https://www.researchgate.net/publication/327281744_Caderno_de_resumos_do_simposio_A_Investigacao_Operante_da_Criatividade_e_Inovacao_CRIACOM_-_ABPMC_2018" target="_blank" rel="noopener">
               <span class="hdl-icon">↓</span>
               <div class="hdl-body">
                 <div class="hdl-type">Download · ResearchGate</div>
-                <div class="hdl-title">Caderno de Resumos — ABPMC 2018</div>
+                <div class="hdl-title">Caderno de Resumos · ABPMC 2018</div>
                 <div class="hdl-src">Simpósio A Investigação Operante da Criatividade e Inovação</div>
               </div>
             </a>
@@ -4420,7 +4521,7 @@
               <span class="hdl-icon">↓</span>
               <div class="hdl-body">
                 <div class="hdl-type">Download · ResearchGate</div>
-                <div class="hdl-title">Boletim CRIACOM — Vol. 1</div>
+                <div class="hdl-title">Boletim CRIACOM · Vol. 1</div>
                 <div class="hdl-src">Setembro 2018 · Resumo do 1º Encontro</div>
               </div>
             </a>
@@ -4431,14 +4532,14 @@
       <!-- Evento 2: Encontro remoto 2023 -->
       <div class="historia-event he-with-img">
         <div class="he-img-wrap">
-          <img src="img/encontro_criacom_remoto_2023.png" alt="2º Encontro do CRIACOM — Programação do evento remoto, outubro 2022" style="object-position:top center">
+          <img src="img/encontro_criacom_remoto_2023.png" alt="2º Encontro do CRIACOM · Programação do evento remoto, outubro 2022" style="object-position:top center">
           <span class="he-img-caption">Programação · 2º Encontro do CRIACOM · Outubro 2022 · Online</span>
         </div>
         <div class="he-body">
           <div class="he-tag">2º Encontro do CRIACOM · Remoto · Outubro 2022</div>
-          <div class="he-title">Segundo Encontro do CRIACOM — <em>participações internacionais</em></div>
+          <div class="he-title">Segundo Encontro do CRIACOM · <em>participações internacionais</em></div>
           <p class="he-desc">
-            Realizado remotamente em outubro de 2022, o segundo encontro reuniu pesquisadores de USP, UFC, UFPA, UFRA, UFES, UNIFAMETRO, UFMT e instituições internacionais — University of Reno (EUA) e University of Guadalajara (México). A palestra principal foi da Dra. Ramona A. Houmanfar (University of Reno). O formato online permitiu ampliar o alcance do CRIACOM para além do Brasil pela primeira vez.
+            Realizado remotamente em outubro de 2022, o segundo encontro reuniu pesquisadores de USP, UFC, UFPA, UFRA, UFES, UNIFAMETRO, UFMT e instituições internacionais: University of Reno (EUA) e University of Guadalajara (México). A palestra principal foi da Dra. Ramona A. Houmanfar (University of Reno). Foi a primeira vez que o grupo reuniu participantes de fora do Brasil.
           </p>
         </div>
       </div>
@@ -4463,7 +4564,7 @@
       <div class="cb-tag">Entre em contato</div>
       <h3>Interessad@ em pesquisar com o <em>CRIACOM</em>?<br>Mande um e-mail!</h3>
       <p>
-        Recebemos inscrições de candidatos interessados em desenvolver pesquisa no laboratório nas modalidades de <strong>mestrado</strong>, <strong>doutorado</strong> e <strong>pós-doutorado</strong>. Se você tem interesse em criatividade e comportamento, desinformação e análise do comportamento cultural, ou behavioral game design, entre em contato — apresentando seu currículo e uma breve descrição do seu interesse de pesquisa.
+        Recebemos inscrições de candidatos interessados em desenvolver pesquisa no laboratório nas modalidades de <strong>mestrado</strong>, <strong>doutorado</strong> e <strong>pós-doutorado</strong>. Se você tem interesse em criatividade e comportamento, desinformação e análise do comportamento cultural, ou behavioral game design, entre em contato.
       </p>
     </div>
     <div class="contact-box-email">
@@ -4641,46 +4742,46 @@
   // ── Lightbox ───────────────────────────────────────────────────
   var galleries = {
     '2026': [
-      {src:'img/2026_01.png', alt:'CRIACOM 2026 — Hernando em palestra'},
-      {src:'img/2026_02.png', alt:'CRIACOM 2026 — Painel do trabalho vencedor CPAC-UEL'},
-      {src:'img/2026_03.png', alt:'CRIACOM 2026 — Mesa no VIII CPAC-UEL 2026'},
-      {src:'img/2026_04.png', alt:'CRIACOM 2026 — Hernando, Yulla e pesquisador no CPAC'},
-      {src:'img/2026_05.png', alt:'CRIACOM 2026 — Possibilidades de Intervenção Comunitária'},
-      {src:'img/2026_06.png', alt:'CRIACOM 2026 — Mesa no VIII CPAC-UEL'},
-      {src:'img/2026_08.png', alt:'CRIACOM 2026 — Como Mudar o Mundo com Ciência Aplicada'}
+      {src:'img/2026_01.png', alt:'CRIACOM 2026 · Hernando em palestra'},
+      {src:'img/2026_02.png', alt:'CRIACOM 2026 · Painel do trabalho vencedor CPAC-UEL'},
+      {src:'img/2026_03.png', alt:'CRIACOM 2026 · Mesa no VIII CPAC-UEL 2026'},
+      {src:'img/2026_04.png', alt:'CRIACOM 2026 · Hernando, Yulla e pesquisador no CPAC'},
+      {src:'img/2026_05.png', alt:'CRIACOM 2026 · Possibilidades de Intervenção Comunitária'},
+      {src:'img/2026_06.png', alt:'CRIACOM 2026 · Mesa no VIII CPAC-UEL'},
+      {src:'img/2026_08.png', alt:'CRIACOM 2026 · Como Mudar o Mundo com Ciência Aplicada'}
     ],
     '2025': [
-      {src:'img/2025_01.png', alt:'CRIACOM 2025 — Equipe na Clínica Psicológica UEL'},
-      {src:'img/2025_02.png', alt:'CRIACOM 2025 — Demonstração de game design em evento'},
-      {src:'img/2025_03.png', alt:'CRIACOM 2025 — Stand do CRIACOM em congresso'},
-      {src:'img/2025_04.png', alt:'CRIACOM 2025 — Congresso de análise do comportamento'},
-      {src:'img/2025_05.png', alt:'CRIACOM 2025 — Turma em aula ou evento científico'},
-      {src:'img/2025_06.png', alt:'CRIACOM 2025 — XXXIV Encontro da ABPMC'},
-      {src:'img/2025_07.png', alt:'CRIACOM 2025 — Apresentação com projeção de vídeo do laboratório'},
-      {src:'img/2025_08.png', alt:'CRIACOM 2025 — Reunião do GT ANPEPP'}
+      {src:'img/2025_01.png', alt:'CRIACOM 2025 · Equipe na Clínica Psicológica UEL'},
+      {src:'img/2025_02.png', alt:'CRIACOM 2025 · Demonstração de game design em evento'},
+      {src:'img/2025_03.png', alt:'CRIACOM 2025 · Stand do CRIACOM em congresso'},
+      {src:'img/2025_04.png', alt:'CRIACOM 2025 · Congresso de análise do comportamento'},
+      {src:'img/2025_05.png', alt:'CRIACOM 2025 · Turma em aula ou evento científico'},
+      {src:'img/2025_06.png', alt:'CRIACOM 2025 · XXXIV Encontro da ABPMC'},
+      {src:'img/2025_07.png', alt:'CRIACOM 2025 · Apresentação com projeção de vídeo do laboratório'},
+      {src:'img/2025_08.png', alt:'CRIACOM 2025 · Reunião do GT ANPEPP'}
     ],
     '2024': [
-      {src:'img/2024_01.png', alt:'CRIACOM 2024 — Sala do CRIACOM na UEL'},
-      {src:'img/2024_02.png', alt:'CRIACOM 2024 — Reunião de equipe presencial'},
-      {src:'img/2024_03.png', alt:'CRIACOM 2024 — Congresso CPAC UEL'}
+      {src:'img/2024_01.png', alt:'CRIACOM 2024 · Sala do CRIACOM na UEL'},
+      {src:'img/2024_02.png', alt:'CRIACOM 2024 · Reunião de equipe presencial'},
+      {src:'img/2024_03.png', alt:'CRIACOM 2024 · Congresso CPAC UEL'}
     ],
     '2021': [
-      {src:'img/2021_01.jpg', alt:'CRIACOM 2021 — Hernando no biotério da UEL com os ratos'}
+      {src:'img/2021_01.jpg', alt:'CRIACOM 2021 · Hernando no biotério da UEL com os ratos'}
     ],
     '2022': [
-      {src:'img/2022_01.png', alt:'CRIACOM 2022 — Qualificação Amanda Viana'},
-      {src:'img/2022_02.png', alt:'CRIACOM 2022 — Reunião de equipe online'},
-      {src:'img/2022_03.png', alt:'CRIACOM 2022 — Palestra na Universidad de Guadalajara'},
-      {src:'img/2022_04.png', alt:'CRIACOM 2022 — Seminário internacional'},
-      {src:'img/2022_05.png', alt:'CRIACOM 2022 — Defesa de mestrado Daniela Galvis Quintana'},
-      {src:'img/2022_06.png', alt:'CRIACOM 2022 — Equipe presencial'}
+      {src:'img/2022_01.png', alt:'CRIACOM 2022 · Qualificação Amanda Viana'},
+      {src:'img/2022_02.png', alt:'CRIACOM 2022 · Reunião de equipe online'},
+      {src:'img/2022_03.png', alt:'CRIACOM 2022 · Palestra na Universidad de Guadalajara'},
+      {src:'img/2022_04.png', alt:'CRIACOM 2022 · Seminário internacional'},
+      {src:'img/2022_05.png', alt:'CRIACOM 2022 · Defesa de mestrado Daniela Galvis Quintana'},
+      {src:'img/2022_06.png', alt:'CRIACOM 2022 · Equipe presencial'}
     ],
     '2023': [
-      {src:'img/2023_01.png', alt:'CRIACOM 2023 — grupo de pesquisa'},
-      {src:'img/2023_02.jpg', alt:'CRIACOM 2023 — reunião de equipe'},
-      {src:'img/2023_03.jpg', alt:'CRIACOM 2023 — evento científico'},
-      {src:'img/2023_04.jpg', alt:'CRIACOM 2023 — congresso'},
-      {src:'img/2023_05.jpg', alt:'CRIACOM 2023 — apresentação PROIC-Jr'}
+      {src:'img/2023_01.png', alt:'CRIACOM 2023 · grupo de pesquisa'},
+      {src:'img/2023_02.jpg', alt:'CRIACOM 2023 · reunião de equipe'},
+      {src:'img/2023_03.jpg', alt:'CRIACOM 2023 · evento científico'},
+      {src:'img/2023_04.jpg', alt:'CRIACOM 2023 · congresso'},
+      {src:'img/2023_05.jpg', alt:'CRIACOM 2023 · apresentação PROIC-Jr'}
     ]
   };
 
