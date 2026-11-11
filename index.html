@@ -86,6 +86,21 @@
   nav ul a:hover{border-color:var(--ink)}
   @media(max-width:820px){nav ul{display:none}}
 
+  .nav-ig{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:.08em;
+    color:var(--ink); text-decoration:none;
+    display:inline-flex; align-items:center; gap:7px;
+    border:1px solid var(--ink);
+    padding:6px 12px;
+    white-space:nowrap;
+    flex-shrink:0;
+    transition:background .2s, color .2s, border-color .2s;
+  }
+  .nav-ig::before{content:"◎"; font-size:13px; line-height:1}
+  .nav-ig:hover{background:var(--accent); color:var(--paper); border-color:var(--accent)}
+  @media(max-width:520px){.nav-ig{font-size:9.5px; padding:5px 9px; gap:5px}}
+
   .hero{
     padding:80px 0 56px;
     border-bottom:1px solid var(--ink);
@@ -154,7 +169,7 @@
   section#jogos {
     background: #0a0a0f;
     border-bottom: 1px solid var(--ink);
-    padding: 80px 0;
+    padding: 60px 0;
     position: relative;
     overflow: hidden;
   }
@@ -170,123 +185,59 @@
   section#jogos .section-head .tag { color: #f07818; opacity: .7; }
   section#jogos .section-head h2 { color: #f3efe6; }
   section#jogos .section-head h2 em { color: #f07818; }
-  .jogos-intro {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: clamp(16px, 1.5vw, 19px);
-    color: rgba(243,239,230,.65);
-    max-width: 680px;
-    line-height: 1.55;
-    margin-bottom: 52px;
-  }
-  .jogos-serie-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    color: #f07818;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .jogos-serie-label::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: rgba(240,120,24,.3);
-  }
-  .jogos-grid {
+  .jogos-compact {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: 210px 1fr;
+    gap: 36px;
+    align-items: center;
+    border: 1px solid rgba(240,120,24,.25);
+    background: rgba(240,120,24,.04);
+    padding: 28px;
   }
-  @media(max-width: 640px) { .jogos-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
-  .jogo-card {
-    position: relative;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,.07);
-    background: #111118;
-    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
+  @media(max-width: 720px) {
+    .jogos-compact { grid-template-columns: 1fr; gap: 24px; padding: 22px; }
   }
-  .jogo-card:hover {
-    transform: translateY(-6px) scale(1.015);
-    box-shadow: 0 20px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(240,120,24,.4);
-    border-color: rgba(240,120,24,.4);
-  }
-  .jogo-card.em-breve { cursor: default; }
-  .jogo-card.em-breve:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0,0,0,.5);
-    border-color: rgba(255,255,255,.1);
-  }
-  .jogo-cover {
+  .jogos-compact-cover {
     display: block;
     width: 100%;
     aspect-ratio: 3/4;
     object-fit: cover;
     object-position: top;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 4px;
   }
-  .jogo-card-footer {
-    padding: 12px 14px 14px;
+  @media(max-width: 720px) {
+    .jogos-compact-cover { max-width: 190px; margin: 0 auto; }
+  }
+  .jogos-compact-body {
     display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .jogos-compact-text {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: rgba(243,239,230,.62);
+    max-width: 60ch;
+  }
+  .jogos-cta {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    background: #111118;
-  }
-  .jogo-vol {
+    gap: 10px;
+    align-self: flex-start;
+    padding: 13px 24px;
+    background: #f07818;
+    color: #0a0a0f;
+    text-decoration: none;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: .2em;
-    color: rgba(243,239,230,.35);
-    text-transform: uppercase;
-    flex-shrink: 0;
-  }
-  .jogo-play-btn {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    padding: 5px 10px;
-    border-radius: 3px;
-    border: 1px solid;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .jogo-card:not(.em-breve) .jogo-play-btn {
-    color: #f07818;
-    border-color: rgba(240,120,24,.5);
-    background: rgba(240,120,24,.08);
-  }
-  .jogo-card:not(.em-breve):hover .jogo-play-btn {
-    background: rgba(240,120,24,.18);
-    border-color: #f07818;
-  }
-  .jogo-card.em-breve .jogo-play-btn {
-    color: rgba(243,239,230,.25);
-    border-color: rgba(243,239,230,.1);
-    background: transparent;
-  }
-  .jogo-em-breve-overlay {
-    position: absolute;
-    top: 12px; right: 12px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 8px;
+    font-size: 11px;
     letter-spacing: .18em;
     text-transform: uppercase;
-    color: rgba(243,239,230,.5);
-    background: rgba(0,0,0,.7);
-    border: 1px solid rgba(255,255,255,.1);
-    padding: 4px 8px;
-    border-radius: 3px;
-    backdrop-filter: blur(4px);
+    font-weight: 700;
+    transition: background .2s, transform .15s;
   }
-  .jogo-card:not(.em-breve) .jogo-em-breve-overlay { display: none; }
+  .jogos-cta:hover { background: #f3efe6; transform: translateY(-2px); }
+  @media(max-width: 720px) { .jogos-cta { align-self: stretch; justify-content: center; } }
 
   /* ── LINHAS DE PESQUISA: layout horizontal em faixas ── */
   .lines-grid{
@@ -830,13 +781,27 @@
 
   /* ===== LOGO ===== */
   .foot-logo-wrap{
-    padding:32px 0 0;
+    padding:32px 0 22px;
     border-bottom:1px solid rgba(243,239,230,.15);
     margin-bottom:36px;
     display:flex;
     align-items:center;
+    flex-wrap:wrap;
     gap:20px;
   }
+  .foot-ig{
+    display:inline-flex; align-items:center; gap:9px;
+    margin-left:auto;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:.1em;
+    color:var(--paper); text-decoration:none;
+    border:1px solid rgba(243,239,230,.35);
+    padding:10px 18px;
+    transition:background .2s, color .2s, border-color .2s;
+  }
+  .foot-ig::before{content:"◎"; font-size:14px; line-height:1}
+  .foot-ig:hover{background:var(--accent); border-color:var(--accent); color:var(--paper)}
+  @media(max-width:680px){.foot-ig{margin-left:0}}
   .foot-logo-main{
     height:80px; width:auto;
     display:block;
@@ -1000,6 +965,18 @@
     padding:2px 9px;
     font-size:9px; letter-spacing:.12em;
   }
+  .abai-callout{
+    display:inline-flex; align-items:center; gap:12px;
+    background:var(--accent); color:var(--paper);
+    font-family:'JetBrains Mono',monospace;
+    font-size:clamp(12px,1.5vw,16px);
+    letter-spacing:.06em; text-transform:uppercase; font-weight:700;
+    line-height:1.3;
+    padding:13px 22px;
+    margin-bottom:24px;
+  }
+  .abai-callout::before{content:"▶"; font-size:14px; flex-shrink:0}
+  @media(max-width:600px){.abai-callout{font-size:11.5px; padding:11px 15px; gap:9px}}
   .abai-unified-body{
     display:grid;
     grid-template-columns:1fr 340px;
@@ -1795,108 +1772,107 @@
   }
 
   /* ===== HEX-BOX COMPACTO ===== */
-  .hex-box{
+  /* ===== NOVA PUBLICAÇÃO EM DESTAQUE ===== */
+  .pubfeat-box{
     background:#0d0d0d;
-    border-top:2px solid #E8499F;
-    border-bottom:2px solid #E8499F;
+    border-top:2px solid var(--accent);
+    border-bottom:2px solid var(--accent);
+    padding:52px 0;
+    position:relative;
     overflow:hidden;
-    position:relative;
-    cursor:pointer;
   }
-  .hex-box a{text-decoration:none}
-  .hex-box-compact{
-    display:flex;
-    align-items:center;
-    gap:0;
-    min-height:140px;
-    position:relative;
-  }
-  .hex-avatar{
-    flex-shrink:0;
-    width:200px;
-    position:relative;
-    overflow:visible;
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
-    padding-bottom:0;
-  }
-  .hex-avatar img{
-    width:210px;
-    height:auto;
-    display:block;
-    position:relative;
-    bottom:-8px;
-    filter:drop-shadow(0 0 18px rgba(232,73,159,.35));
-    transition:transform .4s ease, filter .4s;
-  }
-  .hex-box:hover .hex-avatar img{
-    transform:translateY(-6px) rotate(-3deg);
-    filter:drop-shadow(0 0 28px rgba(232,73,159,.6));
-  }
-  .hex-compact-body{
-    flex:1;
-    padding:32px 36px 32px 24px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-  .hex-compact-tag{
-    font-family:'JetBrains Mono',monospace;
-    font-size:9px; letter-spacing:.28em; text-transform:uppercase;
-    color:rgba(232,73,159,.6);
-    display:flex; align-items:center; gap:8px;
-  }
-  .hex-compact-tag::before{content:"★"; color:#E8499F}
-  .hex-compact-title{
-    font-family:'Fraunces',serif;
-    font-variation-settings:"opsz" 72,"WONK" 1;
-    font-size:clamp(20px,3.2vw,38px);
-    font-weight:400; line-height:.95;
-    letter-spacing:-.03em;
-    color:#f5f0e8;
-  }
-  .hex-compact-title em{
-    font-style:italic; color:#E8499F;
-  }
-  .hex-compact-sub{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px; letter-spacing:.1em;
-    color:rgba(245,240,232,.35);
-    font-style:normal;
-  }
-  .hex-compact-cta{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:10px 22px;
-    background:transparent;
-    border:1px solid rgba(232,73,159,.5);
-    color:#E8499F;
-    font-family:'JetBrains Mono',monospace;
-    font-size:10px; letter-spacing:.18em; text-transform:uppercase;
-    font-weight:700;
-    transition:background .25s, border-color .25s, color .25s;
-    align-self:flex-start;
-    margin-top:4px;
-  }
-  .hex-box:hover .hex-compact-cta{
-    background:#E8499F;
-    border-color:#E8499F;
-    color:#0d0d0d;
-  }
-  .hex-noise{
-    position:absolute;
-    right:0; top:0; bottom:0;
-    width:180px;
-    background:linear-gradient(to right, transparent, rgba(232,73,159,.04));
+  .pubfeat-box::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(240,120,24,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240,120,24,.045) 1px, transparent 1px);
+    background-size:44px 44px;
     pointer-events:none;
   }
+  .pubfeat-inner{
+    position:relative;
+    z-index:2;
+  }
+
+  .pubfeat-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px; letter-spacing:.28em; text-transform:uppercase;
+    color:rgba(240,120,24,.75);
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+  .pubfeat-tag::before{content:"★"; color:var(--accent)}
+  .pubfeat-tag .pubfeat-new{
+    background:var(--accent); color:#0d0d0d;
+    padding:3px 9px; font-weight:700; letter-spacing:.14em;
+  }
+  .pubfeat-title{
+    font-family:'Fraunces',serif;
+    font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+    font-weight:400;
+    font-size:clamp(26px,3.8vw,46px);
+    line-height:.98;
+    letter-spacing:-.03em;
+    color:#f5f0e8;
+    margin-bottom:16px;
+  }
+  .pubfeat-title em{font-style:italic; color:var(--accent)}
+  .pubfeat-meta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:rgba(245,240,232,.42);
+    margin-bottom:8px;
+  }
+  .pubfeat-doi{text-transform:none; letter-spacing:.04em}
+  .pubfeat-authors{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:.06em;
+    color:rgba(245,240,232,.62);
+    margin-bottom:18px;
+  }
+  .pubfeat-abstract{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:16.5px; line-height:1.6;
+    color:rgba(245,240,232,.72);
+    max-width:62ch;
+  }
+  .pubfeat-abstract em{font-style:normal}
+  .pubfeat-cta-wrap{
+    margin-top:26px;
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  }
+  .pubfeat-cta{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 26px;
+    background:var(--accent); color:#0d0d0d;
+    text-decoration:none;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+    font-weight:700;
+    transition:background .2s, transform .15s;
+  }
+  .pubfeat-cta:hover{
+    background:#f5f0e8;
+    transform:translateY(-2px);
+  }
+  .pubfeat-cta .btn-icon{font-size:15px; line-height:1}
+  .pubfeat-cta .btn-sub{
+    display:block;
+    font-size:9px; letter-spacing:.1em; font-weight:400;
+    opacity:.72; margin-top:2px;
+  }
+  .pubfeat-badge{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    color:rgba(240,120,24,.85);
+    border:1px solid rgba(240,120,24,.4);
+    padding:6px 14px;
+  }
   @media(max-width:680px){
-    .hex-avatar{width:120px}
-    .hex-avatar img{width:130px}
-    .hex-compact-body{padding:24px 20px}
-    .hex-noise{display:none}
+    .pubfeat-box{padding:40px 0}
+    .pubfeat-cta{width:100%; justify-content:center; text-align:center}
   }
 
   /* ===== LIVROS DESTAQUE ===== */
@@ -2614,6 +2590,7 @@
       <li><a href="#reconhecimento">Destaque</a></li>
       <li><a href="#midia">Mídia</a></li>
     </ul>
+    <a class="nav-ig" href="https://www.instagram.com/criacom.uel/" target="_blank" rel="noopener">@criacom.uel</a>
   </div>
 </nav>
 
@@ -2664,18 +2641,18 @@
         <a class="promo-card-hi" href="#webinar">
           <div class="pc-num">Destaque<br>01</div>
           <div>
-            <div class="pc-label">Webinar · ABAI · Jan 2026</div>
-            <div class="pc-title">Internet como câmara operante</div>
+            <div class="pc-label">Webinar · ABAI · Internet como câmara operante</div>
+            <div class="pc-title">Assista ao webinar do Prof. Hernando na ABAI!</div>
           </div>
           <span class="pc-arrow">↓</span>
         </a>
-        <a class="promo-card-hi" href="https://criacom.github.io/hexaverso/" target="_blank" rel="noopener">
+        <a class="promo-card-hi" href="#destaque-publicacao">
           <div class="pc-num">Destaque<br>02</div>
           <div>
-            <div class="pc-label">RPG · Beta-test aberto</div>
-            <div class="pc-title">Hexaverso — game design comportamental</div>
+            <div class="pc-label">Nova publicação · Perspectives on Behavior Science</div>
+            <div class="pc-title">Behavior Analysis and Game Design</div>
           </div>
-          <span class="pc-arrow">↗</span>
+          <span class="pc-arrow">↓</span>
         </a>
 
         <!-- Seções -->
@@ -2706,10 +2683,11 @@
       <div class="abai-unified-top">
         <div class="abai-eyebrow">
           Webinar · ABAI · Janeiro 2026
-          <span class="pill-accent">destaque</span>
+          <span class="pill-accent">assista agora</span>
         </div>
         <div class="abai-unified-body">
           <div class="abai-unified-text">
+            <div class="abai-callout">Assista ao webinar do Prof. Hernando na ABAI!</div>
             <h2 class="abai-title">
               How the Internet Became the Most Advanced <em>Operant Chamber</em> Ever Built
             </h2>
@@ -2721,8 +2699,8 @@
               <a class="abai-watch-btn" href="https://www.abainternational.org/learning-center/version3/watch-video.aspx?ikey=38444&trackid=WBN" target="_blank" rel="noopener">
                 <span class="btn-icon">▶</span>
                 <span>
-                  Veja o webinar aqui
-                  <span class="btn-sub">ABAI Learning Center · acesso gratuito</span>
+                  Assista ao webinar agora
+                  <span class="btn-sub">ABAI Learning Center · acesso gratuito · 1h</span>
                 </span>
               </a>
               <span class="abai-ce-badge">CE Ethics · 1.0h · BACB/IBAO</span>
@@ -2737,21 +2715,35 @@
   </div>
 </section>
 
-<div class="hex-box">
-  <a href="https://criacom.github.io/hexaverso/" target="_blank" rel="noopener">
-    <div class="hex-box-compact">
-      <div class="hex-avatar">
-        <img src="img/hex_avatar.png" alt="Personagem do Hexaverso">
+<div class="pubfeat-box" id="destaque-publicacao">
+  <div class="container">
+    <div class="pubfeat-inner">
+      <div class="pubfeat-body">
+        <div class="pubfeat-tag">
+          <span class="pubfeat-new">Nova publicação em destaque</span>
+          Novembro de 2026 · acesso aberto
+        </div>
+        <h2 class="pubfeat-title">
+          Behavior Analysis and Game Design: <em>The Contingencies of Video Game Genres</em>
+        </h2>
+        <div class="pubfeat-meta">Perspectives on Behavior Science · 09 nov 2026 · p. 1–21 · DOI <span class="pubfeat-doi">10.1007/s40614-026-00528-x</span></div>
+        <div class="pubfeat-authors">Marlon Alexandre de Oliveira · Lilian Cerri Mazza · Hernando Borges Neves Filho</div>
+        <p class="pubfeat-abstract">
+          O artigo propõe um quadro conceitual para analisar videogames por análise funcional: game design é, antes de tudo, arranjo de contingências de reforçamento e punição. Gêneros são tratados como sistemas funcionais — plataformas (precisão e modelagem), Metroidvanias (discriminação condicional e interconexão de repertórios) e RPGs de turno (regras e encadeamento). Os metassistemas que atravessam gêneros, como conquistas, placares e <em>loot boxes</em>, recebem análise própria, incluindo as implicações éticas de sua monetização.
+        </p>
+        <div class="pubfeat-cta-wrap">
+          <a class="pubfeat-cta" href="https://doi.org/10.1007/s40614-026-00528-x" target="_blank" rel="noopener">
+            <span class="btn-icon">★</span>
+            <span>
+              Leia o artigo completo
+              <span class="btn-sub">Springer · acesso livre e gratuito</span>
+            </span>
+          </a>
+          <span class="pubfeat-badge">Open Access</span>
+        </div>
       </div>
-      <div class="hex-compact-body">
-        <div class="hex-compact-tag">CRIACOM-UEL · RPG de Mesa · Beta-test aberto</div>
-        <div class="hex-compact-title">Algo estranho<br>está sendo <em>desenvolvido</em><br>no laboratório.</div>
-        <div class="hex-compact-sub">clique para saber mais →</div>
-        <span class="hex-compact-cta">★ Participe do beta-test</span>
-      </div>
-      <div class="hex-noise"></div>
     </div>
-  </a>
+  </div>
 </div>
 
 <section id="linhas">
@@ -3384,6 +3376,14 @@
     </div>
 
     <div class="pub-panel active" data-pubpanel="2026">
+      <a class="pub-item" href="https://doi.org/10.1007/s40614-026-00528-x" target="_blank" rel="noopener">
+        <div>
+          <div class="pub-title">Behavior Analysis and Game Design: The Contingencies of Video Game Genres</div>
+          <div class="pub-venue">2026 · <em>Perspectives on Behavior Science</em>, 1–21 · Springer · Open Access</div>
+          <div class="pub-authors">de Oliveira, M.A.; Mazza, L.C.; Neves Filho, H.B.</div>
+        </div>
+        <span class="pub-arrow">↗</span>
+      </a>
       <a class="pub-item" href="https://www.researchgate.net/publication/414057036_Analises_do_controle_comportamental_nas_midias_sociais" target="_blank" rel="noopener">
         <div>
           <div class="pub-title">Análises do controle comportamental nas mídias sociais</div>
@@ -3798,82 +3798,13 @@
       <h2>Micro-jogos<br><em>CRIACOM.</em></h2>
     </div>
 
-    <p class="jogos-intro">Uma série de pequeníssimos jogos didáticos de Análise do Comportamento — feitos em HTML, jogados direto no navegador. Cada volume aborda um processo básico do comportamento. Experimente!</p>
-
-    <div class="jogos-serie-label">Micro-jogos CRIACOM · Série completa</div>
-
-    <div class="jogos-grid">
-
-      <!-- Vol. 1 -->
-      <a class="jogo-card" href="https://criacom.github.io/extincao/" target="_blank" rel="noopener">
-        <img class="jogo-cover" src="img/microjogos-vol1-extincao.png" alt="Micro-jogos CRIACOM Vol. 1 — O Botão da Extinção">
-        <div class="jogo-card-footer">
-          <span class="jogo-vol">Vol. 01</span>
-          <span class="jogo-play-btn">▶ Jogar</span>
-        </div>
-      </a>
-
-      <!-- Vol. 2 -->
-      <div class="jogo-card em-breve">
-        <img class="jogo-cover" src="img/microjogos-vol2-discriminacao.png" alt="Micro-jogos CRIACOM Vol. 2 — Discriminação Espacial">
-        <span class="jogo-em-breve-overlay">Em breve</span>
-        <div class="jogo-card-footer">
-          <span class="jogo-vol">Vol. 02</span>
-          <span class="jogo-play-btn">Em breve</span>
-        </div>
+    <div class="jogos-compact">
+      <img class="jogos-compact-cover" src="img/microjogos-vol1-extincao.png" alt="Capa dos Micro-jogos CRIACOM">
+      <div class="jogos-compact-body">
+        <p class="jogos-compact-text">Uma série de pequeníssimos jogos didáticos de Análise do Comportamento, feitos em HTML e jogados direto no navegador. Cada volume toma um processo básico — extinção, discriminação, variabilidade, esquemas de reforço, desconto temporal, criatividade — e o transforma numa partida de poucos minutos. O catálogo completo, com os volumes disponíveis e os que estão por vir, fica no hotsite da série.</p>
+        <a class="jogos-cta" href="https://criacom.github.io/microjogos/" target="_blank" rel="noopener">▶ Jogar os micro-jogos</a>
       </div>
-
-      <!-- Vol. 3 -->
-      <div class="jogo-card em-breve">
-        <img class="jogo-cover" src="img/microjogos-vol3-inducao.png" alt="Micro-jogos CRIACOM Vol. 3 — Indução">
-        <span class="jogo-em-breve-overlay">Em breve</span>
-        <div class="jogo-card-footer">
-          <span class="jogo-vol">Vol. 03</span>
-          <span class="jogo-play-btn">Em breve</span>
-        </div>
-      </div>
-
-      <!-- Vol. 4 -->
-      <div class="jogo-card em-breve">
-        <img class="jogo-cover" src="img/microjogos-vol4-insight.png" alt="Micro-jogos CRIACOM Vol. 4 — Insight">
-        <span class="jogo-em-breve-overlay">Em breve</span>
-        <div class="jogo-card-footer">
-          <span class="jogo-vol">Vol. 04</span>
-          <span class="jogo-play-btn">Em breve</span>
-        </div>
-      </div>
-
-      <!-- Vol. 5 -->
-      <div class="jogo-card em-breve">
-        <img class="jogo-cover" src="img/microjogos-vol5-insight2.png" alt="Micro-jogos CRIACOM Vol. 5 — Insight 2">
-        <span class="jogo-em-breve-overlay">Em breve</span>
-        <div class="jogo-card-footer">
-          <span class="jogo-vol">Vol. 05</span>
-          <span class="jogo-play-btn">Em breve</span>
-        </div>
-      </div>
-
-      <!-- Vol. 6 -->
-      <div class="jogo-card em-breve">
-        <img class="jogo-cover" src="img/microjogos-vol6-desconto.png" alt="Micro-jogos CRIACOM Vol. 6 — Desconto Temporal">
-        <span class="jogo-em-breve-overlay">Em breve</span>
-        <div class="jogo-card-footer">
-          <span class="jogo-vol">Vol. 06</span>
-          <span class="jogo-play-btn">Em breve</span>
-        </div>
-      </div>
-
-      <!-- Vol. 7 -->
-      <div class="jogo-card em-breve">
-        <img class="jogo-cover" src="img/microjogos-vol7-esquemas.png" alt="Micro-jogos CRIACOM Vol. 7 — Jogo dos Esquemas">
-        <span class="jogo-em-breve-overlay">Em breve</span>
-        <div class="jogo-card-footer">
-          <span class="jogo-vol">Vol. 07</span>
-          <span class="jogo-play-btn">Em breve</span>
-        </div>
-      </div>
-
-    </div><!-- /jogos-grid -->
+    </div>
   </div>
 </section>
 
@@ -4544,6 +4475,7 @@
     <div class="foot-logo-wrap">
       <img src="img/logo.png" alt="CRIACOM" class="foot-logo-main">
       <span class="foot-logo-tagline">Laboratório de estudos em Criatividade, Inovação, Cognição e Comportamento · UEL · Londrina, PR</span>
+      <a class="foot-ig" href="https://www.instagram.com/criacom.uel/" target="_blank" rel="noopener">Siga no Instagram · @criacom.uel</a>
     </div>
     <div class="foot-grid">
       <div>
@@ -4568,7 +4500,7 @@
         <h5>Contato</h5>
         <ul>
 
-          <li><a href="https://www.instagram.com/criacom.uel/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.instagram.com/criacom.uel/" target="_blank" rel="noopener">Instagram · @criacom.uel</a></li>
           <li><a href="http://lattes.cnpq.br/2700793023719116" target="_blank" rel="noopener">Lattes</a></li>
           <li><a href="https://criacom.github.io/lab" target="_blank" rel="noopener">GitHub</a></li>
         </ul>
